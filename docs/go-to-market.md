@@ -1,9 +1,42 @@
 # Go-to-market playbook
 
-Status: preparation only. Run the [one-week private beta](private-beta.md) first.
-The repository remains private; no public release or post is authorized by this
-document. Public v1 will be completely free and MIT licensed, without ads or
-telemetry. The maintainer reviews beta results before choosing a launch date.
+Status: `v0.1.0` published on 2026-11-17 with maintainer authorization.
+Token Huddle is free and MIT licensed, without ads or telemetry. Social posts and
+the demo copy below remain drafts; publication of the repository and release did
+not send any posts.
+
+## Public launch record
+
+- The maintainer tested the Windows installer with real tools. Claude subscription
+  limits matched the terminal status line; compact view, Ctrl+Alt+H and settings
+  persistence worked. This was a live smoke test, not a completed one-week beta.
+- The old development history remains in the archived private repository
+  `arkaslittlemind/token-huddle-private`. A verified recovery bundle also exists
+  outside the project. The public `arkaslittlemind/token-huddle` repository starts
+  at the reviewed snapshot `3bb1c2914c696f48e646378bad7e1cf499201020`.
+- The public snapshot's tracked text was scanned for common secret patterns and
+  personal paths. No secret-like values were found; personal user-directory paths
+  in two historical records were replaced with placeholders. This scan does not
+  establish that the private development history contains no secrets.
+- The public snapshot preserves human attribution using the maintainer's GitHub
+  noreply email. Private vulnerability reporting is enabled.
+- Local Verify and Windows packaging passed. Public GitHub Verify run
+  `43972636220` and Release run `43972731386` both passed. The release tag is
+  `v0.1.0`, and the release contains installer, portable, stable installer alias,
+  checksums, blockmap and updater metadata. Executable checksums match GitHub's
+  asset digests; the installer and its stable alias have identical SHA-256 digests.
+- The landing page is now Git-connected to the public repository through Pages
+  project `token-huddle-public`. Its custom domain is active. The public direct
+  installer URL returns HTTP 200 and an attachment download response. See
+  [deployment migration](site-deployment.md#public-repository-migration-2026-11-17).
+- Future feature and fix branches start from public `main`; local `origin` points
+  at the public repository. Push only current public work there. The private
+  archive retains the original development history and is not the development
+  target for new work.
+- A newer-version in-app upgrade has not been tested by this first release.
+
+The planning checklist and launch copy below are retained as reference; social
+posting, donations and broader beta coverage are separate work.
 
 ## A 15-second demo
 

@@ -1,5 +1,31 @@
 # Landing page deployment
 
+## Public repository migration (2026-11-17)
+
+The development repository was renamed to `arkaslittlemind/token-huddle-private`
+and archived privately. The public repository `arkaslittlemind/token-huddle`
+starts at the reviewed release snapshot `3bb1c2914c696f48e646378bad7e1cf499201020`.
+The local `main` branch now tracks the public repository through `origin`.
+The private archive is retained as the `private-archive` remote.
+
+Cloudflare kept the old repository ID when its project source was patched.
+A new Git-connected Pages project, `token-huddle-public`, therefore replaces
+`token-huddle` for production. It uses the same build settings below and the
+public repository ID `1460652770`; previews remain disabled. Its first deployment,
+`0e1ef7f7-bbcf-4122-a85b-d31022329775`, passed and serves the reviewed snapshot.
+Automatic production deployments on the old project are disabled.
+
+The custom domain remains `tokenhuddle.arkaslittlemind.com`. Its CNAME now targets
+`token-huddle-public.pages.dev`, still DNS-only with automatic TTL. Domain
+verification and validation are active. The custom origin returns HTTPS 200,
+contains five direct-installer links and retains its CSP with no remote scripts.
+The permanent installer URL returns HTTP 200 after redirects, with
+`Content-Disposition: attachment; filename=Token-Huddle-Setup.exe` and the expected
+121,966,398-byte content length. Anonymous GitHub release lookup returns `v0.1.0`.
+
+The original deployment record below is historical and describes the private
+repository deployment before this migration.
+
 The Cloudflare Pages project `token-huddle` is configured with native GitHub
 integration. Its first deployment failed Astro checks because the site did not
 declare `@types/node`; the dependency fix was committed and pushed to `main` as
