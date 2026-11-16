@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Landing page announces that Token Huddle is available to download, including before JavaScript loads or when the release lookup fails. A lookup returning 404 no longer replaces download links with the repository or shows prelaunch copy.
+
 ## [0.1.0] - 2026-11-17
 
 ### Fixed

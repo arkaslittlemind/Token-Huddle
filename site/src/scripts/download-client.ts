@@ -1,7 +1,7 @@
 // Asks GitHub for the latest published release and points every Download link
 // at it. Without JavaScript, or if anything goes wrong, the links keep their
 // direct latest installer target.
-import { LATEST_API, REPO_URL, pickDownload, type Pick } from '../lib/download';
+import { LATEST_API, pickDownload, type Pick } from '../lib/download';
 
 const TIMEOUT_MS = 8000;
 
@@ -12,12 +12,6 @@ export function apply(pick: Pick): void {
   const links = document.querySelectorAll<HTMLAnchorElement>('a[data-download]');
   const note = document.querySelector<HTMLElement>('[data-release-note]');
   const chip = document.querySelector<HTMLElement>('[data-release-chip]');
-
-  if (pick.kind === 'none') {
-    links.forEach((a) => (a.href = REPO_URL));
-    if (note) note.textContent = 'The first release is coming soon. Follow the project on GitHub.';
-    return;
-  }
 
   links.forEach((a) => (a.href = pick.installer));
   if (chip) chip.textContent = `v${pick.version} is out · free and open source`;
@@ -34,7 +28,7 @@ export function apply(pick: Pick): void {
     page.hidden = false;
   }
   if (extra && (pick.portable || pick.page)) extra.hidden = false;
-  if (note) note.textContent = `Version ${pick.version} for Windows 10 and 11.`;
+  if (note) note.textContent = `Version ${pick.version} available for Windows 10 and 11.`;
 }
 
 export async function init(): Promise<void> {

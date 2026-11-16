@@ -137,9 +137,9 @@ the policy to silence the warning. Verify actual browser behavior after deployme
   assets and scripts must run without CSP violations. Do not inject a second
   policy or enable host script injection that breaks the existing policy.
 - Before JavaScript finishes, download links should point to the repository's
-  `releases/latest/download/Token-Huddle-Setup.exe` installer. On a GitHub API 404, they should point to the repository
-  and show the first-release-coming-soon note. A private repository can still
-  return 404 to anonymous visitors; this deployment does not make it public.
+  `releases/latest/download/Token-Huddle-Setup.exe` installer. On a GitHub API 404,
+  they should retain that direct download target and the available-now copy.
+  A failed release lookup must not restore prelaunch messaging.
 - With a published release, links should select its Windows installer, show the
   version and reveal available portable/release-page links. Until a public
   release exists, check that path with an explicitly intercepted sample response

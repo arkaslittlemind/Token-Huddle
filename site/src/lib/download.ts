@@ -9,8 +9,6 @@ export const LATEST_API = `https://api.github.com/repos/${REPO}/releases/latest`
 /** What the Download links become. */
 export type Pick =
   | { kind: 'release'; version: string; installer: string; portable: string | null; page: string | null }
-  /** No published release yet (the API answers 404). */
-  | { kind: 'none' }
   /** Anything else: keep the direct latest installer link. */
   | { kind: 'fallback' };
 
@@ -40,7 +38,6 @@ function assetUrl(assets: unknown[], name: RegExp): string | null {
  * @param body   the parsed JSON body, untrusted
  */
 export function pickDownload(status: number, body: unknown): Pick {
-  if (status === 404) return { kind: 'none' };
   if (status !== 200 || !isRecord(body)) return { kind: 'fallback' };
 
   const tag = body['tag_name'];

@@ -44,8 +44,8 @@ describe('pickDownload', () => {
     expect(pickDownload(200, body)).toMatchObject({ kind: 'release', portable: null, page: null });
   });
 
-  it('says there is no release yet on 404', () => {
-    expect(pickDownload(404, { message: 'Not Found' })).toEqual({ kind: 'none' });
+  it('keeps the direct download fallback when the release lookup returns 404', () => {
+    expect(pickDownload(404, { message: 'Not Found' })).toEqual({ kind: 'fallback' });
   });
 
   it('falls back on a rate limit or any other status', () => {
