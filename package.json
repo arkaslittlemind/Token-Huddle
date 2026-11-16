@@ -1,0 +1,89 @@
+{
+  "name": "token-huddle",
+  "productName": "Token Huddle",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A small always-on-top desktop widget showing your Claude Code, Codex and OpenCode usage limits.",
+  "author": "Arkadipta Mojumder",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arkaslittlemind/token-huddle.git"
+  },
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "node scripts/launch.js",
+    "test": "node scripts/test.js \"test/*.test.js\"",
+    "demo": "node scripts/launch.js . --demo",
+    "screenshot": "node scripts/launch.js scripts/screenshot.js",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "verify": "npm run lint && npm run format:check && npm test && npm --prefix site run verify",
+    "dist": "node scripts/make-icon.js && electron-builder --win --publish never",
+    "site:dev": "npm --prefix site run dev",
+    "site:build": "npm --prefix site run build"
+  },
+  "build": {
+    "appId": "com.arkaslittlemind.tokenhuddle",
+    "productName": "Token Huddle",
+    "copyright": "Copyright © 2026 Arkadipta Mojumder",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "src/**/*",
+      "package.json",
+      "LICENSE"
+    ],
+    "publish": {
+      "provider": "github",
+      "owner": "arkaslittlemind",
+      "repo": "token-huddle"
+    },
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "include": "build/installer.nsh",
+      "artifactName": "Token-Huddle-Setup-${version}.${ext}"
+    },
+    "portable": {
+      "artifactName": "Token-Huddle-${version}-portable.${ext}"
+    }
+  },
+  "keywords": [
+    "claude-code",
+    "codex",
+    "opencode",
+    "usage",
+    "rate-limits",
+    "widget"
+  ],
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "electron": "^45.3.2",
+    "electron-builder": "^26.18.0",
+    "eslint": "^10.15.0",
+    "globals": "^17.14.0",
+    "prettier": "^3.10.1"
+  },
+  "dependencies": {
+    "electron-updater": "^6.8.11"
+  }
+}

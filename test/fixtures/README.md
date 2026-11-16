@@ -1,0 +1,24 @@
+# Test fixtures
+
+Sample vendor data the provider tests run against. When a vendor changes a format, update the fixture from a real sample and the failing tests show what broke.
+
+| File | What it is | Provenance |
+| --- | --- | --- |
+| `codex-rollout.jsonl` | Lines from a Codex session log, including the `rate_limits` snapshot | **Recorded.** Structure copied from a real Codex log (November 2026); ids and token counts replaced. |
+| `codex-app-server.json` | Answer of `codex app-server` to `account/rateLimits/read` | **Recorded** from Codex 0.169.0 (November 2026, Plus plan); account id redacted, reset-credit details removed. |
+| `fake-codex.js` | A stand-in for `codex app-server` that replays the file above | Written for the tests. |
+| `claude-statusline-input.json` | The JSON Claude Code passes to a status line command | **Recorded** from Claude Code 2.1.325 in a terminal (November 2026). Keys, nesting and value types are real; ids, paths, repository, model, cost, token and usage numbers replaced. |
+
+Never commit real tokens, emails or account ids in a fixture.
+
+## Recording the Claude Code status line input again
+
+1. Save a copy of `~/.claude/settings.json`.
+2. Set its `statusLine` to
+   `{ "type": "command", "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"<repo>/scripts/capture-statusline.ps1\" \"<temp folder>/claude-statusline-raw.json\"" }`,
+   with forward slashes in both paths and the output outside the repository.
+3. Start a new `claude` session in a terminal and send one message. The status line shows `recording`.
+4. Put the saved `settings.json` back.
+5. Copy the recording's keys, nesting and value types into the fixture. Replace every id, path, repository and model name, and every cost, token and usage number. Keep the `rate_limits` values the tests expect. Delete the raw recording.
+
+Claude local-session reader tests construct synthetic metadata-only records in temporary folders. Field names and nesting follow the locally observed assistant timestamp, requestId, message.id and message.usage structure (November 2026). No conversation text, paths or real IDs are copied. Cross-interface origin remains unverified.

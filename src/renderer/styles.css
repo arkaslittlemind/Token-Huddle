@@ -1,0 +1,375 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background: transparent;
+  overflow: hidden;
+  user-select: none;
+}
+
+body {
+  padding: 8px;
+  color: var(--text);
+  font: 12px/1.35 var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Size option: the whole widget scales; main widens the window to match. */
+[data-size='115'] body {
+  zoom: 1.15;
+}
+
+[data-size='130'] body {
+  zoom: 1.3;
+}
+
+#card {
+  background: var(--surface-solid);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+}
+
+/* See-through card; --surface's alpha keeps text readable over any desktop. */
+[data-style='translucent'] #card {
+  background: var(--surface);
+}
+
+/* ---------------------------------------------------------------- header */
+
+#bar {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  /* 40px tall so the 16px logo sits 12px from the top and the side alike,
+     lined up with the cards' 12px inset; the 22px buttons sit 9px from the
+     top and the right. */
+  height: 40px;
+  padding: 0 9px 0 12px;
+  -webkit-app-region: drag;
+}
+
+.logo {
+  display: flex;
+  margin-right: 7px;
+}
+
+.logo svg {
+  width: 16px;
+  height: 16px;
+}
+
+.title {
+  font-family: var(--font-brand);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.mode {
+  margin-left: 8px;
+  font-size: 11px;
+  color: var(--text-faint);
+}
+
+.spacer {
+  flex: 1;
+}
+
+button {
+  -webkit-app-region: no-drag;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-faint);
+  cursor: pointer;
+  transition:
+    background 0.12s,
+    color 0.12s;
+}
+
+button:hover {
+  background: var(--hover);
+  color: var(--text);
+}
+
+button:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 1px;
+}
+
+button svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+button.spinning svg {
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* -------------------------------------------------------------- provider */
+
+.provider {
+  padding: 10px 12px 12px;
+  border-top: 1px solid var(--line);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex: none;
+  box-shadow: 0 0 0 1px var(--dot-ring);
+}
+
+.name {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.plan {
+  padding: 1px 6px;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.status {
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+
+.status.stale {
+  color: var(--warn);
+}
+
+.status.error {
+  color: var(--crit);
+}
+
+.window {
+  margin-top: 9px;
+}
+
+.row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.label {
+  color: var(--text);
+}
+
+.reset {
+  color: var(--text-faint);
+  font-size: 11px;
+}
+
+.percent {
+  margin-left: auto;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.track {
+  position: relative;
+  height: 5px;
+  margin-top: 5px;
+  border-radius: 99px;
+  background: var(--track);
+}
+
+.fill {
+  height: 100%;
+  min-width: 2px;
+  border-radius: 99px;
+  background: var(--fill);
+  transition: width 0.4s ease;
+}
+
+/* Marks how much of the window's time has passed. Fill beyond it = ahead of pace. */
+.pace {
+  position: absolute;
+  top: -2px;
+  width: 2px;
+  height: 9px;
+  border-radius: 1px;
+  background: var(--pace);
+  box-shadow: 0 0 0 1px var(--surface-solid);
+}
+
+.warn .fill {
+  background: var(--warn);
+}
+.warn .percent,
+.sum.warn {
+  color: var(--warn);
+}
+.crit .fill {
+  background: var(--crit);
+}
+.crit .percent,
+.sum.crit {
+  color: var(--crit);
+}
+
+.stats {
+  display: flex;
+  gap: 16px;
+  margin-top: 9px;
+}
+
+.stat .k {
+  display: block;
+  font-size: 11px;
+  color: var(--text-faint);
+}
+
+.stat .v {
+  font-size: 14px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.spark {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 26px;
+  margin-left: auto;
+}
+
+.spark i {
+  width: 6px;
+  min-height: 2px;
+  border-radius: 2px;
+  background: var(--track);
+}
+
+.spark i.on {
+  background: var(--spark);
+}
+
+.note {
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--text-faint);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* A problem's next action wraps in full view instead of being cut off. */
+.note.action {
+  overflow: visible;
+  text-overflow: clip;
+  white-space: normal;
+  line-height: 1.35;
+}
+
+/* Text for screen readers only: read aloud, never drawn. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.empty p {
+  margin: 0 0 8px;
+}
+
+button.link {
+  display: inline;
+  width: auto;
+  height: auto;
+  padding: 3px 8px;
+  border: 1px solid var(--line);
+  font: inherit;
+  color: var(--text);
+}
+
+.empty {
+  padding: 18px 12px;
+  border-top: 1px solid var(--line);
+  color: var(--text-faint);
+  text-align: center;
+}
+
+/* --------------------------------------------------------------- compact */
+
+.compact .provider {
+  padding: 8px 12px;
+}
+
+.compact .name {
+  font-size: 12px;
+}
+
+.summary {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.sum {
+  font-weight: 600;
+}
+
+.sum small {
+  margin-right: 3px;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-faint);
+}
+
+.sum.muted {
+  font-weight: 400;
+  color: var(--text-faint);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

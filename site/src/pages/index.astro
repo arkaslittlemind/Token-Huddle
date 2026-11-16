@@ -1,0 +1,255 @@
+---
+import HeroStage from '../components/HeroStage.astro';
+import Icon from '../components/Icon.astro';
+import Marquee from '../components/Marquee.astro';
+import Mark from '../components/Mark.astro';
+import MeterRow from '../components/MeterRow.astro';
+import Base from '../layouts/Base.astro';
+import { FALLBACK_URL, REPO_URL } from '../lib/download';
+
+const features = [
+  {
+    icon: 'clock',
+    title: 'A tick for the clock',
+    body: 'Each bar marks how much of the window has passed. Fill past the tick means you are ahead of the reset.',
+  },
+  {
+    icon: 'signal',
+    title: 'Amber at 70, red at 90',
+    body: 'Colour only marks state. The number is always written beside it.',
+  },
+  {
+    icon: 'rows',
+    title: 'Compact when you need it',
+    body: 'One line per tool, for when the numbers are all you want.',
+  },
+  {
+    icon: 'keyboard',
+    title: 'Snaps and hides',
+    body: 'Snaps to screen edges, stays on top, and a hotkey shows or hides it.',
+  },
+  {
+    icon: 'key',
+    title: 'Your logins stay yours',
+    body: 'It never reads, stores or sends a login token. Only what each tool writes to disk.',
+  },
+  {
+    icon: 'github',
+    title: 'Free and open source',
+    body: 'MIT licence. Its one network call checks for updates, and you can turn that off.',
+  },
+] as const;
+
+// "Is this a crypto thing?" stays first: it is where the page says what
+// "tokens" means.
+const faq = [
+  {
+    q: 'Is this a crypto thing?',
+    a: 'No. "Tokens" means AI model usage: the units Claude Code, Codex and OpenCode count.',
+  },
+  {
+    q: 'Why does Windows warn me when I run it?',
+    a: 'The builds are not code-signed yet. Windows may show "Windows protected your PC": choose More info, then Run anyway. Each release lists SHA-256 checksums.',
+  },
+  { q: 'macOS or Linux?', a: 'Windows only for now. macOS and Linux are planned.' },
+  { q: 'Is it free?', a: 'Yes. Free and open source under the MIT licence.' },
+];
+
+const wrap = 'mx-auto w-full max-w-[calc(var(--wide)+2*var(--gutter))] px-(--gutter)';
+---
+
+<Base
+  title="Token Huddle - every AI coding limit, one glance"
+  description="A small always-on-top Windows widget that shows your Claude Code, Codex and OpenCode usage limits in one place. Free and open source. Never touches your logins."
+>
+  <a class="skip" href="#main">
+    Skip to content
+  </a>
+
+  <header class:list={['nav absolute inset-x-0 top-0 z-10 flex items-center gap-6 py-5 text-sm', wrap]}>
+    <a class="brand" href="/">
+      <Mark size={18} />
+      <span>Token Huddle</span>
+    </a>
+    <nav class="mx-auto hidden gap-7 opacity-85 md:flex" aria-label="Page">
+      <a href="#features">Features</a>
+      <a href="#tools">Tools</a>
+      <a href="#faq">FAQ</a>
+      <a href={REPO_URL}>GitHub</a>
+    </nav>
+    <a class="btn btn-pill ml-auto md:ml-0" href={FALLBACK_URL} data-download>
+      Download
+    </a>
+  </header>
+
+  <main id="main">
+    <div class="hero relative overflow-hidden px-(--gutter) pt-37.5 text-center">
+      <div class="photo hero-photo" aria-hidden="true"></div>
+      <div class="relative z-1">
+        <a class="chip" href={`${REPO_URL}/releases`}>
+          <span data-release-chip>v0.1.0 is coming · free and open source</span>
+        </a>
+        <h1 class="hero-title">
+          Every AI limit.
+          <br />
+          <em>One quiet glance.</em>
+        </h1>
+        <p class="hero-lead mx-auto max-w-130">
+          A small always-on-top Windows widget for Claude Code, Codex and OpenCode. It reads what each tool already
+          writes to disk, and never touches your logins.
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center gap-3">
+          <a class="btn btn-light" href={FALLBACK_URL} data-download>
+            Download for Windows
+          </a>
+          <a class="btn btn-ghost" href={REPO_URL}>
+            View on GitHub
+          </a>
+        </div>
+        <p class="release-extra mt-4 flex justify-center gap-4 text-sm" data-release-extra hidden>
+          <a href={FALLBACK_URL} data-download-portable hidden>
+            Portable .exe
+          </a>
+          <a href={FALLBACK_URL} data-release-page hidden>
+            All files and checksums
+          </a>
+        </p>
+        <p class="release-note mt-2 text-sm" data-release-note aria-live="polite"></p>
+      </div>
+      <div class="relative z-2 mx-auto mt-14 max-w-300">
+        <HeroStage />
+      </div>
+    </div>
+
+    <section class:list={['relative z-3 pt-10 text-center', wrap]} id="tools" aria-labelledby="tools-title">
+      <h2 class="kicker" id="tools-title">
+        Reads from the agents you already run
+      </h2>
+      <Marquee />
+    </section>
+
+    <section class="statement mx-auto max-w-215 px-(--gutter) py-30 text-center">
+      <p>
+        Your limits shouldn't hide in three tools and a settings page.{' '}
+        <span>
+          Token Huddle keeps them in one small window, pinned where you can see it, then gets <em>out of the way</em>.
+        </span>
+      </p>
+    </section>
+
+    <section class={wrap} id="pace" aria-labelledby="pace-title">
+      <div class="panel">
+        <div class="panel-head grid items-end gap-x-12 gap-y-6 lg:grid-cols-[1fr_minmax(0,340px)]">
+          <div>
+            <p class="eyebrow">Pace</p>
+            <h2 id="pace-title">
+              Ahead of the clock,
+              <br />
+              <em>or behind it.</em>
+            </h2>
+          </div>
+          <p class="text-[15px] text-ink-2">
+            The tick marks how much of the window's time has passed. When the fill runs past it, you are spending your
+            limit faster than it resets.
+          </p>
+        </div>
+        <div class="pace-demo grid items-center gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
+          <div class="pace-meter relative pt-11 pb-13">
+            <MeterRow label="Claude Code · session" reset="resets in 2h 12m" used={74} pace={56} big />
+            <div class="pace-note pace-note-fill left-[74%]">
+              <span>74% used: ahead</span>
+            </div>
+            <div class="pace-note pace-note-tick left-[56%]">
+              <span>56% of 5h gone</span>
+            </div>
+          </div>
+          <div class="pace-states grid gap-5.5">
+            <MeterRow label="Codex · session" used={12} pace={18} />
+            <MeterRow label="Claude Code · weekly" used={74} pace={52} />
+            <MeterRow label="Codex · weekly" used={93} pace={85} />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class:list={['pt-30 pb-10', wrap]} id="features" aria-labelledby="features-title">
+      <div class="mb-12 flex flex-wrap items-end justify-between gap-x-10 gap-y-4">
+        <h2 class="section-title" id="features-title">
+          Small details, <em>quietly</em> done right.
+        </h2>
+        <p class="max-w-70 text-sm text-ink-2">Built for people who keep three agents running before lunch.</p>
+      </div>
+      <ul class="grid border-t border-line md:grid-cols-3">
+        {features.map((f) => (
+          <li class="cell">
+            <Icon name={f.icon} />
+            <h3>{f.title}</h3>
+            <p>{f.body}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section
+      class:list={['grid gap-x-16 gap-y-8 pt-20 pb-30 md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]', wrap]}
+      id="faq"
+      aria-labelledby="faq-title"
+    >
+      <h2 class="section-title" id="faq-title">
+        Questions, <em>answered.</em>
+      </h2>
+      <div class="faq">
+        {faq.map(({ q, a }) => (
+          <details>
+            <summary>{q}</summary>
+            <p>{a}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <section class="closing-wrap mx-auto max-w-[calc(var(--wide)+2*var(--gutter))]" aria-labelledby="closing-title">
+      <div class="closing relative overflow-hidden text-center">
+        <div class="photo closing-photo" aria-hidden="true"></div>
+        <div class="relative px-6 pt-18 pb-60">
+          <h2 id="closing-title">
+            Let them <em>work.</em>
+            <br />
+            Keep one eye on the meter.
+          </h2>
+          <a class="btn btn-solid" href={FALLBACK_URL} data-download>
+            Download Token Huddle, free
+          </a>
+          <p class="closing-note mt-4 text-xs">Windows 10 and 11 · not code-signed yet: More info, then Run anyway</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class:list={['flex flex-wrap items-center gap-x-6 gap-y-3 pt-8 pb-12 text-[13px] text-ink-2', wrap]}>
+    <a class="brand brand-small" href="/">
+      <Mark size={14} />
+      <span>Token Huddle</span>
+    </a>
+    <span>Not affiliated with Anthropic, OpenAI or the OpenCode project.</span>
+    <nav class="flex flex-wrap gap-5 md:ml-auto" aria-label="Project">
+      <a href={REPO_URL}>GitHub</a>
+      <a href={`${REPO_URL}/releases`}>Releases</a>
+      <a href={`${REPO_URL}/blob/main/CHANGELOG.md`}>Changelog</a>
+      <a href={`${REPO_URL}/blob/main/LICENSE`}>MIT licence</a>
+      <a href={`${REPO_URL}/blob/main/SECURITY.md`}>Security</a>
+    </nav>
+    <p class="w-full text-xs text-ink-3">
+      Claude and Claude Code are trademarks of Anthropic; Codex is a trademark of OpenAI.
+    </p>
+  </footer>
+
+  <script>
+    import { init as initDownload } from '../scripts/download-client';
+    import { init as initHero } from '../scripts/hero-client';
+    import { init as initMarquee } from '../scripts/marquee-client';
+    initHero();
+    initMarquee();
+    void initDownload();
+  </script>
+</Base>

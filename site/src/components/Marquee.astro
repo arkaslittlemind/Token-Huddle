@@ -1,0 +1,55 @@
+---
+// The supported agents drifting past in a loop. The track holds two identical
+// halves and slides one half's width, then repeats, so the seam never shows;
+// each half lists the agents twice so it is wider than any screen. It pauses
+// on hover, on keyboard focus and with the Pause button (the loop never ends,
+// WCAG 2.2.2), and stands still under reduced motion, where CSS shows only
+// the first listing. The official marks only name the agents; the footer
+// carries the not-affiliated notice.
+import claude from '../assets/agents/claude-code.svg?url';
+import codex from '../assets/agents/codex.svg?url';
+import opencode from '../assets/agents/opencode.svg?url';
+
+const agents = [
+  { name: 'Claude Code', mark: claude },
+  { name: 'Codex', mark: codex },
+  { name: 'OpenCode', mark: opencode },
+];
+const halves = ['first', 'second'] as const;
+const listingsPerHalf = [0, 1];
+---
+
+<div class="mq" data-marquee>
+  <div
+    class="mq-viewport"
+    role="region"
+    aria-label="Supported agents: Claude Code, Codex and OpenCode, with more planned"
+  >
+    <div class="mq-track">
+      {halves.map((half) => (
+        <ul class="mq-run" aria-hidden={half === 'second' ? 'true' : undefined}>
+          {listingsPerHalf.map((listing) => {
+            // Screen readers hear the list once: every repeat is hidden.
+            const repeat = half === 'first' && listing > 0 ? 'true' : undefined;
+            return (
+              <>
+                {agents.map((a) => (
+                  <li aria-hidden={repeat}>
+                    <img src={a.mark} alt="" width="22" height="22" />
+                    {a.name}
+                  </li>
+                ))}
+                <li class="faint" aria-hidden={repeat}>
+                  More agents planned
+                </li>
+              </>
+            );
+          })}
+        </ul>
+      ))}
+    </div>
+  </div>
+  <button type="button" class="mq-toggle" aria-pressed="false" data-marquee-toggle hidden>
+    Pause scrolling
+  </button>
+</div>

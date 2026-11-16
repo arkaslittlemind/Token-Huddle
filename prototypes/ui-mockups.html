@@ -1,0 +1,1655 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>UI Mockups</title>
+    <!--
+      Build-plan step 12b. Static mockups of the widget, settings window and
+      onboarding, in the dark (shipped) and light (proposed) themes.
+
+      Open this file from disk in a browser. It loads the app's real tokens and
+      bundled fonts from ../src/renderer/ and nothing from the network.
+
+      Light values are overrides of the token names in tokens.css, so step 13
+      can move the [data-theme='light'] block into tokens.css unchanged.
+      Contrast ratios for them are in docs/brand.md.
+    -->
+    <link rel="stylesheet" href="../src/renderer/tokens.css" />
+    <style>
+      /* ------------------------------------------- proposed tokens (step 13) */
+
+      /* New names this mockup needs. Dark values equal what ships today. */
+      :root,
+      [data-theme='dark'] {
+        --primary: var(--ob-sky);
+        --primary-hover: var(--ob-mist);
+        --on-primary: var(--surface-solid);
+        --mark-row: var(--ob-sky);
+        --mark-dot: var(--ob-cyan);
+        --dot-ring: transparent;
+        --card-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+      }
+
+      [data-theme='light'] {
+        --surface: rgba(246, 252, 254, 0.94);
+        --surface-solid: #f6fcfe;
+        --panel: #ffffff;
+        --control: #e4f1f6;
+        --control-hover: #d3e8f0;
+        --line: rgba(3, 4, 94, 0.12);
+        --hover: rgba(3, 4, 94, 0.07);
+
+        --text: #03045e;
+        --text-muted: #2c4a7a;
+        --text-faint: #4d6488;
+
+        --track: rgba(3, 4, 94, 0.1);
+        --fill: #0077b6;
+        --pace: #03045e;
+        --spark: #0077b6;
+        --focus: #0077b6;
+
+        --ok: #1d7a4a;
+        --warn: #9a6200;
+        --crit: #c0322c;
+
+        --primary: #0077b6;
+        --primary-hover: #03045e;
+        --on-primary: #ffffff;
+        --mark-row: #03045e;
+        --mark-dot: #00b4d8;
+        /* Tool accents are pale on light surfaces; a ring keeps each dot visible. */
+        --dot-ring: rgba(3, 4, 94, 0.45);
+        --card-shadow: 0 4px 12px rgba(3, 4, 94, 0.14);
+      }
+
+      /* ------------------------------------------------------- page chrome */
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: #0c0d11;
+        color: #d9dbe2;
+        font: 13px/1.5 var(--font-ui);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .page {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 32px 16px 64px;
+      }
+
+      .page > header h1 {
+        font-family: var(--font-brand);
+        font-size: 13px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #9a9ca8;
+      }
+
+      .page > header p {
+        max-width: 70ch;
+        margin-top: 6px;
+        color: #9a9ca8;
+      }
+
+      .page > section {
+        margin-top: 40px;
+      }
+
+      .page > section > h2 {
+        font-size: 17px;
+        font-weight: 600;
+        color: #f1f2f4;
+      }
+
+      .page > section > p {
+        max-width: 70ch;
+        margin-top: 4px;
+        color: #9a9ca8;
+      }
+
+      .stages {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 16px;
+        margin-top: 16px;
+      }
+
+      /* A stage stands in for the desktop behind the window. */
+      .stage {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 24px;
+        padding: 20px;
+        border-radius: 14px;
+      }
+
+      .stage[data-theme='dark'] {
+        background: linear-gradient(135deg, #1d2230, #2b2f3d);
+      }
+
+      .stage[data-theme='light'] {
+        background: linear-gradient(135deg, #dfe7ee, #eef2f6);
+      }
+
+      .frame > figcaption {
+        margin-bottom: 8px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #9a9ca8;
+      }
+
+      .stage[data-theme='light'] .frame > figcaption {
+        color: #4d6488;
+      }
+
+      /* ------------------------------------------------ widget (styles.css) */
+
+      .w {
+        width: 300px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        box-shadow: var(--card-shadow);
+        overflow: hidden;
+        color: var(--text);
+        font: 12px/1.35 var(--font-ui);
+        user-select: none;
+      }
+
+      .w .bar {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        height: 32px;
+        padding: 0 6px 0 12px;
+      }
+
+      .w .logo {
+        display: flex;
+        margin-right: 7px;
+      }
+
+      .w .logo svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .w .logo .row-shape {
+        fill: var(--mark-row);
+      }
+
+      .w .logo .dot-shape {
+        fill: var(--mark-dot);
+      }
+
+      .w .title {
+        font-family: var(--font-brand);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+      }
+
+      .w .mode {
+        margin-left: 8px;
+        font-size: 11px;
+        color: var(--text-faint);
+      }
+
+      .w .spacer {
+        flex: 1;
+      }
+
+      .w button {
+        display: grid;
+        place-items: center;
+        width: 22px;
+        height: 22px;
+        border: 0;
+        border-radius: 6px;
+        background: transparent;
+        color: var(--text-faint);
+        cursor: pointer;
+      }
+
+      .w button:hover {
+        background: var(--hover);
+        color: var(--text);
+      }
+
+      .w button:focus-visible,
+      .w button.focus {
+        outline: 2px solid var(--focus);
+        outline-offset: 1px;
+      }
+
+      .w button svg {
+        width: 14px;
+        height: 14px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .w .provider {
+        padding: 10px 12px 12px;
+        border-top: 1px solid var(--line);
+      }
+
+      .w .head {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+
+      .w .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        flex: none;
+        box-shadow: 0 0 0 1px var(--dot-ring);
+      }
+
+      .w .name {
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .w .plan {
+        padding: 1px 6px;
+        border: 1px solid var(--line);
+        border-radius: 99px;
+        font-size: 11px;
+        color: var(--text-muted);
+      }
+
+      .w .status {
+        margin-left: auto;
+        font-size: 11px;
+        color: var(--text-faint);
+        white-space: nowrap;
+      }
+
+      .w .status.stale {
+        color: var(--warn);
+      }
+
+      .w .window {
+        margin-top: 9px;
+      }
+
+      .w .row {
+        display: flex;
+        align-items: baseline;
+        gap: 6px;
+      }
+
+      .w .reset {
+        color: var(--text-faint);
+        font-size: 11px;
+      }
+
+      .w .percent {
+        margin-left: auto;
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .w .track {
+        position: relative;
+        height: 5px;
+        margin-top: 5px;
+        border-radius: 99px;
+        background: var(--track);
+      }
+
+      .w .fill {
+        height: 100%;
+        min-width: 2px;
+        border-radius: 99px;
+        background: var(--fill);
+      }
+
+      .w .pace {
+        position: absolute;
+        top: -2px;
+        width: 2px;
+        height: 9px;
+        border-radius: 1px;
+        background: var(--pace);
+        box-shadow: 0 0 0 1px var(--surface-solid);
+      }
+
+      .w .warn .fill {
+        background: var(--warn);
+      }
+
+      .w .warn .percent,
+      .w .sum.warn {
+        color: var(--warn);
+      }
+
+      .w .crit .fill {
+        background: var(--crit);
+      }
+
+      .w .crit .percent,
+      .w .sum.crit {
+        color: var(--crit);
+      }
+
+      .w .stats {
+        display: flex;
+        gap: 16px;
+        margin-top: 9px;
+      }
+
+      .w .stat .k {
+        display: block;
+        font-size: 11px;
+        color: var(--text-faint);
+      }
+
+      .w .stat .v {
+        font-size: 14px;
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .w .spark {
+        display: flex;
+        align-items: flex-end;
+        gap: 3px;
+        height: 26px;
+        margin-left: auto;
+      }
+
+      .w .spark i {
+        width: 6px;
+        min-height: 2px;
+        border-radius: 2px;
+        background: var(--track);
+      }
+
+      .w .spark i.on {
+        background: var(--spark);
+      }
+
+      .w .note {
+        margin-top: 8px;
+        font-size: 11px;
+        color: var(--text-faint);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .w .empty {
+        padding: 18px 12px;
+        border-top: 1px solid var(--line);
+        color: var(--text-faint);
+        text-align: center;
+      }
+
+      .w.compact .provider {
+        padding: 8px 12px;
+      }
+
+      .w.compact .name {
+        font-size: 12px;
+      }
+
+      .w .summary {
+        display: flex;
+        gap: 10px;
+        margin-left: auto;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+      }
+
+      .w .sum {
+        font-weight: 600;
+      }
+
+      .w .sum small {
+        margin-right: 3px;
+        font-size: 11px;
+        font-weight: 400;
+        color: var(--text-faint);
+      }
+
+      .w .sum.muted {
+        font-weight: 400;
+        color: var(--text-faint);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 170px;
+      }
+
+      /* ---------------------------------------- settings (settings.css) */
+
+      .s {
+        width: 480px;
+        max-width: 100%;
+        background: var(--surface-solid);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        box-shadow: var(--card-shadow);
+        color: var(--text);
+        font: 13px/1.45 var(--font-ui);
+      }
+
+      .s .titlebar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        height: 30px;
+        padding: 0 12px;
+        border-bottom: 1px solid var(--line);
+        font-size: 12px;
+        color: var(--text-muted);
+      }
+
+      .s .titlebar svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      .s .titlebar .tile {
+        fill: #03045e;
+      }
+
+      .s .titlebar .row-shape {
+        fill: #90e0ef;
+      }
+
+      .s .titlebar .dot-shape {
+        fill: #00b4d8;
+      }
+
+      .s main {
+        padding: 20px 20px 28px;
+      }
+
+      .s h1 {
+        font-size: 17px;
+        font-weight: 600;
+      }
+
+      .s h2 {
+        margin-top: 28px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .s .lead {
+        margin: 4px 0 14px;
+        color: var(--text-muted);
+      }
+
+      .s ul.cards {
+        list-style: none;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: var(--panel);
+      }
+
+      .s .card {
+        padding: 12px 12px 12px 14px;
+      }
+
+      .s .card + .card {
+        border-top: 1px solid var(--line);
+      }
+
+      .s .top {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .s .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex: none;
+        box-shadow: 0 0 0 1px var(--dot-ring);
+      }
+
+      .s .name {
+        font-weight: 600;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .s .tools {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        margin-left: auto;
+      }
+
+      .s .detail {
+        margin: 6px 0 0 16px;
+        color: var(--text-muted);
+        font-size: 12px;
+      }
+
+      .s .path {
+        color: var(--text-faint);
+        word-break: break-all;
+      }
+
+      .s .badge {
+        display: inline-block;
+        margin-right: 6px;
+        padding: 0 7px;
+        border: 1px solid var(--line);
+        border-radius: 99px;
+        font-size: 11px;
+        color: var(--text-muted);
+      }
+
+      .s .badge.connected,
+      .s .badge.ready {
+        color: var(--ok);
+      }
+
+      .s .badge.disconnected {
+        color: var(--warn);
+      }
+
+      .s .badge.absent {
+        color: var(--text-faint);
+      }
+
+      .s .actions {
+        margin: 8px 0 0 16px;
+      }
+
+      .s button,
+      .s select,
+      .s input[type='text'] {
+        font: inherit;
+        color: var(--text);
+        background: var(--control);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 5px 10px;
+      }
+
+      .s button {
+        cursor: pointer;
+      }
+
+      .s button:hover:not(:disabled) {
+        background: var(--control-hover);
+      }
+
+      .s button:disabled {
+        opacity: 0.35;
+        cursor: default;
+      }
+
+      .s button.primary {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: var(--on-primary);
+        font-weight: 600;
+      }
+
+      .s button.primary:hover:not(:disabled) {
+        background: var(--primary-hover);
+        border-color: var(--primary-hover);
+      }
+
+      .s button.icon {
+        width: 26px;
+        padding: 3px 0;
+        line-height: 1.2;
+      }
+
+      .s :focus-visible,
+      .s .focus {
+        outline: 2px solid var(--focus);
+        outline-offset: 1px;
+      }
+
+      .s .switch {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-left: 6px;
+        color: var(--text-muted);
+        font-size: 12px;
+      }
+
+      .s .switch input {
+        width: 15px;
+        height: 15px;
+        accent-color: var(--primary);
+      }
+
+      .s form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px 12px;
+      }
+
+      .s label > span:first-child {
+        display: block;
+        margin-bottom: 3px;
+        font-size: 12px;
+        color: var(--text-muted);
+      }
+
+      .s label select,
+      .s label input {
+        width: 100%;
+      }
+
+      .s .wide {
+        grid-column: 1 / -1;
+      }
+
+      .s .folder {
+        display: flex;
+        gap: 6px;
+      }
+
+      .s .folder input {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .s form button[type='submit'] {
+        justify-self: start;
+      }
+
+      .s .error {
+        margin-top: 10px;
+        color: var(--crit);
+      }
+
+      /* ------------------------------------------- onboarding (proposed) */
+
+      .s .never {
+        margin-top: 20px;
+        padding: 12px 14px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: var(--panel);
+      }
+
+      .s .never h2 {
+        margin: 0 0 6px;
+        font-size: 13px;
+      }
+
+      .s .never ul {
+        padding-left: 18px;
+        color: var(--text-muted);
+        font-size: 12px;
+      }
+
+      .s .never li + li {
+        margin-top: 3px;
+      }
+
+      .s .finish {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .s .finish .hint {
+        color: var(--text-faint);
+        font-size: 12px;
+      }
+
+      @media (max-width: 520px) {
+        .s form {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <h1>Token Huddle · UI mockups</h1>
+        <p>
+          Build-plan step 12b. Dark frames match what ships today, except that the smallest text is 11px (the app still
+          uses 10px until step 13). Light frames are the proposed light theme for step 13. Numbers are the demo data.
+          Each stage background stands in for the desktop behind the window.
+        </p>
+      </header>
+
+      <!-- The mark below is a static copy of the usageRows shapes in src/renderer/mark.js (provisional until step 21). -->
+
+      <section>
+        <h2>Widget · full view</h2>
+        <p>
+          Normal, warning (70% and over) and critical (90% and over) windows, the pace marker, a tokens-only tool, and a
+          keyboard focus ring on Refresh.
+        </p>
+        <div class="stages">
+          <div class="stage" data-theme="dark">
+            <figure class="frame">
+              <figcaption>Full · dark</figcaption>
+              <div class="w">
+                <header class="bar">
+                  <span class="logo" aria-hidden="true">
+                    <svg viewBox="0 0 16 16">
+                      <rect class="row-shape" x="2" y="2" width="12" height="3" rx="1.5" />
+                      <rect class="row-shape" x="2" y="6.5" width="8" height="3" rx="1.5" />
+                      <rect class="row-shape" x="2" y="11" width="5" height="3" rx="1.5" />
+                      <circle class="dot-shape" cx="12.5" cy="8" r="1.5" />
+                    </svg>
+                  </span>
+                  <span class="title">Token Huddle</span>
+                  <span class="mode"></span>
+                  <span class="spacer"></span>
+                  <button class="focus" aria-label="Refresh now">
+                    <svg viewBox="0 0 16 16"><path d="M13.2 8a5.2 5.2 0 1 1-1.5-3.7M13.3 2.5v2.4h-2.4" /></svg>
+                  </button>
+                  <button aria-label="Toggle compact view">
+                    <svg viewBox="0 0 16 16"><path d="M3.5 6h9M3.5 10h9" /></svg>
+                  </button>
+                  <button aria-label="Options">
+                    <svg viewBox="0 0 16 16"><path d="M3.5 8h.01M8 8h.01M12.5 8h.01" /></svg>
+                  </button>
+                  <button aria-label="Hide to tray">
+                    <svg viewBox="0 0 16 16"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7" /></svg>
+                  </button>
+                </header>
+                <article class="provider">
+                  <div class="head">
+                    <span class="dot" style="background: #caf0f8"></span>
+                    <span class="name">Claude Code</span>
+                    <span class="status">last turn 2m ago</span>
+                  </div>
+                  <div class="window warn">
+                    <div class="row">
+                      <span class="label">Session</span><span class="reset">resets in 2h 12m</span
+                      ><span class="percent">74%</span>
+                    </div>
+                    <div class="track">
+                      <div class="fill" style="width: 74%"></div>
+                      <div class="pace" style="left: calc(56% - 1px)"></div>
+                    </div>
+                  </div>
+                  <div class="window">
+                    <div class="row">
+                      <span class="label">Weekly</span><span class="reset">resets in 3d 9h</span
+                      ><span class="percent">38%</span>
+                    </div>
+                    <div class="track">
+                      <div class="fill" style="width: 38%"></div>
+                      <div class="pace" style="left: calc(51.4% - 1px)"></div>
+                    </div>
+                  </div>
+                </article>
+                <article class="provider">
+                  <div class="head">
+                    <span class="dot" style="background: #00b4d8"></span>
+                    <span class="name">Codex</span>
+                    <span class="plan">Plus</span>
+                    <span class="status">live</span>
+                  </div>
+                  <div class="window">
+                    <div class="row">
+                      <span class="label">Session</span><span class="reset">resets in 4h 6m</span
+                      ><span class="percent">12%</span>
+                    </div>
+                    <div class="track">
+                      <div class="fill" style="width: 12%"></div>
+                      <div class="pace" style="left: calc(18% - 1px)"></div>
+                    </div>
+                  </div>
+                  <div class="window crit">
+                    <div class="row">
+                      <span class="label">Weekly</span><span class="reset">resets in 1d 4h</span
+                      ><span class="percent">93%</span>
+                    </div>
+                    <div class="track">
+                      <div class="fill" style="width: 93%"></div>
+                      <div class="pace" style="left: calc(82.9% - 1px)"></div>
+                    </div>
+                  </div>
+                </article>
+                <article class="provider">
+                  <div class="head">
+                    <span class="dot" style="background: #3d9bd1"></span>
+                    <span class="name">OpenCode</span>
+                    <span class="status">active 3h 0m ago</span>
+                  </div>
+                  <div class="stats">
+                    <div class="stat"><span class="k">Today</span><span class="v">41.2k</span></div>
+                    <div class="stat"><span class="k">7 days</span><span class="v">1.3M</span></div>
+                    <div class="stat"><span class="k">30 days</span><span class="v">4.8M</span></div>
+                    <div class="spark">
+                      <i class="on" style="height: 23.5%"></i><i class="on" style="height: 66.7%"></i
+                      ><i class="on" style="height: 15.7%"></i><i style="height: 8%"></i
+                      ><i class="on" style="height: 100%"></i><i class="on" style="height: 51%"></i
+                      ><i class="on" style="height: 8%"></i>
+                    </div>
+                  </div>
+                  <div class="note">deepseek-flash-free · tokens used, no quota to read</div>
+                </article>
+              </div>
+            </figure>
+          </div>
+
+          <div class="stage" data-theme="light">
+            <figure class="frame">
+              <figcaption>Full · light</figcaption>
+              <div class="w">
+                <header class="bar">
+                  <span class="logo" aria-hidden="true">
+                    <svg viewBox="0 0 16 16">
+                      <rect class="row-shape" x="2" y="2" width="12" height="3" rx="1.5" />
+                      <rect class="row-shape" x="2" y="6.5" width="8" height="3" rx="1.5" />
+                      <rect class="row-shape" x="2" y="11" width="5" height="3" rx="1.5" />
+                      <circle class="dot-shape" cx="12.5" cy="8" r="1.5" />
+                    </svg>
+                  </span>
+                  <span class="title">Token Huddle</span>
+                  <span class="mode"></span>
+                  <span class="spacer"></span>
+                  <button class="focus" aria-label="Refresh now">
+                    <svg viewBox="0 0 16 16"><path d="M13.2 8a5.2 5.2 0 1 1-1.5-3.7M13.3 2.5v2.4h-2.4" /></svg>
+                  </button>
+                  <button aria-label="Toggle compact view">
+                    <svg viewBox="0 0 16 16"><path d="M3.5 6h9M3.5 10h9" /></svg>
+                  </button>
+                  <button aria-label="Options">
+                    <svg viewBox="0 0 16 16"><path d="M3.5 8h.01M8 8h.01M12.5 8h.01" /></svg>
+                  </button>
+                  <button aria-label="Hide to tray">
+                    <svg viewBox="0 0 16 16"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7" /></svg>
+                  </button>
+                </header>
+                <article class="provider">
+                  <div class="head">
+                    <span class="dot" style="background: #caf0f8"></span>
+                    <span class="name">Claude Code</span>
+                    <span class="status">last turn 2m ago</span>
+                  </div>
+                  <div class="window warn">
+                    <div class="row">
+                      <span class="label">Session</span><span class="reset">resets in 2h 12m</span
+                      ><span class="percent">74%</span>
+                    </div>
+                    <div class="track">
+                      <div class="fill" style="width: 74%"></div>
+                      <div class="pace" style="left: calc(56% - 1px)"></div>
+                    </div>
+                  </div>
+                  <div class="window">
+                    <div class="row">
+                      <span class="label">Weekly</span><span class="reset">resets in 3d 9h</span
+                      ><span class="percent">38%</span>
+                    </div>
+                    <div class="track">
+                      <div class="fill" style="width: 38%"></div>
+                      <div class="pace" style="left: calc(51.4% - 1px)"></div>
+                    </div>
+                  </div>
+                </article>
+                <article class="provider">
+                  <div class="head">
+                    <span class="dot" style="background: #00b4d8"></span>
+                    <span class="name">Codex</span>
+                    <span class="plan">Plus</span>
+                    <span class="status">live</span>
+                  </div>
+                  <div class="window">
+                    <div class="row">
+                      <span class="label">Session</span><span class="reset">resets in 4h 6m</span
+                      ><span class="percent">12%</span>
+                    </div>
+                    <div class="track">
+                      <div class="fill" style="width: 12%"></div>
+                      <div class="pace" style="left: calc(18% - 1px)"></div>
+                    </div>
+                  </div>
+                  <div class="window crit">
+                    <div class="row">
+                      <span class="label">Weekly</span><span class="reset">resets in 1d 4h</span
+                      ><span class="percent">93%</span>
+                    </div>
+                    <div class="track">
+                      <div class="fill" style="width: 93%"></div>
+                      <div class="pace" style="left: calc(82.9% - 1px)"></div>
+                    </div>
+                  </div>
+                </article>
+                <article class="provider">
+                  <div class="head">
+                    <span class="dot" style="background: #3d9bd1"></span>
+                    <span class="name">OpenCode</span>
+                    <span class="status">active 3h 0m ago</span>
+                  </div>
+                  <div class="stats">
+                    <div class="stat"><span class="k">Today</span><span class="v">41.2k</span></div>
+                    <div class="stat"><span class="k">7 days</span><span class="v">1.3M</span></div>
+                    <div class="stat"><span class="k">30 days</span><span class="v">4.8M</span></div>
+                    <div class="spark">
+                      <i class="on" style="height: 23.5%"></i><i class="on" style="height: 66.7%"></i
+                      ><i class="on" style="height: 15.7%"></i><i style="height: 8%"></i
+                      ><i class="on" style="height: 100%"></i><i class="on" style="height: 51%"></i
+                      ><i class="on" style="height: 8%"></i>
+                    </div>
+                  </div>
+                  <div class="note">deepseek-flash-free · tokens used, no quota to read</div>
+                </article>
+              </div>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Widget · problem states</h2>
+        <p>
+          A stale reading (amber status with its age), a tool that is not set up yet (missing), and a read error. Text
+          is today's provider messages; step 17a rewrites them. The header shows the local only mode label.
+        </p>
+        <div class="stages">
+          <div class="stage" data-theme="dark">
+            <figure class="frame">
+              <figcaption>States · dark</figcaption>
+              <div class="w">
+                <header class="bar">
+                  <span class="logo" aria-hidden="true">
+                    <svg viewBox="0 0 16 16">
+                      <rect class="row-shape" x="2" y="2" width="12" height="3" rx="1.5" />
+                      <rect class="row-shape" x="2" y="6.5" width="8" height="3" rx="1.5" />
+                      <rect class="row-shape" x="2" y="11" width="5" height="3" rx="1.5" />
+                      <circle class="dot-shape" cx="12.5" cy="8" r="1.5" />
+                    </svg>
+                  </span>
+                  <span class="title">Token Huddle</span>
+                  <span class="mode">local only</span>
+                  <span class="spacer"></span>
+                  <button aria-label="Refresh now">
+                    <svg viewBox="0 0 16 16"><path d="M13.2 8a5.2 5.2 0 1 1-1.5-3.7M13.3 2.5v2.4h-2.4" /></svg>
+                  </button>
+                  <button aria-label="Toggle compact view">
+                    <svg viewBox="0 0 16 16"><path d="M3.5 6h9M3.5 10h9" /></svg>
+                  </button>
+                  <button aria-label="Options">
+                    <svg viewBox="0 0 16 16"><path d="M3.5 8h.01M8 8h.01M12.5 8h.01" /></svg>
+                  </button>
+                  <button aria-label="Hide to tray">
+                    <svg viewBox="0 0 16 16"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7" /></svg>
+                  </button>
+                </header>
+                <article class="provider">
+                  <div class="head">
+                    <span class="dot" style="background: #caf0f8"></span>
+                    <span class="name">Claude Code</span>
+                  </div>
+                  <div class="note">Not connected yet. Open Settings to connect</div>
+                </article>
+                <article class="provider">
+                  <div class="head">
+                    <span class="dot" style="background: #00b4d8"></span>
+                    <span class="name">Codex</span>
+                    <span class="plan">Plus</span>
+                    <span class="status stale">stale · 2h 5m ago</span>
+                  </div>
+                  <div class="window">
+                    <div class="row">
+                      <span class="label">Session</span><span class="reset">window reset</span
+                      ><span class="percent">0%</span>
+                    </div>
+                    <div class="track"><div class="fill" style="width: 0%"></div></div>
+                  </div>
+                  <div class="window">
+                    <div class="row">
+                      <span class="label">Weekly</span><span class="reset">resets in 1d 2h</span
+                      ><span class="percent">61%</span>
+                    </div>
+                    <div class="track">
+                      <div class="fill" style="width: 61%"></div>
+                      <div class="pace" style="left: calc(84% - 1px)"></div>
+                    </div>
+                  </div>
+                </article>
+                <article class="provider">
+                  <div class="head">
+                    <span class="dot" style="background: #3d9bd1"></span>
+                    <span class="name">OpenCode</span>
+                  </div>
+                  <div class="note">Could not read the OpenCode database</div>
+                </article>
+              </div>
+            </figure>
+            <figure class="frame">
+              <figcaption>Empty (first read) · dark</figcaption>
+              <div class="w">
+                <header class="bar">
+                  <span class="logo" aria-hidden="true">
+                    <svg viewBox="0 0 16 16">
+                      <rect class="row-shape" x="2" y="2" width="12" height="3" rx="1.5" />
+                      <rect class="row-shape" x="2" y="6.5" width="8" height="3" rx="1.5" />
+                      <rect class="row-shape" x="2" y="11" width="5" height="3" rx="1.5" />
+                      <circle class="dot-shape" cx="12.5" cy="8" r="1.5" />
+                    </svg>
+                  </span>
+                  <span class="title">Token Huddle</span>
+                  <span class="spacer"></span>
+                  <button aria-label="Refresh now">
+                    <svg viewBox="0 0 16 16"><path d="M13.2 8a5.2 5.2 0 1 1-1.5-3.7M13.3 2.5v2.4h-2.4" /></svg>
+                  </button>
+                  <button aria-label="Toggle compact view">
+                    <svg viewBox="0 0 16 16"><path d="M3.5 6h9M3.5 10h9" /></svg>
+                  </button>
+                  <button aria-label="Options">
+                    <svg viewBox="0 0 16 16"><path d="M3.5 8h.01M8 8h.01M12.5 8h.01" /></svg>
+                  </button>
+                  <button aria-label="Hide to tray">
+                    <svg viewBox="0 0 16 16"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7" /></svg>
+                  </button>
+                </header>
+                <div class="empty">Reading usage…</div>
+              </div>
+            </figure>
+          </div>
+
+          <div class="stage" data-theme="light">
+            <figure class="frame">
+              <figcaption>States · light</figcaption>
+              <div class="w">
+                <header class="bar">
+                  <span class="logo" aria-hidden="true">
+                    <svg viewBox="0 0 16 16">
+                      <rect class="row-shape" x="2" y="2" width="12" height="3" rx="1.5" />
+                      <rect class="row-shape" x="2" y="6.5" width="8" height="3" rx="1.5" />
+                      <rect class="row-shape" x="2" y="11" width="5" height="3" rx="1.5" />
+                      <circle class="dot-shape" cx="12.5" cy="8" r="1.5" />
+                    </svg>
+                  </span>
+                  <span class="title">Token Huddle</span>
+                  <span class="mode">local only</span>
+                  <span class="spacer"></span>
+                  <button aria-label="Refresh now">
+                    <svg viewBox="0 0 16 16"><path d="M13.2 8a5.2 5.2 0 1 1-1.5-3.7M13.3 2.5v2.4h-2.4" /></svg>
+                  </button>
+                  <button aria-label="Toggle compact view">
+                    <svg viewBox="0 0 16 16"><path d="M3.5 6h9M3.5 10h9" /></svg>
+                  </button>
+                  <button aria-label="Options">
+                    <svg viewBox="0 0 16 16"><path d="M3.5 8h.01M8 8h.01M12.5 8h.01" /></svg>
+                  </button>
+                  <button aria-label="Hide to tray">
+                    <svg viewBox="0 0 16 16"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7" /></svg>
+                  </button>
+                </header>
+                <article class="provider">
+                  <div class="head">
+                    <span class="dot" style="background: #caf0f8"></span>
+                    <span class="name">Claude Code</span>
+                  </div>
+                  <div class="note">Not connected yet. Open Settings to connect</div>
+                </article>
+                <article class="provider">
+                  <div class="head">
+                    <span class="dot" style="background: #00b4d8"></span>
+                    <span class="name">Codex</span>
+                    <span class="plan">Plus</span>
+                    <span class="status stale">stale · 2h 5m ago</span>
+                  </div>
+                  <div class="window">
+                    <div class="row">
+                      <span class="label">Session</span><span class="reset">window reset</span
+                      ><span class="percent">0%</span>
+                    </div>
+                    <div class="track"><div class="fill" style="width: 0%"></div></div>
+                  </div>
+                  <div class="window">
+                    <div class="row">
+                      <span class="label">Weekly</span><span class="reset">resets in 1d 2h</span
+                      ><span class="percent">61%</span>
+                    </div>
+                    <div class="track">
+                      <div class="fill" style="width: 61%"></div>
+                      <div class="pace" style="left: calc(84% - 1px)"></div>
+                    </div>
+                  </div>
+                </article>
+                <article class="provider">
+                  <div class="head">
+                    <span class="dot" style="background: #3d9bd1"></span>
+                    <span class="name">OpenCode</span>
+                  </div>
+                  <div class="note">Could not read the OpenCode database</div>
+                </article>
+              </div>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Widget · compact view</h2>
+        <p>One line per tool: the first two windows, or the first stat, or the message.</p>
+        <div class="stages">
+          <div class="stage" data-theme="dark">
+            <figure class="frame">
+              <figcaption>Compact · dark</figcaption>
+              <div class="w compact">
+                <header class="bar">
+                  <span class="logo" aria-hidden="true">
+                    <svg viewBox="0 0 16 16">
+                      <rect class="row-shape" x="2" y="2" width="12" height="3" rx="1.5" />
+                      <rect class="row-shape" x="2" y="6.5" width="8" height="3" rx="1.5" />
+                      <rect class="row-shape" x="2" y="11" width="5" height="3" rx="1.5" />
+                      <circle class="dot-shape" cx="12.5" cy="8" r="1.5" />
+                    </svg>
+                  </span>
+                  <span class="title">Token Huddle</span>
+                  <span class="spacer"></span>
+                  <button aria-label="Refresh now">
+                    <svg viewBox="0 0 16 16"><path d="M13.2 8a5.2 5.2 0 1 1-1.5-3.7M13.3 2.5v2.4h-2.4" /></svg>
+                  </button>
+                  <button aria-label="Toggle compact view">
+                    <svg viewBox="0 0 16 16"><path d="M3.5 6h9M3.5 10h9" /></svg>
+                  </button>
+                  <button aria-label="Options">
+                    <svg viewBox="0 0 16 16"><path d="M3.5 8h.01M8 8h.01M12.5 8h.01" /></svg>
+                  </button>
+                  <button aria-label="Hide to tray">
+                    <svg viewBox="0 0 16 16"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7" /></svg>
+                  </button>
+                </header>
+                <article class="provider">
+                  <div class="head">
+                    <span class="dot" style="background: #caf0f8"></span><span class="name">Claude Code</span>
+                    <div class="summary">
+                      <span class="sum warn"><small>5h</small>74%</span><span class="sum"><small>7d</small>38%</span>
+                    </div>
+                  </div>
+                </article>
+                <article class="provider">
+                  <div class="head">
+                    <span class="dot" style="background: #00b4d8"></span><span class="name">Codex</span>
+                    <div class="summary">
+                      <span class="sum"><small>5h</small>12%</span><span class="sum crit"><small>7d</small>93%</span>
+                    </div>
+                  </div>
+                </article>
+                <article class="provider">
+                  <div class="head">
+                    <span class="dot" style="background: #3d9bd1"></span><span class="name">OpenCode</span>
+                    <div class="summary">
+                      <span class="sum"><small>today</small>41.2k</span>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </figure>
+            <figure class="frame">
+              <figcaption>Compact, not set up · dark</figcaption>
+              <div class="w compact">
+                <header class="bar">
+                  <span class="logo" aria-hidden="true">
+                    <svg viewBox="0 0 16 16">
+                      <rect class="row-shape" x="2" y="2" width="12" height="3" rx="1.5" />
+                      <rect class="row-shape" x="2" y="6.5" width="8" height="3" rx="1.5" />
+                      <rect class="row-shape" x="2" y="11" width="5" height="3" rx="1.5" />
+                      <circle class="dot-shape" cx="12.5" cy="8" r="1.5" />
+                    </svg>
+                  </span>
+                  <span class="title">Token Huddle</span>
+                  <span class="spacer"></span>
+                  <button aria-label="Refresh now">
+                    <svg viewBox="0 0 16 16"><path d="M13.2 8a5.2 5.2 0 1 1-1.5-3.7M13.3 2.5v2.4h-2.4" /></svg>
+                  </button>
+                  <button aria-label="Toggle compact view">
+                    <svg viewBox="0 0 16 16"><path d="M3.5 6h9M3.5 10h9" /></svg>
+                  </button>
+                  <button aria-label="Options">
+                    <svg viewBox="0 0 16 16"><path d="M3.5 8h.01M8 8h.01M12.5 8h.01" /></svg>
+                  </button>
+                  <button aria-label="Hide to tray">
+                    <svg viewBox="0 0 16 16"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7" /></svg>
+                  </button>
+                </header>
+                <article class="provider">
+                  <div class="head">
+                    <span class="dot" style="background: #caf0f8"></span><span class="name">Claude Code</span>
+                    <div class="summary">
+                      <span class="sum muted">Not connected yet. Open Settings to connect</span>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </figure>
+          </div>
+
+          <div class="stage" data-theme="light">
+            <figure class="frame">
+              <figcaption>Compact · light</figcaption>
+              <div class="w compact">
+                <header class="bar">
+                  <span class="logo" aria-hidden="true">
+                    <svg viewBox="0 0 16 16">
+                      <rect class="row-shape" x="2" y="2" width="12" height="3" rx="1.5" />
+                      <rect class="row-shape" x="2" y="6.5" width="8" height="3" rx="1.5" />
+                      <rect class="row-shape" x="2" y="11" width="5" height="3" rx="1.5" />
+                      <circle class="dot-shape" cx="12.5" cy="8" r="1.5" />
+                    </svg>
+                  </span>
+                  <span class="title">Token Huddle</span>
+                  <span class="spacer"></span>
+                  <button aria-label="Refresh now">
+                    <svg viewBox="0 0 16 16"><path d="M13.2 8a5.2 5.2 0 1 1-1.5-3.7M13.3 2.5v2.4h-2.4" /></svg>
+                  </button>
+                  <button aria-label="Toggle compact view">
+                    <svg viewBox="0 0 16 16"><path d="M3.5 6h9M3.5 10h9" /></svg>
+                  </button>
+                  <button aria-label="Options">
+                    <svg viewBox="0 0 16 16"><path d="M3.5 8h.01M8 8h.01M12.5 8h.01" /></svg>
+                  </button>
+                  <button aria-label="Hide to tray">
+                    <svg viewBox="0 0 16 16"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7" /></svg>
+                  </button>
+                </header>
+                <article class="provider">
+                  <div class="head">
+                    <span class="dot" style="background: #caf0f8"></span><span class="name">Claude Code</span>
+                    <div class="summary">
+                      <span class="sum warn"><small>5h</small>74%</span><span class="sum"><small>7d</small>38%</span>
+                    </div>
+                  </div>
+                </article>
+                <article class="provider">
+                  <div class="head">
+                    <span class="dot" style="background: #00b4d8"></span><span class="name">Codex</span>
+                    <div class="summary">
+                      <span class="sum"><small>5h</small>12%</span><span class="sum crit"><small>7d</small>93%</span>
+                    </div>
+                  </div>
+                </article>
+                <article class="provider">
+                  <div class="head">
+                    <span class="dot" style="background: #3d9bd1"></span><span class="name">OpenCode</span>
+                    <div class="summary">
+                      <span class="sum"><small>today</small>41.2k</span>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Settings window</h2>
+        <p>
+          Card list with show, order, connect and remove, and the add-account form after a failed add. Focus ring on the
+          Codex Show switch.
+        </p>
+        <div class="stages">
+          <div class="stage" data-theme="dark">
+            <figure class="frame">
+              <figcaption>Settings · dark</figcaption>
+              <div class="s">
+                <div class="titlebar">
+                  <svg viewBox="0 0 16 16" aria-hidden="true">
+                    <rect class="tile" width="16" height="16" rx="3.5" />
+                    <g transform="translate(2.4 2.4) scale(0.7)">
+                      <rect class="row-shape" x="2" y="2" width="12" height="3" rx="1.5" />
+                      <rect class="row-shape" x="2" y="6.5" width="8" height="3" rx="1.5" />
+                      <rect class="row-shape" x="2" y="11" width="5" height="3" rx="1.5" />
+                      <circle class="dot-shape" cx="12.5" cy="8" r="1.5" />
+                    </g>
+                  </svg>
+                  Token Huddle settings
+                </div>
+                <main>
+                  <h1>Your subscriptions</h1>
+                  <p class="lead">
+                    Token Huddle finds the coding tools on this computer and shows one card for each. It never reads or
+                    uses their logins.
+                  </p>
+                  <ul class="cards">
+                    <li class="card">
+                      <div class="top">
+                        <span class="dot" style="background: #caf0f8"></span><span class="name">Claude Code</span>
+                        <div class="tools">
+                          <button class="icon" disabled aria-label="Move Claude Code up">↑</button
+                          ><button class="icon" aria-label="Move Claude Code down">↓</button>
+                          <label class="switch"><input type="checkbox" checked />Show</label>
+                        </div>
+                      </div>
+                      <p class="detail">
+                        <span class="badge connected">Connected</span>Usage arrives after each Claude Code response in a
+                        terminal.
+                      </p>
+                      <div class="actions"><button>Disconnect</button></div>
+                    </li>
+                    <li class="card">
+                      <div class="top">
+                        <span class="dot" style="background: #00b4d8"></span><span class="name">Codex</span>
+                        <div class="tools">
+                          <button class="icon" aria-label="Move Codex up">↑</button
+                          ><button class="icon" aria-label="Move Codex down">↓</button>
+                          <label class="switch"><input class="focus" type="checkbox" checked />Show</label>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="card">
+                      <div class="top">
+                        <span class="dot" style="background: #3d9bd1"></span><span class="name">OpenCode (Work)</span>
+                        <div class="tools">
+                          <button class="icon" aria-label="Move OpenCode (Work) up">↑</button
+                          ><button class="icon" disabled aria-label="Move OpenCode (Work) down">↓</button>
+                          <button class="danger">Remove</button>
+                          <label class="switch"><input type="checkbox" />Show</label>
+                        </div>
+                      </div>
+                      <p class="detail"><span class="path">D:\work\opencode-data</span></p>
+                    </li>
+                  </ul>
+
+                  <h2>Add another account</h2>
+                  <p class="lead">
+                    If you keep a second account of a tool in its own folder (for example a work login), add it here.
+                    The folder is checked before it is saved.
+                  </p>
+                  <form onsubmit="return false;">
+                    <label>
+                      <span>Tool</span>
+                      <select>
+                        <option>Codex</option>
+                      </select>
+                    </label>
+                    <label>
+                      <span>Name</span>
+                      <input type="text" value="Work" />
+                    </label>
+                    <label class="wide">
+                      <span>Folder</span>
+                      <span class="folder">
+                        <input type="text" value="D:\work\codex-home" readonly />
+                        <button type="button">Browse…</button>
+                      </span>
+                    </label>
+                    <button type="submit" class="primary">Add account</button>
+                  </form>
+                  <p class="error" role="alert">No Codex data found in that folder</p>
+                </main>
+              </div>
+            </figure>
+          </div>
+
+          <div class="stage" data-theme="light">
+            <figure class="frame">
+              <figcaption>Settings · light</figcaption>
+              <div class="s">
+                <div class="titlebar">
+                  <svg viewBox="0 0 16 16" aria-hidden="true">
+                    <rect class="tile" width="16" height="16" rx="3.5" />
+                    <g transform="translate(2.4 2.4) scale(0.7)">
+                      <rect class="row-shape" x="2" y="2" width="12" height="3" rx="1.5" />
+                      <rect class="row-shape" x="2" y="6.5" width="8" height="3" rx="1.5" />
+                      <rect class="row-shape" x="2" y="11" width="5" height="3" rx="1.5" />
+                      <circle class="dot-shape" cx="12.5" cy="8" r="1.5" />
+                    </g>
+                  </svg>
+                  Token Huddle settings
+                </div>
+                <main>
+                  <h1>Your subscriptions</h1>
+                  <p class="lead">
+                    Token Huddle finds the coding tools on this computer and shows one card for each. It never reads or
+                    uses their logins.
+                  </p>
+                  <ul class="cards">
+                    <li class="card">
+                      <div class="top">
+                        <span class="dot" style="background: #caf0f8"></span><span class="name">Claude Code</span>
+                        <div class="tools">
+                          <button class="icon" disabled aria-label="Move Claude Code up">↑</button
+                          ><button class="icon" aria-label="Move Claude Code down">↓</button>
+                          <label class="switch"><input type="checkbox" checked />Show</label>
+                        </div>
+                      </div>
+                      <p class="detail">
+                        <span class="badge connected">Connected</span>Usage arrives after each Claude Code response in a
+                        terminal.
+                      </p>
+                      <div class="actions"><button>Disconnect</button></div>
+                    </li>
+                    <li class="card">
+                      <div class="top">
+                        <span class="dot" style="background: #00b4d8"></span><span class="name">Codex</span>
+                        <div class="tools">
+                          <button class="icon" aria-label="Move Codex up">↑</button
+                          ><button class="icon" aria-label="Move Codex down">↓</button>
+                          <label class="switch"><input class="focus" type="checkbox" checked />Show</label>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="card">
+                      <div class="top">
+                        <span class="dot" style="background: #3d9bd1"></span><span class="name">OpenCode (Work)</span>
+                        <div class="tools">
+                          <button class="icon" aria-label="Move OpenCode (Work) up">↑</button
+                          ><button class="icon" disabled aria-label="Move OpenCode (Work) down">↓</button>
+                          <button class="danger">Remove</button>
+                          <label class="switch"><input type="checkbox" />Show</label>
+                        </div>
+                      </div>
+                      <p class="detail"><span class="path">D:\work\opencode-data</span></p>
+                    </li>
+                  </ul>
+
+                  <h2>Add another account</h2>
+                  <p class="lead">
+                    If you keep a second account of a tool in its own folder (for example a work login), add it here.
+                    The folder is checked before it is saved.
+                  </p>
+                  <form onsubmit="return false;">
+                    <label>
+                      <span>Tool</span>
+                      <select>
+                        <option>Codex</option>
+                      </select>
+                    </label>
+                    <label>
+                      <span>Name</span>
+                      <input type="text" value="Work" />
+                    </label>
+                    <label class="wide">
+                      <span>Folder</span>
+                      <span class="folder">
+                        <input type="text" value="D:\work\codex-home" readonly />
+                        <button type="button">Browse…</button>
+                      </span>
+                    </label>
+                    <button type="submit" class="primary">Add account</button>
+                  </form>
+                  <p class="error" role="alert">No Codex data found in that folder</p>
+                </main>
+              </div>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Onboarding · first launch</h2>
+        <p>
+          Proposal for step 14: the settings window opens once on first launch with this view instead of the card list.
+          It lists what was found, where each number comes from, offers Connect for Claude Code, and says what Token
+          Huddle never touches. Done switches to the normal settings view. Focus ring on Connect.
+        </p>
+        <div class="stages">
+          <div class="stage" data-theme="dark">
+            <figure class="frame">
+              <figcaption>Onboarding · dark</figcaption>
+              <div class="s">
+                <div class="titlebar">
+                  <svg viewBox="0 0 16 16" aria-hidden="true">
+                    <rect class="tile" width="16" height="16" rx="3.5" />
+                    <g transform="translate(2.4 2.4) scale(0.7)">
+                      <rect class="row-shape" x="2" y="2" width="12" height="3" rx="1.5" />
+                      <rect class="row-shape" x="2" y="6.5" width="8" height="3" rx="1.5" />
+                      <rect class="row-shape" x="2" y="11" width="5" height="3" rx="1.5" />
+                      <circle class="dot-shape" cx="12.5" cy="8" r="1.5" />
+                    </g>
+                  </svg>
+                  Welcome to Token Huddle
+                </div>
+                <main>
+                  <h1>Welcome to Token Huddle</h1>
+                  <p class="lead">
+                    Token Huddle shows how much of each AI coding tool's usage limit you have used, in one small window.
+                    This is what it found on this computer.
+                  </p>
+                  <ul class="cards">
+                    <li class="card">
+                      <div class="top">
+                        <span class="dot" style="background: #caf0f8"></span><span class="name">Claude Code</span>
+                      </div>
+                      <p class="detail">
+                        <span class="badge disconnected">Not connected</span>Read from Claude Code's status line, once
+                        you connect. Token Huddle shows you the change first, keeps a backup, and Disconnect undoes it.
+                      </p>
+                      <div class="actions"><button class="primary focus">Connect…</button></div>
+                    </li>
+                    <li class="card">
+                      <div class="top">
+                        <span class="dot" style="background: #00b4d8"></span><span class="name">Codex</span>
+                      </div>
+                      <p class="detail">
+                        <span class="badge ready">Ready</span>Read from the codex program on this computer, or from its
+                        session logs when it is not running.
+                      </p>
+                    </li>
+                    <li class="card">
+                      <div class="top">
+                        <span class="dot" style="background: #3d9bd1"></span><span class="name">OpenCode</span>
+                      </div>
+                      <p class="detail">
+                        <span class="badge absent">Not found</span>Would be read from OpenCode's local database. Install
+                        it, or add its folder later in Settings.
+                      </p>
+                    </li>
+                  </ul>
+
+                  <div class="never">
+                    <h2>What Token Huddle never touches</h2>
+                    <ul>
+                      <li>Your logins, tokens or credential files for any tool.</li>
+                      <li>The network: it makes no calls of its own and sends nothing anywhere.</li>
+                      <li>Another tool's settings, unless you click Connect and approve the change.</li>
+                    </ul>
+                  </div>
+
+                  <div class="finish">
+                    <button class="primary">Done</button>
+                    <span class="hint">You can connect later from Settings.</span>
+                  </div>
+                </main>
+              </div>
+            </figure>
+          </div>
+
+          <div class="stage" data-theme="light">
+            <figure class="frame">
+              <figcaption>Onboarding · light</figcaption>
+              <div class="s">
+                <div class="titlebar">
+                  <svg viewBox="0 0 16 16" aria-hidden="true">
+                    <rect class="tile" width="16" height="16" rx="3.5" />
+                    <g transform="translate(2.4 2.4) scale(0.7)">
+                      <rect class="row-shape" x="2" y="2" width="12" height="3" rx="1.5" />
+                      <rect class="row-shape" x="2" y="6.5" width="8" height="3" rx="1.5" />
+                      <rect class="row-shape" x="2" y="11" width="5" height="3" rx="1.5" />
+                      <circle class="dot-shape" cx="12.5" cy="8" r="1.5" />
+                    </g>
+                  </svg>
+                  Welcome to Token Huddle
+                </div>
+                <main>
+                  <h1>Welcome to Token Huddle</h1>
+                  <p class="lead">
+                    Token Huddle shows how much of each AI coding tool's usage limit you have used, in one small window.
+                    This is what it found on this computer.
+                  </p>
+                  <ul class="cards">
+                    <li class="card">
+                      <div class="top">
+                        <span class="dot" style="background: #caf0f8"></span><span class="name">Claude Code</span>
+                      </div>
+                      <p class="detail">
+                        <span class="badge disconnected">Not connected</span>Read from Claude Code's status line, once
+                        you connect. Token Huddle shows you the change first, keeps a backup, and Disconnect undoes it.
+                      </p>
+                      <div class="actions"><button class="primary focus">Connect…</button></div>
+                    </li>
+                    <li class="card">
+                      <div class="top">
+                        <span class="dot" style="background: #00b4d8"></span><span class="name">Codex</span>
+                      </div>
+                      <p class="detail">
+                        <span class="badge ready">Ready</span>Read from the codex program on this computer, or from its
+                        session logs when it is not running.
+                      </p>
+                    </li>
+                    <li class="card">
+                      <div class="top">
+                        <span class="dot" style="background: #3d9bd1"></span><span class="name">OpenCode</span>
+                      </div>
+                      <p class="detail">
+                        <span class="badge absent">Not found</span>Would be read from OpenCode's local database. Install
+                        it, or add its folder later in Settings.
+                      </p>
+                    </li>
+                  </ul>
+
+                  <div class="never">
+                    <h2>What Token Huddle never touches</h2>
+                    <ul>
+                      <li>Your logins, tokens or credential files for any tool.</li>
+                      <li>The network: it makes no calls of its own and sends nothing anywhere.</li>
+                      <li>Another tool's settings, unless you click Connect and approve the change.</li>
+                    </ul>
+                  </div>
+
+                  <div class="finish">
+                    <button class="primary">Done</button>
+                    <span class="hint">You can connect later from Settings.</span>
+                  </div>
+                </main>
+              </div>
+            </figure>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

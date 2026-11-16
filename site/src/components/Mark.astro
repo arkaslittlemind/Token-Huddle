@@ -1,0 +1,24 @@
+---
+// The bare mark in its dark colourway (the page is dark only). Drawn from
+// src/renderer/mark.js at build time.
+import { markShapes } from '../lib/mark';
+
+interface Props {
+  size: number;
+  /** Set when the mark stands alone as an image; otherwise it is decorative. */
+  label?: string;
+}
+
+const { size, label } = Astro.props;
+const a11y = label ? { role: 'img' as const, 'aria-label': label } : { 'aria-hidden': 'true' as const };
+---
+
+<svg class="mark" width={size} height={size} viewBox="0 0 16 16" {...a11y}>
+  {markShapes('dark').map((s) =>
+    s.type === 'circle' ? (
+      <circle cx={s.cx} cy={s.cy} r={s.r} fill={s.fill} />
+    ) : (
+      <rect x={s.x} y={s.y} width={s.width} height={s.height} rx={s.rx} fill={s.fill} />
+    )
+  )}
+</svg>

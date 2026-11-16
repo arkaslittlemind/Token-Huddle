@@ -1,0 +1,28 @@
+---
+// A usage bar with an optional pace tick, drawn as SVG. Widths are SVG
+// attributes, not inline styles, so the page's CSP needs no 'unsafe-inline'.
+import type { Level } from '../lib/demo';
+
+interface Props {
+  used: number;
+  /** Where the pace tick sits, in percent of the window's time. */
+  pace?: number | undefined;
+  /** Track height in px. */
+  thickness: number;
+  /** Tick height in px. */
+  tick: number;
+  /** Tick width in px. */
+  tickWidth?: number;
+  level: Level;
+}
+
+const { used, pace, thickness, tick, tickWidth = 2, level } = Astro.props;
+const height = pace === undefined ? thickness : Math.max(thickness, tick);
+const y = (height - thickness) / 2;
+---
+
+<svg class="bar" width="100%" height={height} aria-hidden="true">
+  <rect class="bar-track" width="100%" y={y} height={thickness} rx={thickness / 2}></rect>
+  <rect class:list={['bar-fill', level]} width={`${used}%`} y={y} height={thickness} rx={thickness / 2}></rect>
+  {pace !== undefined && <rect class="bar-tick" x={`${pace}%`} width={tickWidth} height={height} rx={tickWidth / 2} />}
+</svg>

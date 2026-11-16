@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; style-src 'self'; font-src 'self'; script-src 'self'"
+    />
+    <title>Token Huddle</title>
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main id="card">
+      <header id="bar">
+        <span id="logo" class="logo" aria-hidden="true"></span>
+        <span class="title">Token Huddle</span>
+        <span id="mode" class="mode"></span>
+        <span class="spacer"></span>
+        <button id="refresh" title="Refresh now" aria-label="Refresh now">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13.2 8a5.2 5.2 0 1 1-1.5-3.7M13.3 2.5v2.4h-2.4" /></svg>
+        </button>
+        <button id="compact" title="Compact view" aria-label="Compact view" aria-pressed="false">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 6h9M3.5 10h9" /></svg>
+        </button>
+        <button id="menu" title="Options" aria-label="Options" aria-haspopup="menu">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8h.01M8 8h.01M12.5 8h.01" /></svg>
+        </button>
+        <button id="hide" title="Hide to tray" aria-label="Hide to tray">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7" /></svg>
+        </button>
+      </header>
+      <section id="providers" aria-label="Usage by tool"></section>
+    </main>
+    <script src="mark.js"></script>
+    <script src="duration.js"></script>
+    <script src="guidance.js"></script>
+    <script src="renderer.js"></script>
+  </body>
+</html>

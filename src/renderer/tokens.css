@@ -1,0 +1,109 @@
+/* Token Huddle brand tokens, shared by the widget and the settings window.
+   Palette: Ocean Breeze accents on neutral dark surfaces. See docs/brand.md.
+   Fonts ship with the app (src/renderer/fonts, SIL OFL 1.1); nothing loads from the network. */
+
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/geist-latin-wght.woff2') format('woff2-variations');
+}
+
+:root {
+  /* Ocean Breeze */
+  --ob-navy: #03045e;
+  --ob-blue: #0077b6;
+  --ob-cyan: #00b4d8;
+  --ob-sky: #90e0ef;
+  --ob-mist: #caf0f8;
+
+  /* Surfaces and lines */
+  --surface: rgba(19, 20, 26, 0.94);
+  --surface-solid: #13141a;
+  --panel: #1b1c24;
+  --control: #262731;
+  --control-hover: #30313b;
+  --line: rgba(255, 255, 255, 0.08);
+  --hover: rgba(255, 255, 255, 0.08);
+
+  /* Text (contrast on --surface-solid: 16.4, 6.7, 5.1) */
+  --text: #f1f2f4;
+  --text-muted: #9a9ca8;
+  --text-faint: #84868f;
+
+  /* Bars */
+  --track: rgba(255, 255, 255, 0.09);
+  --fill: var(--ob-sky);
+  --pace: var(--ob-mist);
+  --spark: var(--ob-cyan);
+  --focus: var(--ob-sky);
+
+  /* State: colour is reserved for these */
+  --ok: #5ec98f;
+  --warn: #f0b545;
+  --crit: #f0605a;
+
+  /* Controls and details */
+  --primary: var(--ob-sky);
+  --primary-hover: var(--ob-mist);
+  --on-primary: var(--surface-solid);
+  --dot-ring: transparent;
+  --card-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+
+  --font-ui: 'Geist', 'Segoe UI', system-ui, sans-serif;
+  /* The wordmark: Geist Bold, uppercase. */
+  --font-brand: var(--font-ui);
+}
+
+/* Translucent style (widget only). The card lets 17% of the desktop through.
+   Over a pure white or pure black desktop every text colour still passes 4.5:1,
+   so secondary text is stronger than in the solid style. */
+:root[data-style='translucent'] {
+  --surface: rgba(19, 20, 26, 0.83);
+  --text-muted: #c0c2ca;
+  --text-faint: #aaacb2;
+  --crit: #f5908c;
+}
+
+/* Light theme, approved in build-plan step 12b. The windows set data-theme on
+   <html> from the theme main resolves (light, dark, or the Windows app mode).
+   Contrast: test/contrast.test.js and docs/brand.md. */
+:root[data-theme='light'] {
+  --surface: rgba(246, 252, 254, 0.94);
+  --surface-solid: #f6fcfe;
+  --panel: #ffffff;
+  --control: #e4f1f6;
+  --control-hover: #d3e8f0;
+  --line: rgba(3, 4, 94, 0.12);
+  --hover: rgba(3, 4, 94, 0.07);
+
+  --text: #03045e;
+  --text-muted: #2c4a7a;
+  --text-faint: #4d6488;
+
+  --track: rgba(3, 4, 94, 0.1);
+  --fill: #0077b6;
+  --pace: #03045e;
+  --spark: #0077b6;
+  --focus: #0077b6;
+
+  --ok: #1d7a4a;
+  --warn: #9a6200;
+  --crit: #c0322c;
+
+  --primary: #0077b6;
+  --primary-hover: #03045e;
+  --on-primary: #ffffff;
+  /* Tool accents are pale on light surfaces; a ring keeps each dot visible. */
+  --dot-ring: rgba(3, 4, 94, 0.45);
+  --card-shadow: 0 4px 12px rgba(3, 4, 94, 0.14);
+}
+
+/* Light and translucent. Comes after the light block so it wins. */
+:root[data-theme='light'][data-style='translucent'] {
+  --surface: rgba(246, 252, 254, 0.83);
+  --text-faint: #425682;
+  --warn: #784c00;
+  --crit: #a12a25;
+}

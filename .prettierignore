@@ -1,0 +1,14 @@
+# Managed by their own tooling, or recorded as-is.
+*.md
+blueprint/
+.agents/
+.claude/
+.impeccable/
+docs/
+test/fixtures/
+# The landing page formats itself (Prettier with the Astro plugin, in site/).
+site/
+package-lock.json
+node_modules/
+dist/
+coverage/

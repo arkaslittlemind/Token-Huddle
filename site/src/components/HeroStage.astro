@@ -1,0 +1,132 @@
+---
+// The hero: one terminal split between Claude Code and Codex, with the widget
+// pinned over its right side. The HTML is the story's last frame, so it reads
+// right with no JavaScript or with reduced motion; src/scripts/hero-client.ts
+// plays the frames computed here (with the app's state rule) once.
+//
+// The stage is a fixed canvas (1200 x 471, or 358 x 540 on phones) scaled to
+// its container in CSS (site.css, "Hero stage"), so it needs no script to fit.
+import { level } from '../lib/demo';
+import { HERO_BEATS, HERO_START, heroEnd, heroFrames } from '../lib/hero';
+import WidgetDemo from './WidgetDemo.astro';
+
+const end = heroEnd(HERO_START, HERO_BEATS);
+const frames = heroFrames(HERO_START, HERO_BEATS, level);
+
+interface Hist {
+  cmd?: string;
+  out?: string;
+}
+interface Step {
+  text: string;
+  add?: string;
+}
+interface Pane {
+  id: 'left' | 'right';
+  path: string;
+  cmd: string;
+  task: string;
+  history: Hist[];
+  steps: Step[];
+}
+
+const panes: Pane[] = [
+  {
+    id: 'left',
+    path: '~/my-app',
+    cmd: 'claude',
+    task: 'add backoff to the retry helper',
+    history: [
+      { cmd: 'git switch -c feature/retry' },
+      { out: "Switched to a new branch 'feature/retry'" },
+      { cmd: 'npm test' },
+      { out: '41 passed, 1 failed' },
+    ],
+    steps: [
+      { text: 'read src/api/retry.ts' },
+      { text: 'edit src/api/retry.ts', add: '(+18 -4)' },
+      { text: 'run npm test: 42 passed' },
+      { text: 'edit test/retry.test.js', add: '(+31)' },
+    ],
+  },
+  {
+    id: 'right',
+    path: '~/queue-service',
+    cmd: 'codex',
+    task: 'move the worker to the new lock API',
+    history: [
+      { cmd: 'git pull' },
+      { out: 'Already up to date.' },
+      { cmd: 'npm run bench' },
+      { out: 'queue: 2,140 jobs/s, lock wait 38ms' },
+      { out: 'worker: p95 212ms' },
+    ],
+    steps: [
+      { text: 'read src/queue/worker.ts' },
+      { text: 'patch src/queue/lock.ts', add: '(+42 -17)' },
+      { text: 'run npm test: 128 passed' },
+    ],
+  },
+];
+
+const label =
+  'A terminal split between Claude Code and Codex, with the Token Huddle widget pinned over it. ' +
+  `Claude Code's session reaches ${end.claude} percent, amber, ahead of the clock. ` +
+  `Codex's weekly limit reaches ${end.codex} percent, red.`;
+---
+
+<div class="stage-box">
+  <div class="stage-frame" role="img" aria-label={label} data-hero data-frames={JSON.stringify(frames)}>
+    <div class="stage-canvas" aria-hidden="true">
+      <div class="term">
+        <div class="term-bar">
+          <span class="term-dots">
+            <i></i>
+            <i></i>
+            <i></i>
+          </span>
+          <span class="term-title">Terminal</span>
+        </div>
+        <div class="term-panes">
+          {panes.map((p) => (
+            <div class="term-body">
+              {p.history.map((h) =>
+                h.cmd ? (
+                  <div class="term-line">
+                    <span class="term-path">{p.path}</span>
+                    <span class="term-sigil">&#x276F;</span>
+                    {h.cmd}
+                  </div>
+                ) : (
+                  <div class="term-line term-dim">{h.out}</div>
+                )
+              )}
+              <div class="term-line">
+                <span class="term-path">{p.path}</span>
+                <span class="term-sigil">&#x276F;</span>
+                {p.cmd}
+              </div>
+              <div class="term-task">&gt; {p.task}</div>
+              {p.steps.map((s, i) => (
+                <div class="term-line" data-step={`${p.id}-${i}`}>
+                  <span class="term-ok">&#x2713;</span> {s.text}
+                  {s.add && <span class="term-dim"> {s.add}</span>}
+                </div>
+              ))}
+              <div class="term-line term-thinking">
+                <span class="spinner" />
+                <span class="term-dim">thinking</span>
+              </div>
+              <div class="term-line term-next">
+                <span class="term-path">{p.path}</span>
+                <span class="term-sigil">&#x276F;</span>
+                <span class="caret" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <WidgetDemo class="stage-widget" />
+    </div>
+  </div>
+</div>

@@ -1,0 +1,92 @@
+---
+// A copy of the Token Huddle widget (src/renderer) in its translucent dark
+// style, with the demo numbers. Decorative: the hero stage that holds it
+// describes it in words. Each window carries data-meter (for example
+// "claude-5h"), so the hero script can move it.
+import { demoTools, level } from '../lib/demo';
+import Bar from './Bar.astro';
+import Mark from './Mark.astro';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
+// Refresh, view toggle, options, hide: the app's header glyphs.
+const glyphs = [
+  'M13.2 8a5.2 5.2 0 1 1-1.5-3.7M13.3 2.5v2.4h-2.4',
+  'M3.5 6h9M3.5 10h9',
+  'M3.5 8h.01M8 8h.01M12.5 8h.01',
+  'M4.5 4.5l7 7M11.5 4.5l-7 7',
+];
+const spark = [30, 55, 20, 100, 45, 15];
+---
+
+<div class:list={['thw', className]} aria-hidden="true">
+  <div class="thw-bar">
+    <Mark size={16} />
+    <span class="thw-title">Token Huddle</span>
+    <span class="thw-spacer"></span>
+    {glyphs.map((d) => (
+      <span class="thw-btn">
+        <svg viewBox="0 0 16 16">
+          <path d={d} />
+        </svg>
+      </span>
+    ))}
+  </div>
+  {demoTools.map((t) => (
+    <div class="thw-provider">
+      <div class="thw-head">
+        <i class:list={['thw-dot', `thw-dot--${t.id}`]} />
+        <span class="thw-name">{t.name}</span>
+        {t.plan && <span class="thw-plan">{t.plan}</span>}
+        <span class="thw-status">{t.source}</span>
+      </div>
+      {t.windows?.map((w) => (
+        <div class:list={['thw-window', level(w.used)]} data-meter={`${t.id}-${w.short}`}>
+          <div class="thw-row">
+            <span class="thw-label">{w.label}</span>
+            <span class="thw-faint">resets in {w.reset}</span>
+            <span class="thw-pct" data-pct>
+              {w.used}%
+            </span>
+          </div>
+          <Bar used={w.used} pace={w.pace} thickness={5} tick={9} level={level(w.used)} />
+        </div>
+      ))}
+      {t.totals && (
+        <>
+          <div class="thw-stats">
+            {(
+              [
+                ['Today', t.totals.today],
+                ['7 days', t.totals.week],
+                ['30 days', t.totals.month],
+              ] as const
+            ).map(([k, v]) => (
+              <span>
+                <span class="thw-k">{k}</span>
+                <span class="thw-v">{v}</span>
+              </span>
+            ))}
+            <svg class="thw-spark" width="51" height="26" viewBox="0 0 51 26">
+              {spark.map((h, i) => (
+                <rect
+                  class:list={{ on: i > 1 }}
+                  x={i * 9}
+                  y={26 - Math.max(2, (26 * h) / 100)}
+                  width="6"
+                  height={Math.max(2, (26 * h) / 100)}
+                  rx="2"
+                />
+              ))}
+            </svg>
+          </div>
+          <div class="thw-note">tokens used, no quota to read</div>
+        </>
+      )}
+    </div>
+  ))}
+</div>

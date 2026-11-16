@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; style-src 'self'; font-src 'self'; script-src 'self'"
+    />
+    <title>Token Huddle settings</title>
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="settings.css" />
+  </head>
+  <body>
+    <main>
+      <!-- First-run welcome (build-plan step 14). Shown once, instead of the settings below. -->
+      <section id="welcome" hidden>
+        <h1>Welcome to Token Huddle</h1>
+        <p class="lead">
+          Token Huddle shows how much of each AI coding tool's usage limit you have used, in one small window. This is
+          what it found on this computer.
+        </p>
+
+        <ul id="tools" class="cards"></ul>
+
+        <div class="never">
+          <h2>What Token Huddle never touches</h2>
+          <ul>
+            <li>Your logins, tokens or credential files for any tool.</li>
+            <li>The network, except to find updates and fetch one when you click (Settings turns it off).</li>
+            <li>Another tool's settings, unless you click Connect and approve the change.</li>
+          </ul>
+        </div>
+
+        <div class="finish">
+          <button type="button" id="done" class="primary">Done</button>
+          <span class="hint">You can connect later from Settings.</span>
+        </div>
+      </section>
+
+      <section id="settings">
+        <h1 id="settings-heading" tabindex="-1">Your subscriptions</h1>
+        <p class="lead">
+          Token Huddle finds the coding tools on this computer and shows one card for each. It never reads or uses their
+          logins.
+        </p>
+
+        <ul id="cards" class="cards"></ul>
+
+        <h2>Alerts</h2>
+        <p class="lead">
+          A Windows notification when a card's usage passes these levels, once per limit until it resets. Turn alerts
+          off for one card with its Alerts switch.
+        </p>
+        <div class="thresholds">
+          <label>
+            <span>First alert at</span>
+            <span class="percent">
+              <input
+                id="threshold-1"
+                type="number"
+                min="1"
+                max="100"
+                step="1"
+                required
+                aria-describedby="threshold-error"
+              />
+              %
+            </span>
+          </label>
+          <label>
+            <span>Second alert at</span>
+            <span class="percent">
+              <input
+                id="threshold-2"
+                type="number"
+                min="1"
+                max="100"
+                step="1"
+                required
+                aria-describedby="threshold-error"
+              />
+              %
+            </span>
+          </label>
+        </div>
+        <p id="threshold-error" class="error" role="alert" hidden></p>
+
+        <h2>Updates</h2>
+        <p class="lead">
+          You have version <span id="update-version"></span>. Token Huddle checks this project's GitHub Releases for a
+          newer one; nothing is downloaded or installed until you click.
+        </p>
+        <div class="updates">
+          <label class="switch">
+            <input id="check-updates" type="checkbox" />
+            Check for updates
+          </label>
+          <button type="button" id="update-action" class="primary" hidden></button>
+        </div>
+        <p id="update-status" class="lead" role="status" aria-live="polite"></p>
+
+        <h2>Add another account</h2>
+        <p class="lead">
+          If you keep a second account of a tool in its own folder (for example a work login), add it here. The folder
+          is checked before it is saved.
+        </p>
+        <form id="add">
+          <label>
+            <span>Tool</span>
+            <select id="provider"></select>
+          </label>
+          <label>
+            <span>Name</span>
+            <input id="label" type="text" maxlength="30" placeholder="Work" required />
+          </label>
+          <label class="wide">
+            <span>Folder</span>
+            <span class="folder">
+              <input
+                id="home"
+                type="text"
+                aria-label="Account folder"
+                placeholder="Choose the account's data folder"
+                readonly
+                required
+              />
+              <button type="button" id="browse">Browse…</button>
+            </span>
+          </label>
+          <button type="submit" class="primary">Add account</button>
+        </form>
+      </section>
+
+      <!-- Outside both views, so a failed action shows in either. -->
+      <p id="error" class="error" role="alert" hidden></p>
+    </main>
+    <script src="settings.js"></script>
+  </body>
+</html>

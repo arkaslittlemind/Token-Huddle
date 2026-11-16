@@ -1,0 +1,835 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Logo Marks Prototype</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --navy: #03045e;
+        --blue: #0077b6;
+        --cyan: #00b4d8;
+        --sky: #90e0ef;
+        --mist: #caf0f8;
+        --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+        /* Instrument tokens */
+        --surface: rgba(19, 20, 26, 0.94);
+        --surface-solid: #13141a;
+        --line: rgba(255, 255, 255, 0.08);
+        --text: #f1f2f4;
+        --muted: #9a9ca8;
+        --faint: #767884;
+        --track: rgba(255, 255, 255, 0.09);
+        --warn: #f0b545;
+        --crit: #f0605a;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        background:
+          radial-gradient(1100px 600px at 25% 15%, #e9a46a 0%, transparent 60%),
+          radial-gradient(900px 700px at 85% 35%, #4f6d8f 0%, transparent 65%),
+          linear-gradient(160deg, #c98a5a, #3d4f63 60%, #1e2a24);
+        font-family: 'Geist', system-ui, sans-serif;
+        overflow: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .mark {
+        display: block;
+        flex: none;
+      }
+
+      /* ------------------------------------------------- landing page panel */
+      .browser {
+        position: fixed;
+        top: 76px;
+        left: 32px;
+        width: min(560px, calc(100vw - 400px));
+        border-radius: 12px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .chrome {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        height: 34px;
+        padding: 0 12px;
+        background: #eef1f4;
+        border-bottom: 1px solid #dde2e8;
+        font-size: 12px;
+        color: #4b5563;
+      }
+
+      .chrome .tab {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 10px;
+        border-radius: 6px;
+        background: #fff;
+      }
+
+      .chrome .url {
+        margin-left: 8px;
+        color: #6b7280;
+      }
+
+      .site-nav {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 16px 28px;
+      }
+
+      .site-word {
+        font-family: 'Geist', sans-serif;
+        font-weight: 900;
+        font-size: 17px;
+        color: var(--navy);
+      }
+
+      .site-nav .links {
+        margin-left: auto;
+        display: flex;
+        gap: 18px;
+        font-size: 13px;
+        color: #374151;
+      }
+
+      .hero {
+        display: flex;
+        gap: 28px;
+        align-items: center;
+        padding: 26px 28px 34px;
+      }
+
+      .hero h1 {
+        font-family: 'Geist', sans-serif;
+        font-weight: 900;
+        font-size: 30px;
+        line-height: 1.1;
+        color: var(--navy);
+      }
+
+      .hero p {
+        margin-top: 10px;
+        font-size: 14px;
+        line-height: 1.5;
+        color: #374151;
+      }
+
+      .hero .cta {
+        display: inline-flex;
+        margin-top: 16px;
+        padding: 9px 16px;
+        border: 0;
+        border-radius: 8px;
+        background: var(--navy);
+        color: #fff;
+        font:
+          600 13px 'Geist',
+          sans-serif;
+        cursor: pointer;
+        transition: background 150ms ease-out;
+      }
+
+      .hero .cta:hover {
+        background: #0a0d7a;
+      }
+
+      .hero .cta:active {
+        transform: scale(0.97);
+      }
+
+      .hero .cta:focus-visible {
+        outline: 2px solid var(--cyan);
+        outline-offset: 2px;
+      }
+
+      .hero .note {
+        margin-top: 8px;
+        min-height: 18px;
+        font-size: 12px;
+        color: var(--blue);
+      }
+
+      .tiles {
+        display: flex;
+        align-items: flex-end;
+        gap: 14px;
+        flex: none;
+      }
+
+      .tiles figure {
+        display: grid;
+        justify-items: center;
+        gap: 6px;
+        font-size: 10px;
+        color: #6b7280;
+      }
+
+      /* ------------------------------------------------------------ widget */
+      .widget {
+        position: fixed;
+        right: 32px;
+        bottom: 72px;
+        width: 300px;
+        color: var(--text);
+        font-size: 12px;
+        line-height: 1.35;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+        overflow: hidden;
+        transform-origin: bottom right;
+        animation: enter 220ms var(--ease-out) both;
+      }
+
+      .widget[hidden] {
+        display: none;
+      }
+
+      @keyframes enter {
+        from {
+          opacity: 0;
+          transform: scale(0.96) translateY(6px);
+        }
+      }
+
+      .bar {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        height: 34px;
+        padding: 0 6px 0 12px;
+      }
+
+      .word {
+        font-family: 'Geist', sans-serif;
+        font-weight: 700;
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .spacer {
+        flex: 1;
+      }
+
+      .btn {
+        display: grid;
+        place-items: center;
+        width: 24px;
+        height: 24px;
+        border: 0;
+        border-radius: 6px;
+        background: transparent;
+        color: var(--faint);
+        cursor: pointer;
+        transition:
+          background 120ms ease-out,
+          color 120ms ease-out;
+      }
+
+      .btn:hover {
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--text);
+      }
+
+      .btn:active {
+        transform: scale(0.94);
+      }
+
+      .btn:focus-visible {
+        outline: 2px solid var(--sky);
+        outline-offset: 1px;
+      }
+
+      .btn svg {
+        width: 14px;
+        height: 14px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .btn.spinning svg {
+        animation: spin 700ms linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .provider {
+        padding: 10px 12px 12px;
+        border-top: 1px solid var(--line);
+      }
+
+      .head {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+
+      .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+      }
+
+      .name {
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .status {
+        margin-left: auto;
+        font-size: 10px;
+        color: var(--faint);
+      }
+
+      .window {
+        margin-top: 9px;
+      }
+
+      .row {
+        display: flex;
+        align-items: baseline;
+        gap: 6px;
+      }
+
+      .reset {
+        color: var(--faint);
+        font-size: 11px;
+      }
+
+      .percent {
+        margin-left: auto;
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .track {
+        position: relative;
+        height: 5px;
+        margin-top: 5px;
+        border-radius: 99px;
+        background: var(--track);
+      }
+
+      .fill {
+        height: 100%;
+        border-radius: 99px;
+        background: var(--sky);
+        transform-origin: left center;
+        animation: grow 280ms var(--ease-out) 80ms both;
+      }
+
+      @keyframes grow {
+        from {
+          transform: scaleX(0);
+        }
+      }
+
+      .pace {
+        position: absolute;
+        top: -2px;
+        width: 2px;
+        height: 9px;
+        border-radius: 1px;
+        background: var(--mist);
+        box-shadow: 0 0 0 1px var(--surface-solid);
+      }
+
+      .warn .fill {
+        background: var(--warn);
+      }
+      .warn .percent {
+        color: var(--warn);
+      }
+      .crit .fill {
+        background: var(--crit);
+      }
+      .crit .percent {
+        color: var(--crit);
+      }
+
+      /* ----------------------------------------------------------- taskbar */
+      .taskbar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        height: 48px;
+        padding: 0 12px;
+        background: rgba(32, 32, 32, 0.92);
+        color: #fff;
+        font:
+          12px 'Segoe UI',
+          system-ui,
+          sans-serif;
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        transition: background 150ms ease-out;
+      }
+
+      .taskbar[data-theme='light'] {
+        background: rgba(243, 243, 243, 0.92);
+        color: #1b1b1b;
+      }
+
+      .theme-switch {
+        padding: 6px 10px;
+        border: 1px solid rgba(128, 128, 128, 0.35);
+        border-radius: 6px;
+        background: transparent;
+        color: inherit;
+        font: inherit;
+        cursor: pointer;
+      }
+
+      .theme-switch:focus-visible,
+      .tray-icon:focus-visible {
+        outline: 2px solid var(--cyan);
+        outline-offset: 1px;
+      }
+
+      .tray {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 2px;
+      }
+
+      .tray-icon {
+        display: grid;
+        place-items: center;
+        width: 32px;
+        height: 40px;
+        border: 0;
+        border-radius: 4px;
+        background: transparent;
+        color: inherit;
+        cursor: pointer;
+      }
+
+      .tray-icon:hover {
+        background: rgba(128, 128, 128, 0.2);
+      }
+
+      .tray-other {
+        width: 16px;
+        height: 16px;
+        margin: 0 8px;
+        border-radius: 3px;
+        background: currentColor;
+        opacity: 0.55;
+      }
+
+      .clock {
+        margin-left: 10px;
+        text-align: right;
+        line-height: 1.3;
+      }
+
+      .tooltip {
+        position: fixed;
+        right: 120px;
+        bottom: 56px;
+        padding: 6px 9px;
+        border-radius: 6px;
+        background: #2b2b2b;
+        color: #fff;
+        font:
+          12px 'Segoe UI',
+          system-ui,
+          sans-serif;
+        white-space: pre;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 120ms ease-out;
+      }
+
+      .tray-icon:hover + .tooltip,
+      .tray-icon:focus-visible + .tooltip {
+        opacity: 1;
+      }
+
+      .caption {
+        position: fixed;
+        left: 32px;
+        bottom: 64px;
+        max-width: 520px;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 12px;
+        line-height: 1.5;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+      }
+
+      .caption b {
+        font-size: 14px;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .widget,
+        .fill,
+        .btn.spinning svg {
+          animation: none;
+        }
+      }
+
+      /* ----------------------------------------- picker (verbatim spec) */
+      .proto-picker {
+        position: fixed;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2147483647;
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        padding: 4px;
+        border-radius: 999px;
+        background: rgba(10, 10, 10, 0.82);
+        -webkit-backdrop-filter: blur(12px) saturate(1.4);
+        backdrop-filter: blur(12px) saturate(1.4);
+        box-shadow:
+          0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+          0 8px 24px rgba(0, 0, 0, 0.24),
+          0 2px 6px rgba(0, 0, 0, 0.12);
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-size: 13px;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+
+      .proto-picker-highlight {
+        position: absolute;
+        top: 4px;
+        left: 0;
+        height: 28px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.12);
+        will-change: transform;
+      }
+
+      .proto-picker[data-ready] .proto-picker-highlight {
+        transition:
+          transform 250ms cubic-bezier(0.23, 1, 0.32, 1),
+          width 250ms cubic-bezier(0.23, 1, 0.32, 1);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .proto-picker[data-ready] .proto-picker-highlight {
+          transition: none;
+        }
+      }
+
+      .proto-picker-item {
+        position: relative;
+        display: flex;
+        align-items: center;
+        height: 28px;
+        padding: 0 12px;
+        border: 0;
+        border-radius: 999px;
+        background: transparent;
+        color: rgba(255, 255, 255, 0.55);
+        font: inherit;
+        cursor: pointer;
+        transition: color 150ms ease-out;
+      }
+
+      .proto-picker-item:hover {
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      .proto-picker-item:active {
+        transform: scale(0.97);
+      }
+
+      .proto-picker-item:focus-visible {
+        outline: 2px solid rgba(255, 255, 255, 0.4);
+        outline-offset: 2px;
+      }
+
+      .proto-picker-item[data-active] {
+        color: #fff;
+      }
+
+      .proto-picker-divider {
+        width: 1px;
+        height: 16px;
+        margin: 0 4px;
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .proto-picker-replay {
+        padding: 0 10px;
+        font-size: 14px;
+      }
+
+      .proto-picker[data-position='top'] {
+        bottom: auto;
+        top: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="stage"></div>
+
+    <nav class="proto-picker" aria-label="Prototype variants" data-position="top">
+      <span class="proto-picker-highlight" aria-hidden="true"></span>
+      <button class="proto-picker-item" data-active aria-current="true">Columns</button>
+      <button class="proto-picker-item">Usage rows</button>
+      <button class="proto-picker-item">Tracks &amp; fills</button>
+      <span class="proto-picker-divider" aria-hidden="true"></span>
+      <button class="proto-picker-item proto-picker-replay" aria-label="Replay animation (R)">↻</button>
+    </nav>
+
+    <script>
+      const C = { navy: '#03045e', blue: '#0077b6', cyan: '#00b4d8', sky: '#90e0ef', mist: '#caf0f8' };
+
+      // Each mark: 16-unit grid, rounded rectangles and circles only.
+      // Colourways: `dark` (app surface, dark taskbar), `light` (white, light taskbar), `tile` (navy app icon).
+      const r = (x, y, w, h, fill) => ({ t: 'rect', x, y, w, h, fill });
+      const c = (cx, cy, rad, fill) => ({ t: 'circle', cx, cy, rad, fill });
+
+      const marks = [
+        {
+          name: 'Columns',
+          source: 'Maintainer draft (mark specimen)',
+          shapes: (k) => [
+            r(2.5, 4, 3, 10, k.a),
+            r(6.5, 2, 3, 12, k.b),
+            r(10.5, 6.5, 3, 7.5, k.a),
+            c(12, 3.6, 1.75, k.c),
+          ],
+          ways: {
+            dark: { a: C.blue, b: C.cyan, c: C.sky },
+            light: { a: C.blue, b: C.cyan, c: C.sky },
+            tile: { a: C.blue, b: C.cyan, c: C.sky },
+          },
+        },
+        {
+          name: 'Usage rows',
+          source: 'usage-rows (1b)',
+          shapes: (k) => [r(2, 2, 12, 3, k.a), r(2, 6.5, 8, 3, k.a), r(2, 11, 5, 3, k.a), c(12.5, 8, 1.5, k.b)],
+          ways: {
+            dark: { a: C.sky, b: C.cyan },
+            light: { a: C.navy, b: C.cyan },
+            tile: { a: C.sky, b: C.cyan },
+          },
+        },
+        {
+          name: 'Tracks & fills',
+          source: 'tracks-fills (2b)',
+          shapes: (k) => [
+            r(2, 2, 12, 3, k.t),
+            r(2, 6.5, 12, 3, k.t),
+            r(2, 11, 12, 3, k.t),
+            r(2, 2, 10, 3, k.lead),
+            r(2, 6.5, 6, 3, k.f),
+            r(2, 11, 8, 3, k.f),
+          ],
+          ways: {
+            dark: { t: C.blue, lead: C.cyan, f: C.sky },
+            light: { t: C.mist, lead: C.cyan, f: C.navy },
+            tile: { t: C.blue, lead: C.cyan, f: C.sky },
+          },
+        },
+      ];
+
+      const shapeSvg = (s) =>
+        s.t === 'rect'
+          ? `<rect x="${s.x}" y="${s.y}" width="${s.w}" height="${s.h}" rx="1.5" fill="${s.fill}"/>`
+          : `<circle cx="${s.cx}" cy="${s.cy}" r="${s.rad}" fill="${s.fill}"/>`;
+
+      function markSvg(m, way, size) {
+        return `<svg class="mark" width="${size}" height="${size}" viewBox="0 0 16 16" aria-hidden="true">${m
+          .shapes(m.ways[way])
+          .map(shapeSvg)
+          .join('')}</svg>`;
+      }
+
+      function tileSvg(m, size) {
+        return `<svg class="mark" width="${size}" height="${size}" viewBox="0 0 16 16" aria-hidden="true">
+          <rect width="16" height="16" rx="3.5" fill="${C.navy}"/>
+          <g transform="translate(2.4 2.4) scale(0.7)">${m.shapes(m.ways.tile).map(shapeSvg).join('')}</g></svg>`;
+      }
+
+      const icons = {
+        refresh: '<svg viewBox="0 0 16 16"><path d="M13 8a5 5 0 1 1-1.46-3.54"/><path d="M13 2.5v3h-3"/></svg>',
+        hide: '<svg viewBox="0 0 16 16"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7"/></svg>',
+      };
+
+      const win = (label, reset, used, pace) => {
+        const lvl = used >= 90 ? 'crit' : used >= 70 ? 'warn' : '';
+        return `<div class="window ${lvl}"><div class="row"><span>${label}</span><span class="reset">${reset}</span>
+          <span class="percent">${used}%</span></div><div class="track"><div class="fill" style="width:${used}%"></div>
+          <span class="pace" style="left:${pace}%"></span></div></div>`;
+      };
+
+      function scene(m) {
+        return `
+          <section class="browser" aria-label="Landing page preview">
+            <div class="chrome">
+              <span class="tab">${tileSvg(m, 14)} Token Huddle</span>
+              <span class="url">tokenhuddle.arkaslittlemind.com</span>
+            </div>
+            <nav class="site-nav">${markSvg(m, 'light', 26)}<span class="site-word">Token Huddle</span>
+              <span class="links"><span>How it works</span><span>Privacy</span><span>GitHub</span></span></nav>
+            <div class="hero">
+              <div>
+                <h1>Every AI coding limit, one glance.</h1>
+                <p>Claude Code, Codex and OpenCode usage in a small always-on-top widget. Tokens here means AI usage, not crypto. Your logins are never touched.</p>
+                <button class="cta" data-act="download">Download for Windows</button>
+                <div class="note" data-note aria-live="polite"></div>
+              </div>
+              <div class="tiles">
+                <figure>${tileSvg(m, 72)}<figcaption>Icon 72</figcaption></figure>
+                <figure>${tileSvg(m, 32)}<figcaption>32</figcaption></figure>
+                <figure>${tileSvg(m, 16)}<figcaption>16</figcaption></figure>
+              </div>
+            </div>
+          </section>
+
+          <p class="caption"><b>${m.name}</b> · ${m.source}<br />Click the tray icon to show or hide the widget; switch the taskbar theme to see the tray colourway.</p>
+
+          <section class="widget" data-widget aria-label="Token Huddle">
+            <header class="bar">${markSvg(m, 'dark', 16)}<span class="word">Token Huddle</span><span class="spacer"></span>
+              <button class="btn" data-act="refresh" aria-label="Refresh now" title="Refresh now">${icons.refresh}</button>
+              <button class="btn" data-act="hide" aria-label="Hide widget" title="Hide widget">${icons.hide}</button>
+            </header>
+            <div class="provider"><div class="head"><span class="dot" style="background:${C.mist}"></span><span class="name">Claude Code</span><span class="status">live</span></div>
+              ${win('5-hour', 'resets in 2h 14m', 42, 55)}${win('Weekly', 'resets Thu 09:00', 76, 60)}</div>
+            <div class="provider"><div class="head"><span class="dot" style="background:${C.cyan}"></span><span class="name">Codex</span><span class="status">live</span></div>
+              ${win('5-hour', 'resets in 38m', 93, 87)}</div>
+          </section>
+
+          <footer class="taskbar" data-taskbar data-theme="dark">
+            <button class="theme-switch" data-act="theme">Taskbar: dark</button>
+            <div class="tray">
+              <span class="tray-other"></span>
+              <button class="tray-icon" data-act="tray" aria-label="Token Huddle: show or hide widget">${markSvg(m, 'dark', 16)}</button>
+              <span class="tooltip">Token Huddle\nClaude Code 42% / 76%\nCodex 93%</span>
+              <span class="tray-other"></span>
+            </div>
+            <div class="clock">14:32<br />15-11-2026</div>
+          </footer>`;
+      }
+
+      const variants = marks.map((m) => () => scene(m));
+
+      document.getElementById('stage').addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-act]');
+        if (!btn) return;
+        const m = marks[current];
+        const widget = document.querySelector('[data-widget]');
+        const act = btn.dataset.act;
+        if (act === 'refresh') {
+          if (btn.classList.contains('spinning')) return;
+          btn.classList.add('spinning');
+          setTimeout(() => btn.classList.remove('spinning'), 700);
+        } else if (act === 'hide') {
+          widget.hidden = true;
+        } else if (act === 'tray') {
+          widget.hidden = !widget.hidden;
+        } else if (act === 'theme') {
+          const bar = document.querySelector('[data-taskbar]');
+          const next = bar.dataset.theme === 'dark' ? 'light' : 'dark';
+          bar.dataset.theme = next;
+          btn.textContent = `Taskbar: ${next}`;
+          document.querySelector('[data-act="tray"]').innerHTML = markSvg(m, next, 16);
+        } else if (act === 'download') {
+          document.querySelector('[data-note]').textContent = 'The first release, v0.1.0, comes with step 19.';
+        }
+      });
+
+      // ---------------------------------------------- picker wiring (verbatim)
+      const stage = document.getElementById('stage');
+      const picker = document.querySelector('.proto-picker');
+      const highlight = picker.querySelector('.proto-picker-highlight');
+      const items = [...picker.querySelectorAll('.proto-picker-item:not(.proto-picker-replay)')];
+      const replay = picker.querySelector('.proto-picker-replay');
+      let current = 0;
+
+      function moveHighlight() {
+        const el = items[current];
+        highlight.style.width = el.offsetWidth + 'px';
+        highlight.style.transform = `translateX(${el.offsetLeft}px)`;
+      }
+
+      function mount(i) {
+        stage.innerHTML = '';
+        requestAnimationFrame(() => {
+          stage.innerHTML = variants[i]();
+        });
+      }
+
+      function setActive(i) {
+        if (i < 0 || i >= variants.length) return;
+        current = i;
+        items.forEach((el, j) => {
+          el.toggleAttribute('data-active', j === i);
+          if (j === i) el.setAttribute('aria-current', 'true');
+          else el.removeAttribute('aria-current');
+        });
+        moveHighlight();
+        const url = new URL(location);
+        url.searchParams.set('v', i + 1);
+        history.replaceState(null, '', url);
+        mount(i);
+      }
+
+      items.forEach((el, i) => el.addEventListener('click', () => setActive(i)));
+      replay?.addEventListener('click', () => mount(current));
+      window.addEventListener('resize', moveHighlight);
+
+      document.addEventListener('keydown', (e) => {
+        if (/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName) || e.target.isContentEditable) return;
+        if (e.metaKey || e.ctrlKey || e.altKey) return;
+        const num = parseInt(e.key, 10);
+        if (num >= 1 && num <= variants.length) setActive(num - 1);
+        else if (e.key === 'ArrowRight') setActive((current + 1) % variants.length);
+        else if (e.key === 'ArrowLeft') setActive((current - 1 + variants.length) % variants.length);
+        else if (e.key === 'r' || e.key === 'R') mount(current);
+      });
+
+      setActive((parseInt(new URLSearchParams(location.search).get('v'), 10) || 1) - 1);
+      requestAnimationFrame(() => requestAnimationFrame(() => picker.setAttribute('data-ready', '')));
+    </script>
+  </body>
+</html>
