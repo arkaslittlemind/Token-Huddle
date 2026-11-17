@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Landing-page hero and pace meters share rendering and styles; terminal prompts and animation target/state definitions are centralized while preserving the demo story and fallback.
 
+### Fixed
+
+- Landing-page mobile hero shows only the centered widget, without the terminal or its dark backdrop.
+
 ## [0.1.2] - 2026-11-18
 
 ### Added

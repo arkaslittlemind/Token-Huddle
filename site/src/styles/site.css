@@ -404,31 +404,21 @@
       0 30px 70px -10px rgb(0 0 0 / 0.65);
   }
 
-  /* Phone: the Claude Code pane, off the right; the widget whole over it. */
+  /* Phone: show just the widget, centered over the hero photo. */
   @container (max-width: 759px) {
     .stage-frame {
       --cw: 358px;
-      --ch: 540px;
+      --ch: 410px;
     }
 
     .term {
-      top: 16px;
-      left: 16px;
-      width: 520px;
-      height: 320px;
-    }
-
-    .term-panes {
-      grid-template-columns: 430px;
-    }
-
-    .term-body + .term-body {
       display: none;
     }
 
     .stage-widget {
-      top: 128px;
+      top: 16px;
       left: 29px;
+      box-shadow: none;
     }
   }
 
