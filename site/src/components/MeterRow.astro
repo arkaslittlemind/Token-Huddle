@@ -1,5 +1,5 @@
 ---
-// One meter row at any scale, for the pace panel. The state word is written
+// One meter row at any scale. The state word is written
 // for screen readers next to the number, so state never depends on colour.
 import { level, levelWord } from '../lib/demo';
 import Bar from './Bar.astro';
@@ -10,18 +10,20 @@ interface Props {
   used: number;
   pace?: number;
   big?: boolean;
+  variant?: 'default' | 'widget';
+  id?: string;
 }
 
-const { label, reset, used, pace, big = false } = Astro.props;
+const { label, reset, used, pace, big = false, variant = 'default', id } = Astro.props;
 const lvl = level(used);
 const word = levelWord(used);
 ---
 
-<div class:list={['meter', lvl, { 'meter-big': big }]}>
+<div class:list={['meter', lvl, { 'meter-big': big, 'meter-widget': variant === 'widget' }]} data-meter={id}>
   <div class="meter-row">
     <span class="meter-label">{label}</span>
     {reset && <span class="meter-reset">{reset}</span>}
-    <span class="meter-pct">
+    <span class="meter-pct" data-pct>
       {used}%{word && <span class="sr-only"> used, {word}</span>}
     </span>
   </div>

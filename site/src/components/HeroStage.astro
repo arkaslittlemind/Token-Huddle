@@ -7,11 +7,12 @@
 // The stage is a fixed canvas (1200 x 471, or 358 x 540 on phones) scaled to
 // its container in CSS (site.css, "Hero stage"), so it needs no script to fit.
 import { level } from '../lib/demo';
-import { HERO_BEATS, HERO_START, heroEnd, heroFrames } from '../lib/hero';
+import { HERO_BEATS, HERO_START, HERO_PANES, heroFrames } from '../lib/hero';
+import TermPrompt from './TermPrompt.astro';
 import WidgetDemo from './WidgetDemo.astro';
 
-const end = heroEnd(HERO_START, HERO_BEATS);
 const frames = heroFrames(HERO_START, HERO_BEATS, level);
+const end = frames[frames.length - 1]!;
 
 interface Hist {
   cmd?: string;
@@ -22,7 +23,7 @@ interface Step {
   add?: string;
 }
 interface Pane {
-  id: 'left' | 'right';
+  id: (typeof HERO_PANES)[keyof typeof HERO_PANES];
   path: string;
   cmd: string;
   task: string;
@@ -32,7 +33,7 @@ interface Pane {
 
 const panes: Pane[] = [
   {
-    id: 'left',
+    id: HERO_PANES.left,
     path: '~/my-app',
     cmd: 'claude',
     task: 'add backoff to the retry helper',
@@ -50,7 +51,7 @@ const panes: Pane[] = [
     ],
   },
   {
-    id: 'right',
+    id: HERO_PANES.right,
     path: '~/queue-service',
     cmd: 'codex',
     task: 'move the worker to the new lock API',
@@ -71,8 +72,8 @@ const panes: Pane[] = [
 
 const label =
   'A terminal split between Claude Code and Codex, with the Token Huddle widget pinned over it. ' +
-  `Claude Code's session reaches ${end.claude} percent, amber, ahead of the clock. ` +
-  `Codex's weekly limit reaches ${end.codex} percent, red.`;
+  `Claude Code's session reaches ${end.meters.claude.used} percent, amber, ahead of the clock. ` +
+  `Codex's weekly limit reaches ${end.meters.codex.used} percent, red.`;
 ---
 
 <div class="stage-box">
@@ -93,18 +94,14 @@ const label =
               {p.history.map((h) =>
                 h.cmd ? (
                   <div class="term-line">
-                    <span class="term-path">{p.path}</span>
-                    <span class="term-sigil">&#x276F;</span>
-                    {h.cmd}
+                    <TermPrompt path={p.path}>{h.cmd}</TermPrompt>
                   </div>
                 ) : (
                   <div class="term-line term-dim">{h.out}</div>
                 )
               )}
               <div class="term-line">
-                <span class="term-path">{p.path}</span>
-                <span class="term-sigil">&#x276F;</span>
-                {p.cmd}
+                <TermPrompt path={p.path}>{p.cmd}</TermPrompt>
               </div>
               <div class="term-task">&gt; {p.task}</div>
               {p.steps.map((s, i) => (
@@ -118,9 +115,9 @@ const label =
                 <span class="term-dim">thinking</span>
               </div>
               <div class="term-line term-next">
-                <span class="term-path">{p.path}</span>
-                <span class="term-sigil">&#x276F;</span>
-                <span class="caret" />
+                <TermPrompt path={p.path}>
+                  <span class="caret" />
+                </TermPrompt>
               </div>
             </div>
           ))}

@@ -1,0 +1,11 @@
+---
+interface Props {
+  path: string;
+}
+
+const { path } = Astro.props;
+---
+
+<span class="term-path">{path}</span>
+<span class="term-sigil">&#x276F;</span>
+<slot />

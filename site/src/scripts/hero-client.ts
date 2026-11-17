@@ -4,7 +4,7 @@
 // here fails, the page simply stays on it. Writes only hidden, class names,
 // an SVG width attribute and textContent.
 import type { Level } from '../lib/demo';
-import type { HeroFrame } from '../lib/hero';
+import { HERO_METERS, HERO_PANES, type HeroFrame } from '../lib/hero';
 
 type Frame = HeroFrame<Level>;
 
@@ -17,13 +17,13 @@ function setLevel(el: Element, lvl: Level): void {
 }
 
 /** Moves one widget window to a percentage, counting the number up. */
-function meter(stage: Element, id: string, used: number, lvl: Level, animate: boolean): void {
+function meter(stage: Element, id: string, { used, level }: Frame['meters']['claude'], animate: boolean): void {
   const win = stage.querySelector(`[data-meter="${id}"]`);
   const pct = win?.querySelector('[data-pct]');
   const fill = win?.querySelector('.bar-fill');
   if (!win || !pct || !fill) return;
-  setLevel(win, lvl);
-  setLevel(fill, lvl);
+  setLevel(win, level);
+  setLevel(fill, level);
   fill.setAttribute('width', `${used}%`);
   const from = Number.parseInt(pct.textContent ?? '', 10);
   if (!animate || !Number.isFinite(from) || from === used) {
@@ -40,17 +40,16 @@ function meter(stage: Element, id: string, used: number, lvl: Level, animate: bo
 }
 
 function apply(stage: Element, f: Frame, animate: boolean): void {
-  for (const [pane, shown] of [
-    ['left', f.left],
-    ['right', f.right],
-  ] as const) {
+  for (const pane of Object.values(HERO_PANES)) {
+    const shown = f.panes[pane];
     stage.querySelectorAll<HTMLElement>(`[data-step^="${pane}-"]`).forEach((line) => {
       const i = Number(line.dataset['step']?.split('-')[1]);
       line.hidden = !(i < shown);
     });
   }
-  meter(stage, 'claude-5h', f.claude, f.claudeLevel, animate);
-  meter(stage, 'codex-7d', f.codex, f.codexLevel, animate);
+  for (const key of Object.keys(HERO_METERS) as (keyof typeof HERO_METERS)[]) {
+    meter(stage, HERO_METERS[key], f.meters[key], animate);
+  }
 }
 
 function play(stage: Element, rest: Frame[]): void {

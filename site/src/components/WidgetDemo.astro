@@ -3,8 +3,9 @@
 // style, with the demo numbers. Decorative: the hero stage that holds it
 // describes it in words. Each window carries data-meter (for example
 // "claude-5h"), so the hero script can move it.
-import { demoTools, level } from '../lib/demo';
-import Bar from './Bar.astro';
+import { demoTools } from '../lib/demo';
+import { meterId } from '../lib/hero';
+import MeterRow from './MeterRow.astro';
 import Mark from './Mark.astro';
 
 interface Props {
@@ -45,16 +46,14 @@ const spark = [30, 55, 20, 100, 45, 15];
         <span class="thw-status">{t.source}</span>
       </div>
       {t.windows?.map((w) => (
-        <div class:list={['thw-window', level(w.used)]} data-meter={`${t.id}-${w.short}`}>
-          <div class="thw-row">
-            <span class="thw-label">{w.label}</span>
-            <span class="thw-faint">resets in {w.reset}</span>
-            <span class="thw-pct" data-pct>
-              {w.used}%
-            </span>
-          </div>
-          <Bar used={w.used} pace={w.pace} thickness={5} tick={9} level={level(w.used)} />
-        </div>
+        <MeterRow
+          label={w.label}
+          reset={`resets in ${w.reset}`}
+          used={w.used}
+          pace={w.pace}
+          variant="widget"
+          id={meterId(t.id, w.short)}
+        />
       ))}
       {t.totals && (
         <>

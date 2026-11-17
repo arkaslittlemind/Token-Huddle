@@ -537,37 +537,6 @@
     white-space: nowrap;
   }
 
-  .thw-faint {
-    color: var(--text-faint);
-    font-size: 11px;
-  }
-
-  .thw-window {
-    padding-top: 9px;
-  }
-
-  .thw-row {
-    display: flex;
-    align-items: baseline;
-    gap: 6px;
-    margin-bottom: 3px;
-  }
-
-  .thw-pct {
-    margin-left: auto;
-    font-weight: 600;
-    font-variant-numeric: tabular-nums;
-    transition: color 0.4s;
-  }
-
-  .thw-window.warn .thw-pct {
-    color: var(--warn);
-  }
-
-  .thw-window.crit .thw-pct {
-    color: var(--crit);
-  }
-
   .thw-stats {
     display: flex;
     gap: 16px;
@@ -832,6 +801,22 @@
 
   .meter.crit .meter-pct {
     color: var(--crit);
+  }
+
+  .meter-widget {
+    padding-top: 9px;
+  }
+
+  .meter-widget .meter-row {
+    margin-bottom: 3px;
+  }
+
+  .meter-widget .meter-reset {
+    color: var(--text-faint);
+  }
+
+  .meter-widget .meter-pct {
+    transition: color 0.4s;
   }
 
   .meter-big {
