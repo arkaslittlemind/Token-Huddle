@@ -111,11 +111,11 @@ checksums manually with invited testers, explain that private-release automatic
 updates are unavailable, and gather voluntary feedback. Keep the repository
 private during beta. Public v1 stays completely free and MIT licensed.
 
-After beta and a separate launch decision, complete history/privacy cleanup,
-optional noreply email, vulnerability reporting and donation links; publish
-`v0.1.0` and launch on GitHub, r/ClaudeAI, r/LocalLLaMA and X with a crisp
-15-second sample-data screen recording. Feature 22 prepares this playbook;
-it does not publish or change repository visibility.
+The public launch happened on 2026-11-17 after a live smoke test: the public
+repository and `v0.1.0` were published, and the current release is `v0.1.2`
+(2026-11-18). Launch posts on GitHub, r/ClaudeAI, r/LocalLLaMA and X are still
+drafts. They will pair with a ~30-second sample-data launch film (step 22b).
+Posting and donation links are separate actions.
 
 Optional email signup and opt-in telemetry are future proposals requiring their
 own consent, storage and privacy decisions. Beta and free v1 keep no telemetry
@@ -244,9 +244,9 @@ Every provider returns the same shape, validated before it reaches the UI:
 - electron-builder: NSIS installer and portable `.exe`
 - electron-updater with GitHub Releases
 - Release builds from tagged commits in GitHub Actions; the first public
-  release, `v0.1.0`, is published after the one-week private beta (step 22) and a separately authorized public launch,
-  because a private repository's releases need a token the app must never
-  hold
+  release, `v0.1.0`, was published on 2026-11-17 at a separately authorized
+  public launch (a private repository's releases would need a token the app
+  must never hold); the current release is `v0.1.2`
 - Static landing page at `tokenhuddle.arkaslittlemind.com` (host: GitHub
   Pages, Cloudflare Pages or Vercel)
 

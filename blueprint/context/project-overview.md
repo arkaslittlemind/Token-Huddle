@@ -1,6 +1,6 @@
 # Token Huddle - Project Overview
 
-<!-- blueprint:source-hash f106fac2224fe3cebd88c99e0955e8bc8a93a64127a4c4c4cdcfbcaf0a07375c -->
+<!-- blueprint:source-hash 8c53c05ec0ff1a772c819a2d98ea9142122579019aeb6c4cdc14d7b01d652c55 -->
 
 > An always-on-top Windows desktop widget that shows the usage limits of several AI coding agents in one place, without ever touching a tool's login.
 
@@ -21,7 +21,7 @@ No accounts or access tiers: a single local user per machine.
 
 ## Features
 
-In build-plan order. Steps 1 to 22a are done; 23 (bonus) is next and not scheduled. Steps marked (chore) are verification, tooling, decision or release tasks that still run through `/feature`. **Headline: the widget with login-free provider cards (2 to 7).**
+In build-plan order. Steps 1 to 22a are done; 22b (chore) is next; 23 (bonus) is not scheduled. Steps marked (chore) are verification, tooling, decision or release tasks that still run through `/feature`. **Headline: the widget with login-free provider cards (2 to 7).**
 
 1. **Repository + project foundation** (done) - Electron app, launch and screenshot scripts, license, security policy, README.
 2. **Widget shell** (done) - frameless always-on-top window, tray, options menu, full and compact views, pace marker, warning and critical states, demo mode.
@@ -56,6 +56,7 @@ In build-plan order. Steps 1 to 22a are done; 23 (bonus) is next and not schedul
     - **21d. Landing page deployment** (done) - Cloudflare Pages selected, `tokenhuddle.arkaslittlemind.com`; deployed with active custom domain; browser acceptance recorded.
 22. **Private beta + go-to-market playbook** (chore, done) - prepare one week of private Windows testing, manual distribution and feedback prompts; draft the free launch and 15-second sample-data demo; defer repository visibility, history rewrite and publication until a separate post-beta launch decision.
 22a. **Automatic Claude token usage** (done) - detect local session records without setup; show today, seven-day and thirty-day totals; deduplicate API messages; retain optional subscription limits through the bridge. Cross-interface coverage requires verification.
+22b. **Launch video** (chore) - ~30-second on-brand dark film made as code (`seek(t)` page, headless browser, ffmpeg) in a folder outside this repository, never committed; the real widget renderer with labelled sample data, never real usage or logins; four scenes (hook, demo with compact view, threshold alert and reset as proof, looping end card); `LOOK.md` from the Night shift brand and three whatships.com reference films; researched licensed music and sound kit; contact-sheet, phone-width, first-frame, glitch and privacy checks; wide and square versions; no claim of provider accuracy or an OpenCode quota.
 23. **Bonus** (not before 1 to 22) - split into:
     - **23a. More providers** - Gemini CLI, GitHub Copilot, Cursor, OpenRouter; API-key and sign-in registration; terms re-checked.
     - **23b. macOS and Linux** - bridge scripts and builds.
@@ -147,10 +148,11 @@ Read assistant usage metadata from account-local projects/**/*.jsonl, including 
 
 ## Monetization
 
-Free and open source (MIT): no paid tier, no ads, no telemetry. A donation link (GitHub Sponsors or similar) goes on the README and landing page at the deferred public launch.
+Free and open source (MIT): no paid tier, no ads, no telemetry. A donation link (GitHub Sponsors or similar) goes on the README and landing page once one is chosen.
 
-Feature 22 prepares a one-week private beta and launch drafts for GitHub,
-r/ClaudeAI, r/LocalLLaMA and X, using a 15-second sample-data recording. Gather
+The public launch happened on 2026-11-17 (`v0.1.0`; current release `v0.1.2`).
+Launch posts for GitHub, r/ClaudeAI, r/LocalLLaMA and X are still drafts and
+pair with the ~30-second sample-data launch film (22b). Gather
 voluntary feedback on Cursor/Windsurf, burn-rate warnings and weekly spend
 reports. Optional email signup and opt-in telemetry remain future proposals
 requiring consent, storage, retention and privacy decisions; current beta/v1
@@ -177,14 +179,12 @@ Accessibility: keyboard reachable controls with visible focus, state shown by te
 
 No server. Two deliverables:
 
-- **Desktop app** - Windows only in v1. NSIS installer and portable `.exe` from tagged commits (`vMAJOR.MINOR.PATCH`, `0.x` until stable) built in GitHub Actions, published to this repo's GitHub Releases with checksums; auto-update only from those releases (installed build; the portable build links to the download). Builds are not code-signed (decided in step 20, see `docs/code-signing.md`; SignPath Foundation to be looked at again after step 22). Release notes come from `CHANGELOG.md`. The first public release, `v0.1.0`, ships after the one-week private beta and a separately authorized public launch.
+- **Desktop app** - Windows only in v1. NSIS installer and portable `.exe` from tagged commits (`vMAJOR.MINOR.PATCH`, `0.x` until stable) built in GitHub Actions, published to this repo's GitHub Releases with checksums; auto-update only from those releases (installed build; the portable build links to the download). Builds are not code-signed (decided in step 20, see `docs/code-signing.md`; SignPath Foundation to be looked at again after step 22). Release notes come from `CHANGELOG.md`. The first public release, `v0.1.0`, was published on 2026-11-17 at a separately authorized public launch; the current release is `v0.1.2`.
 - **Landing page** - static site deployed on Cloudflare Pages' free hosting at `tokenhuddle.arkaslittlemind.com`. Build from the repository root, publish `site/dist`; see `docs/site-deployment.md` for settings and the deployment record.
 
 Commits, merges, pushes, tags and releases happen only when the maintainer asks.
 
 During the private beta, the maintainer shares installer/portable builds and
 checksums manually. Testers turn off "Check for updates"; private releases cannot
-be fetched by the app without forbidden credentials. Public launch later includes
-history cleanup, optional noreply email, vulnerability reporting, donation links,
-repository visibility and publication. No such external action is authorized by
-the Feature 22 preparation spec.
+be fetched by the app without forbidden credentials. Posting and donation links
+remain separate actions that need the maintainer's authorization.

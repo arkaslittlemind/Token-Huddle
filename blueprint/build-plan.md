@@ -51,6 +51,7 @@ that are checks or decisions instead of new UI.
   - [x] 21d. **Landing page deployment** - choose the free static host, deploy the site, point `tokenhuddle.arkaslittlemind.com` at it
 - [x] 22. **Private beta + go-to-market playbook** - *(chore)* prepare a one-week private Windows beta with manual build distribution, onboarding and feedback instructions; draft a free-v1 launch on GitHub, r/ClaudeAI, r/LocalLLaMA and X with a crisp 15-second demo using sample data; document the deferred public-launch checklist and later growth/Pro decision gates; keep the repository private and public release deferred
 - [x] 22a. **Automatic Claude token usage** - detect local session records; show today, seven-day and thirty-day token totals without setup; prevent duplicate counting; preserve optional subscription-limit tracking through the existing bridge
+- [ ] 22b. **Launch video** - *(chore)* a ~30-second on-brand dark launch film made as code (a `seek(t)` web page rendered frame by frame with a headless browser and ffmpeg), built in a separate folder outside this repository and never committed; the real widget renderer with labelled sample data, never real usage or logins; four scenes (hook that states the pain on mute, widget demo with compact view, threshold alert and reset as proof, end card that loops into the first frame); a `LOOK.md` style card from the Night shift brand and three reference films chosen from whatships.com; a licensed music track and sound kit, researched and measured; contact-sheet, phone-width, first-frame, glitch and privacy checks; wide (X) and square versions from one timeline; no claim that a scripted demo proves provider accuracy or that OpenCode has a subscription quota
 - [ ] 23. **Bonus: more providers, platforms, history** - do not start until 1-22 are done
   - [ ] 23a. **More providers** - Gemini CLI, GitHub Copilot, Cursor, OpenRouter, with API-key and vendor sign-in registration where a tool offers it; re-check each vendor's terms first
   - [ ] 23b. **macOS and Linux** - bridge scripts for Claude Code and builds for both platforms
@@ -93,8 +94,8 @@ problem at the end:
 - **Approval** - commits, merges, pushes, tags and releases happen only when the
   maintainer asks
 - **Release early** - prove the step 19a pipeline with a draft release right
-  away; publish `v0.1.0` when the repository goes public after the step 22 beta, then keep
-  every later change flowing through the same pipeline
+  away; `v0.1.0` was published when the repository went public on 2026-11-17
+  (current: `v0.1.2`), and every later change flows through the same pipeline
 
 ## Go-to-market sequence
 
@@ -106,9 +107,10 @@ problem at the end:
   rewrite or squash history to remove the token-based prototype and personal
   usage numbers; optionally use a GitHub noreply commit email; enable private
   vulnerability reporting; add a chosen donation link to README and landing
-  page; make the repository public and publish free `v0.1.0` through 19a. Draft
-  posts for GitHub, r/ClaudeAI, r/LocalLLaMA and X, paired with a 15-second
-  sample-data screen recording (optional GIF). Posting is a separate action.
+  page; make the repository public and publish free `v0.1.0` through 19a (done
+  2026-11-17; current release `v0.1.2`). Draft posts for GitHub, r/ClaudeAI,
+  r/LocalLLaMA and X, paired with the ~30-second launch film from 22b (optional
+  GIF). Posting is a separate action.
 - **Learn:** collect voluntary beta feedback and requests for Cursor/Windsurf,
   burn-rate warnings or weekly spend reports. Optional email signup and opt-in
   telemetry are future proposals, not part of beta or free v1; consent, hosting,
