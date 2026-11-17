@@ -176,6 +176,16 @@ Obtain approval for rollback DNS changes too; preserve every unrelated record.
 
 ## Deployment record
 
+On 2026-11-17, corrected the public repository's separate Pages project,
+`token-huddle-public` (source `arkaslittlemind/Token-Huddle`). It had retained
+the default `npm run build` command and `dist` output at the repository root,
+where no build script exists. Applied the settings above: repository root,
+`npm ci --prefix site && npm --prefix site run verify`, and `site/dist`.
+The repository rename did not prevent cloning. Retried source commit
+`1f0f49898613286700b96effb781203ac295b304`: deployment
+`56d4ae61-511c-4a53-8ad2-57c743eb5c60` succeeded, with assets published at
+`https://56d4ae61.token-huddle-public.pages.dev`.
+
 | Item | Observed state |
 | --- | --- |
 | GitHub access | Private repository; local GitHub CLI reports administrator access |

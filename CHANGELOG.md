@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Landing-page mobile hero shows only the centered widget, without the terminal or its dark backdrop.
+- Corrected the public Cloudflare Pages project's build command and output directory to install and verify `site/` and publish `site/dist`.
 
 ## [0.1.2] - 2026-11-18
 
