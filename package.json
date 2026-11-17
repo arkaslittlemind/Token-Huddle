@@ -1,7 +1,7 @@
 {
   "name": "token-huddle",
   "productName": "Token Huddle",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "description": "A small always-on-top desktop widget showing your Claude Code, Codex and OpenCode usage limits.",
   "author": "Arkadipta Mojumder",

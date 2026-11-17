@@ -18,8 +18,8 @@ function isValidVersion(text) {
   return typeof text === 'string' && text.length <= 64 && VERSION.test(text);
 }
 
-function shouldCheck({ packaged, enabled, demo }) {
-  return Boolean(packaged && enabled && !demo);
+function shouldCheck({ packaged, enabled, demo, manual = false }) {
+  return Boolean(packaged && (enabled || manual) && !demo);
 }
 
 /** The release page of a version, or null when the version is not valid. */
@@ -36,19 +36,20 @@ const isBusy = (state) => state.status === 'downloading' || state.status === 're
  * started.
  */
 function reduce(state, event) {
+  const manual = state.manual ? { manual: true } : {};
   switch (event?.type) {
     case 'checking':
-      return isBusy(state) ? state : { status: 'checking' };
+      return isBusy(state) ? state : { status: 'checking', ...(event.manual ? { manual: true } : {}) };
     case 'not-available':
-      return isBusy(state) ? state : { status: 'none' };
+      return isBusy(state) ? state : { status: 'none', ...manual };
     case 'available':
       if (isBusy(state)) return state;
       return isValidVersion(event.version)
-        ? { status: 'available', version: event.version }
-        : { status: 'error', userStarted: false };
+        ? { status: 'available', version: event.version, ...manual }
+        : { status: 'error', userStarted: false, ...manual };
     case 'install-clicked':
       return state.version && (state.status === 'available' || state.status === 'error')
-        ? { status: 'downloading', version: state.version, percent: 0 }
+        ? { status: 'downloading', version: state.version, percent: 0, ...manual }
         : state;
     case 'progress': {
       if (state.status !== 'downloading') return state;
@@ -56,13 +57,13 @@ function reduce(state, event) {
       return percent === state.percent ? state : { ...state, percent };
     }
     case 'downloaded':
-      return state.status === 'downloading' ? { status: 'ready', version: state.version } : state;
+      return state.status === 'downloading' ? { status: 'ready', version: state.version, ...manual } : state;
     case 'error':
       // electron-updater reports a failed download twice; keep the retry offer from the first.
       if (state.status === 'error' && state.userStarted) return state;
       return isBusy(state)
-        ? { status: 'error', userStarted: true, version: state.version }
-        : { status: 'error', userStarted: false };
+        ? { status: 'error', userStarted: true, version: state.version, ...manual }
+        : { status: 'error', userStarted: false, ...manual };
     case 'disabled':
       return isBusy(state) ? state : INITIAL;
     default:
@@ -78,7 +79,7 @@ function reduce(state, event) {
 function present(state, { portable, packaged, enabled }) {
   const quiet = (status) => ({ label: null, clickable: false, status, action: null });
   if (!packaged) return quiet('Updates are checked only in the installed and portable app.');
-  if (!enabled && !isBusy(state)) return quiet('Update checks are off.');
+  if (!enabled && !state.manual && !isBusy(state)) return quiet('Update checks are off.');
   const { version } = state;
   const offer = (status) =>
     portable
@@ -112,7 +113,8 @@ function present(state, { portable, packaged, enabled }) {
       };
     case 'error':
       // A failed background check stays quiet: until the first public release every check fails.
-      return state.userStarted && version ? offer('Update failed. Try again from the tray or Settings.') : quiet('');
+      if (state.userStarted && version) return offer('Update failed. Try again from the tray or Settings.');
+      return quiet(state.manual ? 'Could not check for updates. Try again.' : '');
     default:
       return quiet('');
   }

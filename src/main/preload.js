@@ -26,6 +26,7 @@ contextBridge.exposeInMainWorld('huddle', {
     link: (key) => ipcRenderer.invoke('settings:link', key),
     finishOnboarding: () => ipcRenderer.invoke('settings:finish-onboarding'),
     setCheckUpdates: (on) => ipcRenderer.invoke('settings:set-check-updates', on),
+    checkForUpdates: () => ipcRenderer.invoke('settings:check-updates'),
     updateAction: () => ipcRenderer.invoke('settings:update-action'),
     onUpdate: (callback) => ipcRenderer.on('settings:update', (_event, state) => callback(state)),
   },

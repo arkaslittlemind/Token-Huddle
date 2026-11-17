@@ -12,6 +12,7 @@ const thresholdInputs = [document.getElementById('threshold-1'), document.getEle
 const thresholdError = document.getElementById('threshold-error');
 const updateVersion = document.getElementById('update-version');
 const checkUpdates = document.getElementById('check-updates');
+const autoCheckUpdates = document.getElementById('auto-check-updates');
 const updateAction = document.getElementById('update-action');
 const updateStatus = document.getElementById('update-status');
 
@@ -267,11 +268,17 @@ function redraw(container, nodes, fallback = document.getElementById('settings-h
 /** The Updates section. The version and labels come from main, already checked; text only. */
 function renderUpdates(view) {
   updateVersion.textContent = view.version;
-  checkUpdates.checked = view.enabled;
+  autoCheckUpdates.checked = view.enabled;
+  checkUpdates.disabled = !view.canCheck;
+  checkUpdates.textContent = view.checking ? 'Checking for updates...' : 'Check for updates';
+  checkUpdates.setAttribute('aria-busy', String(view.checking));
   // Only a real change is written, so the live region announces it once.
   if (updateStatus.textContent !== view.status) updateStatus.textContent = view.status;
   const offered = Boolean(view.action);
-  if (!offered && document.activeElement === updateAction) checkUpdates.focus();
+  if (!offered && document.activeElement === updateAction) {
+    (view.canCheck ? checkUpdates : autoCheckUpdates).focus();
+  }
+  checkUpdates.classList.toggle('primary', !offered);
   updateAction.hidden = !offered;
   updateAction.textContent = offered ? view.label : '';
 }
@@ -327,7 +334,8 @@ async function saveThresholds() {
 for (const input of thresholdInputs) input.addEventListener('change', saveThresholds);
 
 document.getElementById('done').addEventListener('click', () => run(() => api.finishOnboarding()));
-checkUpdates.addEventListener('change', () => run(() => api.setCheckUpdates(checkUpdates.checked)));
+checkUpdates.addEventListener('click', () => run(() => api.checkForUpdates()));
+autoCheckUpdates.addEventListener('change', () => run(() => api.setCheckUpdates(autoCheckUpdates.checked)));
 updateAction.addEventListener('click', () => run(() => api.updateAction()));
 
 document.getElementById('browse').addEventListener('click', async () => {

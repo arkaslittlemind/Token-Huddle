@@ -10,7 +10,7 @@ Compact view:
 
 ## It never touches your logins
 
-Token Huddle does not read, store or use any tool's login token, and it makes no network calls of its own, except checking this project's GitHub Releases for a newer version, which **Check for updates** turns off. That check sends no personal data. Otherwise it only reads what each tool hands over or writes to disk. That keeps it inside the vendors' terms, which reserve subscription logins for their own apps.
+Token Huddle does not read, store or use any tool's login token, and it makes no network calls of its own, except checking this project's GitHub Releases for a newer version, which **Automatically check for updates** turns off. That check sends no personal data. Otherwise it only reads what each tool hands over or writes to disk. That keeps it inside the vendors' terms, which reserve subscription logins for their own apps.
 
 | Agent | What you see | Where it comes from |
 | --- | --- | --- |
@@ -35,7 +35,7 @@ The builds are not code-signed ([why](docs/code-signing.md)). The first time you
 
 ### Updates
 
-The installed and portable app check this project's GitHub Releases 30 seconds after they start and then every 6 hours. When a newer version exists, the tray menu and Settings say so. In the installed app, **Install update** downloads it and restarts into the new version; nothing is downloaded or installed before you click. The portable app cannot replace itself, so **Download** opens the release page instead. Turn **Check for updates** off in the tray menu or Settings to stop the checks.
+The installed and portable app check this project's GitHub Releases 30 seconds after they start and then every 6 hours. When a newer version exists, the tray menu and Settings say so. In the installed app, **Install update** downloads it and restarts into the new version; nothing is downloaded or installed before you click. The portable app cannot replace itself, so **Download** opens the release page instead. Click **Check for updates** in Settings to check immediately; the result shows whether Token Huddle is up to date or offers an update to install. Turn **Automatically check for updates** off in the tray menu or Settings to stop background checks. You can still check explicitly with the button without turning background checks back on.
 
 ### Uninstall
 

@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-11-18
+
+### Added
+
+- A Check for updates button in Settings checks immediately and reports the result, with a separate automatic-check preference and clear retry feedback.
+
 ## [0.1.1] - 2026-11-18
 
 ### Fixed
@@ -211,6 +217,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   Claude Code and Codex login files to call the vendors' usage endpoints; that is
   outside what Anthropic's terms allow for third-party apps.
 
-[Unreleased]: https://github.com/arkaslittlemind/token-huddle/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/arkaslittlemind/token-huddle/compare/v0.1.2...HEAD
+[0.1.2]: https://github.com/arkaslittlemind/token-huddle/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/arkaslittlemind/token-huddle/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/arkaslittlemind/token-huddle/releases/tag/v0.1.0

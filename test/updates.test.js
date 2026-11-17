@@ -35,6 +35,37 @@ test('shouldCheck needs the packaged app, the switch on and no demo', () => {
   assert.equal(shouldCheck({ packaged: true, enabled: true, demo: true }), false);
 });
 
+test('an explicit check works with automatic checks off, but never in source or demo mode', () => {
+  const options = { packaged: true, enabled: false, demo: false, manual: true };
+  assert.equal(shouldCheck(options), true);
+  assert.equal(shouldCheck({ ...options, packaged: false }), false);
+  assert.equal(shouldCheck({ ...options, demo: true }), false);
+});
+
+test('manual checks show their result and install action with automatic checks off', () => {
+  const options = { ...installed, enabled: false };
+  const checking = run({ type: 'checking', manual: true });
+  assert.equal(present(checking, options).status, 'Checking for updates.');
+  assert.equal(present(reduce(checking, { type: 'not-available' }), options).status, 'Token Huddle is up to date.');
+  const available = reduce(checking, { type: 'available', version: '0.2.0' });
+  assert.equal(present(available, options).action, 'install');
+  assert.equal(present(available, { ...options, portable: true }).action, 'open-release');
+  const failed = reduce(reduce(available, { type: 'install-clicked' }), { type: 'error' });
+  assert.equal(present(failed, options).action, 'install');
+  assert.equal(reduce(checking, { type: 'not-available' }).manual, true);
+  assert.deepEqual(reduce(available, { type: 'checking' }), { status: 'checking' });
+});
+
+test('failed manual checks show a retry message and can be checked again', () => {
+  const options = { ...installed, enabled: false };
+  const failed = run({ type: 'checking', manual: true }, { type: 'error' });
+  assert.equal(present(failed, options).status, 'Could not check for updates. Try again.');
+  assert.equal(present(failed, options).action, null);
+  const retry = reduce(failed, { type: 'checking', manual: true });
+  assert.equal(present(retry, options).status, 'Checking for updates.');
+  assert.deepEqual(reduce(retry, { type: 'disabled' }), INITIAL);
+});
+
 test('a check moves through checking to none or available', () => {
   assert.deepEqual(run({ type: 'checking' }), { status: 'checking' });
   assert.deepEqual(run({ type: 'checking' }, { type: 'not-available' }), { status: 'none' });

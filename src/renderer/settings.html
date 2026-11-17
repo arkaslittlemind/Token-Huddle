@@ -91,13 +91,14 @@
           newer one; nothing is downloaded or installed until you click.
         </p>
         <div class="updates">
-          <label class="switch">
-            <input id="check-updates" type="checkbox" />
-            Check for updates
-          </label>
+          <button type="button" id="check-updates" class="primary">Check for updates</button>
           <button type="button" id="update-action" class="primary" hidden></button>
         </div>
         <p id="update-status" class="lead" role="status" aria-live="polite"></p>
+        <label class="switch">
+          <input id="auto-check-updates" type="checkbox" />
+          Automatically check for updates
+        </label>
 
         <h2>Add another account</h2>
         <p class="lead">

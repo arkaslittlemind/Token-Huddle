@@ -266,7 +266,13 @@ async function settingsState() {
     ...(await describe({ instances: settings.instances, dataDir: dataDir() })),
     theme: resolvedTheme(),
     thresholds: settings.thresholds,
-    updates: { version: VERSION, enabled: settings.checkUpdates, ...updateView() },
+    updates: {
+      version: VERSION,
+      enabled: settings.checkUpdates,
+      checking: update.status === 'checking',
+      canCheck: checksAllowed(true) && update.status !== 'checking' && !updates.isBusy(update),
+      ...updateView(),
+    },
   };
   if (!settings.onboarded) state.welcome = welcome({ detected, cards: state.cards });
   return state;
@@ -420,8 +426,8 @@ let update = updates.INITIAL;
 let updater = null;
 let updateTimers = [];
 
-const checksAllowed = () =>
-  updates.shouldCheck({ packaged: app.isPackaged, enabled: settings.checkUpdates, demo: DEMO });
+const checksAllowed = (manual = false) =>
+  updates.shouldCheck({ packaged: app.isPackaged, enabled: settings.checkUpdates, demo: DEMO, manual });
 
 function updateView() {
   return updates.present(update, { portable: PORTABLE, packaged: app.isPackaged, enabled: settings.checkUpdates });
@@ -441,7 +447,7 @@ function loadUpdater() {
   autoUpdater.autoDownload = false;
   autoUpdater.autoInstallOnAppQuit = false;
   autoUpdater.logger = null;
-  autoUpdater.on('checking-for-update', () => setUpdate({ type: 'checking' }));
+  autoUpdater.on('checking-for-update', () => setUpdate({ type: 'checking', manual: update.manual }));
   autoUpdater.on('update-available', (info) => setUpdate({ type: 'available', version: info?.version }));
   autoUpdater.on('update-not-available', () => setUpdate({ type: 'not-available' }));
   autoUpdater.on('download-progress', (progress) => setUpdate({ type: 'progress', percent: progress?.percent }));
@@ -455,8 +461,9 @@ function loadUpdater() {
   return updater;
 }
 
-function checkForUpdates() {
-  if (!checksAllowed() || updates.isBusy(update)) return;
+function checkForUpdates(manual = false) {
+  if (!checksAllowed(manual) || updates.isBusy(update) || update.status === 'checking') return;
+  setUpdate({ type: 'checking', manual });
   try {
     loadUpdater()
       .checkForUpdates()
@@ -558,7 +565,7 @@ function buildMenu() {
       click: (item) => app.setLoginItemSettings({ ...loginItemOptions(), openAtLogin: item.checked }),
     },
     {
-      label: 'Check for updates',
+      label: 'Automatically check for updates',
       type: 'checkbox',
       checked: settings.checkUpdates,
       click: (item) => setCheckUpdates(item.checked),
@@ -708,6 +715,11 @@ handle('settings:link', async (key) => {
 ipcMain.handle('settings:set-check-updates', (_event, on) => {
   if (typeof on !== 'boolean') return { ok: false, error: 'Expected on or off' };
   setCheckUpdates(on);
+  return { ok: true };
+});
+ipcMain.handle('settings:check-updates', () => {
+  if (!checksAllowed(true)) return { ok: false, error: 'Update checks require the installed or portable app.' };
+  checkForUpdates(true);
   return { ok: true };
 });
 ipcMain.handle('settings:update-action', () =>
