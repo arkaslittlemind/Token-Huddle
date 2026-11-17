@@ -53,7 +53,6 @@ let tray = null;
 let settings = {
   x: null,
   y: null,
-  alwaysOnTop: true,
   compact: false,
   localOnly: false,
   checkUpdates: true,
@@ -203,7 +202,7 @@ function createWindow() {
     skipTaskbar: true,
     hasShadow: false,
     show: false,
-    alwaysOnTop: settings.alwaysOnTop,
+    alwaysOnTop: true,
     icon: windowIcon(),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
@@ -211,7 +210,7 @@ function createWindow() {
       sandbox: true,
     },
   });
-  if (settings.alwaysOnTop) win.setAlwaysOnTop(true, 'floating');
+  win.setAlwaysOnTop(true, 'screen-saver');
   win.loadFile(path.join(__dirname, '..', 'renderer', 'index.html'));
   win.once('ready-to-show', () => win.show());
   // Fires when a drag ends: snap to a nearby edge and keep the widget on its screen.
@@ -230,7 +229,10 @@ function createWindow() {
 function showWidget() {
   if (!win) return createWindow();
   keepInView();
+  win.setAlwaysOnTop(true, 'screen-saver');
+  if (win.isMinimized()) win.restore();
   win.show();
+  win.focus();
 }
 
 function toggleWindow() {
@@ -516,16 +518,6 @@ function buildMenu() {
     { label: 'Settings…', click: openSettings },
     { type: 'separator' },
     {
-      label: 'Always on top',
-      type: 'checkbox',
-      checked: settings.alwaysOnTop,
-      click: (item) => {
-        settings.alwaysOnTop = item.checked;
-        win?.setAlwaysOnTop(item.checked, 'floating');
-        saveSettings();
-      },
-    },
-    {
       label: 'Compact view',
       type: 'checkbox',
       checked: settings.compact,
@@ -580,7 +572,7 @@ function createTray() {
   tray = new Tray(trayIcon());
   nativeTheme.on('updated', () => tray && !tray.isDestroyed() && tray.setImage(trayIcon()));
   tray.setToolTip('Token Huddle');
-  tray.on('click', toggleWindow);
+  tray.on('click', showWidget);
   tray.on('right-click', () => tray.popUpContextMenu(buildMenu()));
 }
 

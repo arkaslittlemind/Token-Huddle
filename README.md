@@ -56,7 +56,7 @@ npm start
 
 `npm run demo` starts it with sample data.
 
-Drag the widget by its title bar; it remembers where you put it, and snaps to a screen edge when you let go close to one. The tray icon or **Ctrl+Alt+H** shows or hides it. If a monitor goes away or the display scaling changes, the widget moves back into view on its own. A right-click on the tray icon (or the `···` button) opens the options: settings, always on top, compact view, theme (system, light or dark), style (solid or translucent), size (100, 115 or 130%), local files only, start with Windows.
+Drag the widget by its title bar; it remembers where you put it, and snaps to a screen edge when you let go close to one. Clicking the tray icon brings it forward on the first click and keeps it open. It stays above other apps when focus changes. Use the close button, **Hide widget** menu action, or **Ctrl+Alt+H** to hide it; the shortcut also reopens it. If a monitor goes away or the display scaling changes, the widget moves back into view on its own. A right-click on the tray icon (or the `···` button) opens the options: settings, compact view, theme (system, light or dark), style (solid or translucent), size (100, 115 or 130%), local files only, start with Windows.
 
 ## Settings
 
