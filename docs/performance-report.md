@@ -1,6 +1,6 @@
 # Performance optimization: before and after
 
-Measured on 2026-11-18, following GitHub issue #9. The compact-row implementation and automated/runtime verification are complete. F-28 is repaired; fresh independent re-review is pending a new local checkpoint approval.
+Measured on 2026-11-18, following GitHub issue #9. Released in [v0.1.3](https://github.com/arkaslittlemind/Token-Huddle/releases/tag/v0.1.3). The compact-row implementation, automated/runtime verification and independent review are complete; F-28 is closed.
 
 ## What improved
 
@@ -73,7 +73,7 @@ AMD Ryzen 5 4600H, 12 logical CPUs, 16.5 GB RAM, Windows 10.0.26300, Electron 45
 
 Profiles and provider homes were temporary and synthetic. Updates were off; Codex was local-only. Fixtures were generated before timing. Processes started with empty provider caches; OS disk caches were not flushed. CPU/memory observation starts after initial data and ends before the final forced refresh. The long intervals include an automatic refresh. Native event-loop and Chromium script/layout measurements are retained in the aggregate JSON.
 
-Production source base: bb61185d287a40704f32beb2ac5bc2b1efc3c88b (v0.1.2). The repaired reader is a working-tree change after review checkpoint e74584d. The version is unchanged because this work is unreleased. The profiling runner records an explicit baseline commit for the unchanged executable; provider source hashes bind the actual before/after snapshots. Comparisons reject mismatched fixture, environment, scenario or units.
+Production source base: bb61185d287a40704f32beb2ac5bc2b1efc3c88b (v0.1.2). The repaired reader shipped in commit f44814b and was released in v0.1.3. The profiling runner records an explicit baseline commit for the unchanged executable; provider source hashes bind the actual before/after snapshots. Comparisons reject mismatched fixture, environment, scenario or units.
 
 Provider SHA-256:
 
@@ -100,11 +100,11 @@ Build fresh snapshots with scripts/profile-package.js using the recorded source 
 - **24 seeded large-history cases** matched the original reader's complete output.
 - Real Electron visibility/tray/always-on-top/movement checks and Settings/update IPC/retry/explicit-install checks passed through existing offline harnesses.
 - The original baseline JSON remains unchanged (SHA-256 9d82e7c84791291757096a0dbf61a8fbce43a9108745d488adc3913380de2c42).
-- Independent review of e74584d requested changes for **F-28 [P1]**. The builder marks it **fixed, awaiting independent closure**. F-10 [P3] was closed by that reviewer. The existing receipt remains changes-requested for its original target; it is not rewritten as a pass for this repair.
+- Independent review of e74584d requested changes for **F-28 [P1]**. The repair was independently re-reviewed and F-28 is **closed**. F-10 [P3] was closed by the earlier reviewer.
 - The two excluded Playwright snapshots were moved intact, with approval and hash verification, to local coverage/review-artifacts/playwright/. They remain outside commits.
-- No merge, push, release or GitHub update has occurred.
+- Released in v0.1.3 (2026-11-18). Release assets were verified against SHA256SUMS.txt and the updater manifest before publishing.
 
-**Decision:** retain the compact-row reader based on equivalent readings and the measured latency/RAM results. A new approved immutable checkpoint and complete fresh independent review are required before completion. The status bar is a milestone snapshot and remains at 5/6 while review is pending.
+**Decision:** retain the compact-row reader based on equivalent readings and the measured latency/RAM results. Shipped in v0.1.3.
 
 ## Remaining limits and deferred work
 
@@ -116,22 +116,3 @@ SQL aggregation was investigated and discarded after the review exposed source-c
 
 - [Original baseline report](performance-baseline-report.md) and [original JSON](performance-baseline.json).
 - [Matched before JSON](performance-before-opencode.json), [after JSON](performance-after-opencode.json), [comparison JSON](performance-opencode-comparison.json).
-
-## Proposed repair checkpoint
-
-Proposed message: perf: use compact OpenCode metadata rows.
-
-One additional local checkpoint with these 10 changed files. No push, merge or release. The review/findings evidence remains separate as allowed by the review contract.
-
-~~~text
-CHANGELOG.md
-blueprint/context/current-feature.md
-docs/opencode-optimization-plan.md
-docs/performance-after-opencode.json
-docs/performance-before-opencode.json
-docs/performance-opencode-comparison.json
-docs/performance-report.md
-scripts/profile.js
-src/main/providers/opencode.js
-test/opencode.test.js
-~~~
