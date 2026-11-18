@@ -1,6 +1,6 @@
 # Token Huddle - Project Overview
 
-<!-- blueprint:source-hash 8c53c05ec0ff1a772c819a2d98ea9142122579019aeb6c4cdc14d7b01d652c55 -->
+<!-- blueprint:source-hash bb7c8208d80c2ca8a148b74764a802cb5f80e8c5e052f613a364996a0b951204 -->
 
 > An always-on-top Windows desktop widget that shows the usage limits of several AI coding agents in one place, without ever touching a tool's login.
 
@@ -21,7 +21,7 @@ No accounts or access tiers: a single local user per machine.
 
 ## Features
 
-In build-plan order. Steps 1 to 22a are done; 22b (chore) is next; 23 (bonus) is not scheduled. Steps marked (chore) are verification, tooling, decision or release tasks that still run through `/feature`. **Headline: the widget with login-free provider cards (2 to 7).**
+In build-plan order. Steps 1 to 22a are done; 24 (performance baseline and report) is selected next; 22b remains pending; 23 (bonus) is not scheduled. Steps marked (chore) are verification, tooling, decision or release tasks that still run through `/feature`. **Headline: the widget with login-free provider cards (2 to 7).**
 
 1. **Repository + project foundation** (done) - Electron app, launch and screenshot scripts, license, security policy, README.
 2. **Widget shell** (done) - frameless always-on-top window, tray, options menu, full and compact views, pace marker, warning and critical states, demo mode.
@@ -61,6 +61,8 @@ In build-plan order. Steps 1 to 22a are done; 22b (chore) is next; 23 (bonus) is
     - **23a. More providers** - Gemini CLI, GitHub Copilot, Cursor, OpenRouter; API-key and sign-in registration; terms re-checked.
     - **23b. macOS and Linux** - bridge scripts and builds.
     - **23c. Usage history** - local history, trends, limit forecasts.
+
+24. **Performance baseline and comparison report** (chore, selected next; issue #9) - repeatable local Windows measurements using synthetic histories and isolated accounts; packaged startup, refresh/input latency, main event-loop delay, renderer work, idle CPU and memory. Record variability, rank optimization candidates from observed evidence, and prepare a readable before/after report. Includes the approved focused OpenCode query optimization and matched latency/memory comparisons; further candidates require separate review.
 
 ## Data model
 

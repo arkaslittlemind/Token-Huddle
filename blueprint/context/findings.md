@@ -7,14 +7,6 @@
 > finding is `open` or `fixed`, then archives resolved findings with the work
 > and resets this file.
 
-### F-10 [P3] fixed - OpenCode added account whose folder exists but has no opencode.db is told its folder was not found
-
-**File:** src/main/providers/opencode.js:62
-**Found:** 2026-11-15 by /audit (scope: current; lens: quality)
-**Why it matters:** The branch checks existsSync(dbPath), not the folder, so the copy is wrong when the folder is there. Codex checks the folder first. The suggested action still helps, so impact is low.
-**Suggested fix:** Word it for both cases ("No OpenCode data was found in this account's folder. Remove this card in Settings, or add the folder again") or check the folder first like Codex. No requirement is lost.
-**Resolution:** Fixed on 2026-11-16 for GitHub issue https://github.com/arkaslittlemind/token-huddle/issues/3: missing-data wording covers absent and existing empty folders, with regression tests. `npm run verify` passed. Awaiting audit closure; GitHub issue remains open.
-
 ### F-16 [P3] fixed - In the welcome view, redraw() can fall back to the hidden settings heading, so focus is lost
 
 **File:** src/renderer/settings.js:254
@@ -63,10 +55,10 @@
 **Suggested fix:** Add the same exception to both entries (for example "makes no network calls of its own except the update check, which Check for updates turns off"). No requirement is lost.
 **Resolution:** Fixed on 2026-11-17 for GitHub issue https://github.com/arkaslittlemind/token-huddle/issues/6: both Changed and Security entries now name this project's GitHub Releases update checks and the Check for updates switch. Security retains the login/credential promise and states that the check sends no personal data. Assertions against extracted prerelease notes and `npm run verify` passed (180 desktop tests, 22 site tests and remaining gates). Awaiting audit re-review; GitHub issue remains open.
 
-### F-27 [P3] invalid - The page CSP allows data: images that nothing on the page uses
+### F-29 [P3] open - Long-scenario reproduction command relies on an executable alias absent from fresh packages
 
-**File:** site/astro.config.ts:17
-**Found:** 2026-11-15 by /audit (scope: current; lens: quality, security, performance, tests; independent review)
-**Why it matters:** The spec asks for `connect-src https://api.github.com` and everything else `'self'`. `img-src 'self' data:` loosens that, yet the built index.html and site CSS contain no data: URI (the mark, bars and favicon are inline SVG or /favicon.svg). The extra source is unneeded attack surface, though small for a static page with no user input.
-**Suggested fix:** Delete the `img-src` directive (default-src 'self' already covers images) or set it to `'self'`. No requirement is lost.
-**Resolution:** Invalid, re-examined 2026-11-17 by /audit (scope: site/; all lenses). The finding predates the 21c redesign. site/src/components/Marquee.astro now imports the three agent marks with `?url`; they are under Vite's 4 KB inline limit (393, 1304 and 259 bytes), so the build emits 12 `<img src="data:image/svg+xml,...">` tags in site/dist/index.html (3 agents x 2 listings x 2 halves) and the live marquee depends on `img-src 'self' data:`. Removing the directive would block the agent marks. No other source needs it, so the allowance is required, not surplus.
+**File:** docs/performance-report.md:89
+**Found:** 2026-11-18 by /audit (scope: current; lenses: quality, security, performance, tests; independent review)
+**Why it matters:** The report tells contributors to build fresh snapshots with scripts/profile-package.js and then invokes coverage/profile-package-opencode-arrays/electron.exe for the longer unpackaged scenarios. The helper renames electron.exe to Token Huddle Profile.exe and never creates an electron.exe alias. The existing local package retains that additional alias, but a newly generated package cannot run the documented command. This affects repeatability, not the retained measurements, which reproduce from local raw runs.
+**Suggested fix:** Add the explicit local PowerShell preparation step: Copy-Item -LiteralPath 'coverage/profile-package-opencode-arrays/Token Huddle Profile.exe' -Destination 'coverage/profile-package-opencode-arrays/electron.exe'. Explain that the electron.exe alias intentionally preserves the original unpackaged classification for the longer scenarios. Alternatively, document the existing unpackaged launcher by omitting --executable while checking out the recorded source. No current requirement is lost. Do not silently substitute the renamed executable without acknowledging the changed build classification.
+**Resolution:** Open, nonblocking documentation follow-up. No product or report files were edited by this review.

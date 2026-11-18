@@ -33,9 +33,8 @@ function readRows(db, since) {
   for (const table of TABLES) {
     let rows;
     try {
-      rows = db
-        .prepare(
-          `select id, time_created as t,
+      const statement = db.prepare(
+        `select id, time_created as t,
                   json_extract(data,'$.tokens.input') as input,
                   json_extract(data,'$.tokens.output') as output,
                   json_extract(data,'$.tokens.reasoning') as reasoning,
@@ -43,14 +42,15 @@ function readRows(db, since) {
                   coalesce(json_extract(data,'$.modelID'), json_extract(data,'$.model.id')) as model
              from ${table.name}
             where time_created >= ? and ${table.where}`
-        )
-        .all(since);
+      );
+      statement.setReturnArrays(true);
+      rows = statement.all(since);
     } catch {
       continue; // table missing in this OpenCode version
     }
-    for (const row of rows) seen.set(row.id, row);
+    for (const row of rows) seen.set(row[0], row);
   }
-  return [...seen.values()];
+  return seen.values();
 }
 
 async function detect(options) {
@@ -103,19 +103,23 @@ async function read({ options = {}, now = Date.now() } = {}) {
 
   const totals = { today: 0, week: 0, month: 0, cost: 0 };
   const spark = new Array(7).fill(0);
-  let latest = null;
+  let latestTime = null;
+  let latestModel = null;
 
-  for (const row of rows) {
-    const tokens = (row.input || 0) + (row.output || 0) + (row.reasoning || 0);
+  for (const [, t, input, output, reasoning, cost, model] of rows) {
+    const tokens = (input || 0) + (output || 0) + (reasoning || 0);
     totals.month += tokens;
-    totals.cost += row.cost || 0;
-    if (row.t >= now - 7 * DAY) totals.week += tokens;
-    if (row.t >= today) totals.today += tokens;
-    if (row.t >= sparkStart) {
-      const day = Math.min(6, Math.floor((startOfDay(row.t) - sparkStart) / DAY + 0.5));
+    totals.cost += cost || 0;
+    if (t >= now - 7 * DAY) totals.week += tokens;
+    if (t >= today) totals.today += tokens;
+    if (t >= sparkStart) {
+      const day = Math.min(6, Math.floor((startOfDay(t) - sparkStart) / DAY + 0.5));
       spark[day] += tokens;
     }
-    if (!latest || row.t > latest.t) latest = row;
+    if (latestTime === null || t > latestTime) {
+      latestTime = t;
+      latestModel = model;
+    }
   }
 
   const stats = [
@@ -129,11 +133,11 @@ async function read({ options = {}, now = Date.now() } = {}) {
     state: 'ok',
     source: 'local',
     via: 'OpenCode database',
-    updatedAt: latest?.t || null,
+    updatedAt: latestTime || null,
     windows: [],
     stats,
     spark,
-    message: latest?.model ? `${latest.model} · tokens used, no quota to read` : 'No activity in the last 30 days',
+    message: latestModel ? `${latestModel} · tokens used, no quota to read` : 'No activity in the last 30 days',
   };
 }
 

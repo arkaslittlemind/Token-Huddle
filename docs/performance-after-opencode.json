@@ -1,0 +1,2405 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-11-18T09:31:37.795Z",
+  "environment": {
+    "platform": "win32",
+    "release": "10.0.26300",
+    "cpu": "AMD Ryzen 5 4600H with Radeon Graphics         ",
+    "logicalCpus": 12,
+    "ramMB": 16505.966592,
+    "electron": "45.3.2",
+    "node": "24.22.2",
+    "powerMode": "unknown (record externally)",
+    "scaling": [
+      1.25,
+      1
+    ]
+  },
+  "version": "0.1.2",
+  "commit": "e74584dd30695d1774384430dc3610db4d1874d6",
+  "instrumented": true,
+  "fixtures": {
+    "large": [
+      {
+        "key": "claude-0",
+        "files": 100,
+        "bytes": 13879000,
+        "rows": 100000,
+        "expectedTokens": 1500000
+      },
+      {
+        "key": "opencode-0",
+        "files": 1,
+        "bytes": 26750976,
+        "rows": 200000,
+        "expectedTokens": 1500000
+      },
+      {
+        "key": "codex-0",
+        "files": 1,
+        "bytes": 183,
+        "rows": 1,
+        "expectedTokens": null
+      },
+      {
+        "key": "claude-1",
+        "files": 100,
+        "bytes": 13879000,
+        "rows": 100000,
+        "expectedTokens": 1600000
+      },
+      {
+        "key": "opencode-1",
+        "files": 1,
+        "bytes": 26750976,
+        "rows": 200000,
+        "expectedTokens": 1600000
+      },
+      {
+        "key": "codex-1",
+        "files": 1,
+        "bytes": 183,
+        "rows": 1,
+        "expectedTokens": null
+      }
+    ],
+    "small": [
+      {
+        "key": "claude-0",
+        "files": 1,
+        "bytes": 13690,
+        "rows": 100,
+        "expectedTokens": 1500
+      },
+      {
+        "key": "opencode-0",
+        "files": 1,
+        "bytes": 45056,
+        "rows": 200,
+        "expectedTokens": 1500
+      },
+      {
+        "key": "codex-0",
+        "files": 1,
+        "bytes": 183,
+        "rows": 1,
+        "expectedTokens": null
+      },
+      {
+        "key": "claude-1",
+        "files": 1,
+        "bytes": 13690,
+        "rows": 100,
+        "expectedTokens": 1600
+      },
+      {
+        "key": "opencode-1",
+        "files": 1,
+        "bytes": 45056,
+        "rows": 200,
+        "expectedTokens": 1600
+      },
+      {
+        "key": "codex-1",
+        "files": 1,
+        "bytes": 183,
+        "rows": 1,
+        "expectedTokens": null
+      }
+    ]
+  },
+  "summary": [
+    {
+      "scenario": "packaged profiling build/large/full/5s",
+      "runs": 5,
+      "observationMs": [
+        5034.481900000001,
+        5039.6362,
+        5021.5663,
+        5049.9154,
+        5027.5113
+      ],
+      "measurements": {
+        "launchToVisibleMs": {
+          "unit": "ms",
+          "count": 5,
+          "median": 1207,
+          "min": 1150,
+          "max": 1226,
+          "invalidSamples": 0
+        },
+        "launchToDataPaintMs": {
+          "unit": "ms",
+          "count": 5,
+          "median": 1781,
+          "min": 1722,
+          "max": 1803,
+          "invalidSamples": 0
+        },
+        "visibleMs": {
+          "unit": "ms",
+          "count": 5,
+          "median": 1133.5303000000001,
+          "min": 1082.5001,
+          "max": 1154.1084,
+          "invalidSamples": 0
+        },
+        "firstDataPaintMs": {
+          "unit": "ms",
+          "count": 5,
+          "median": 1707.6239,
+          "min": 1653.9056,
+          "max": 1730.1385,
+          "invalidSamples": 0
+        },
+        "refreshInputRoundTripMs": {
+          "unit": "ms",
+          "count": 5,
+          "median": 782.6310000000003,
+          "min": 778.8358000000007,
+          "max": 809.1691000000001,
+          "invalidSamples": 0
+        },
+        "resizeIPC": {
+          "unit": "count",
+          "count": 5,
+          "median": 5,
+          "min": 4,
+          "max": 5,
+          "invalidSamples": 0
+        },
+        "initialRefresh": {
+          "unit": "ms",
+          "count": 5,
+          "median": 1510.3754,
+          "min": 1468.1802,
+          "max": 1515.2862,
+          "invalidSamples": 0
+        },
+        "forcedRefresh": {
+          "unit": "ms",
+          "count": 5,
+          "median": 853.6142,
+          "min": 851.0405000000001,
+          "max": 888.5266000000001,
+          "invalidSamples": 0
+        },
+        "eventLoopMax": {
+          "unit": "ms",
+          "count": 5,
+          "median": 927.989759,
+          "min": 897.056767,
+          "max": 950.534143,
+          "invalidSamples": 0
+        },
+        "claudeInitial": {
+          "unit": "ms",
+          "count": 10,
+          "median": 1282.16065,
+          "min": 1049.9800999999998,
+          "max": 1513.6234,
+          "invalidSamples": 0
+        },
+        "claudeForced": {
+          "unit": "ms",
+          "count": 10,
+          "median": 653.84645,
+          "min": 444.9250000000002,
+          "max": 888.4535000000005,
+          "invalidSamples": 0
+        },
+        "opencodeInitial": {
+          "unit": "ms",
+          "count": 10,
+          "median": 599.3142,
+          "min": 379.7595,
+          "max": 838.9901,
+          "invalidSamples": 0
+        },
+        "opencodeForced": {
+          "unit": "ms",
+          "count": 10,
+          "median": 583.8987999999999,
+          "min": 373.4483,
+          "max": 807.1938,
+          "invalidSamples": 0
+        },
+        "codexInitial": {
+          "unit": "ms",
+          "count": 10,
+          "median": 242.79284999999993,
+          "min": 50.05449999999985,
+          "max": 458.3868000000001,
+          "invalidSamples": 0
+        },
+        "codexForced": {
+          "unit": "ms",
+          "count": 10,
+          "median": 192.29745000000003,
+          "min": 5.423800000000483,
+          "max": 396.2364000000007,
+          "invalidSamples": 0
+        },
+        "claudeSynchronous": {
+          "unit": "ms",
+          "count": 20,
+          "median": 0.04320000000006985,
+          "min": 0.03029999999944266,
+          "max": 1.0733999999999924,
+          "invalidSamples": 0
+        },
+        "opencodeSynchronous": {
+          "unit": "ms",
+          "count": 20,
+          "median": 401.55335,
+          "min": 373.21870000000035,
+          "max": 454.1802,
+          "invalidSamples": 0
+        },
+        "codexSynchronous": {
+          "unit": "ms",
+          "count": 20,
+          "median": 0.1099499999999125,
+          "min": 0.09380000000055588,
+          "max": 0.3913000000000011,
+          "invalidSamples": 0
+        },
+        "BrowserCPU": {
+          "unit": "%",
+          "count": 25,
+          "median": 0.07815798057703796,
+          "min": 0.06733529550513614,
+          "max": 0.09289126718574704,
+          "invalidSamples": 0
+        },
+        "BrowserWorkingSet": {
+          "unit": "MB",
+          "count": 25,
+          "median": 198.948,
+          "min": 193.584,
+          "max": 199.416,
+          "invalidSamples": 0
+        },
+        "BrowserPrivate": {
+          "unit": "MB",
+          "count": 25,
+          "median": 157.428,
+          "min": 155.776,
+          "max": 158.124,
+          "invalidSamples": 0
+        },
+        "TabCPU": {
+          "unit": "%",
+          "count": 25,
+          "median": 0.0012706581610636455,
+          "min": 0,
+          "max": 0.004689593866177816,
+          "invalidSamples": 0
+        },
+        "TabWorkingSet": {
+          "unit": "MB",
+          "count": 25,
+          "median": 79.508,
+          "min": 78.996,
+          "max": 81.904,
+          "invalidSamples": 0
+        },
+        "TabPrivate": {
+          "unit": "MB",
+          "count": 25,
+          "median": 28.096,
+          "min": 26.832,
+          "max": 30.42,
+          "invalidSamples": 0
+        },
+        "GPUCPU": {
+          "unit": "%",
+          "count": 25,
+          "median": 0.014129091774986927,
+          "min": 0.00947647174369051,
+          "max": 0.045061253729773786,
+          "invalidSamples": 0
+        },
+        "GPUWorkingSet": {
+          "unit": "MB",
+          "count": 25,
+          "median": 100.352,
+          "min": 99.604,
+          "max": 104.168,
+          "invalidSamples": 0
+        },
+        "GPUPrivate": {
+          "unit": "MB",
+          "count": 25,
+          "median": 95.968,
+          "min": 94.224,
+          "max": 97.612,
+          "invalidSamples": 0
+        },
+        "UtilityCPU": {
+          "unit": "%",
+          "count": 25,
+          "median": 0,
+          "min": 0,
+          "max": 0.0007229410556582461,
+          "invalidSamples": 0
+        },
+        "UtilityWorkingSet": {
+          "unit": "MB",
+          "count": 25,
+          "median": 47.24,
+          "min": 47.176,
+          "max": 47.412,
+          "invalidSamples": 0
+        },
+        "UtilityPrivate": {
+          "unit": "MB",
+          "count": 25,
+          "median": 11.964,
+          "min": 11.936,
+          "max": 12.184,
+          "invalidSamples": 0
+        },
+        "widgetScriptDuration": {
+          "unit": "ms",
+          "count": 5,
+          "median": 0,
+          "min": 0,
+          "max": 0,
+          "invalidSamples": 0
+        },
+        "widgetLayoutDuration": {
+          "unit": "ms",
+          "count": 5,
+          "median": 0,
+          "min": 0,
+          "max": 0,
+          "invalidSamples": 0
+        },
+        "widgetTaskDuration": {
+          "unit": "ms",
+          "count": 5,
+          "median": 0.45299999999999996,
+          "min": 0.36700000000000005,
+          "max": 0.49700000000000005,
+          "invalidSamples": 0
+        }
+      }
+    },
+    {
+      "scenario": "packaged profiling build/small/full/5s",
+      "runs": 5,
+      "observationMs": [
+        5029.3433,
+        5037.965,
+        5043.9728000000005,
+        5056.0112,
+        5034.2364
+      ],
+      "measurements": {
+        "launchToVisibleMs": {
+          "unit": "ms",
+          "count": 5,
+          "median": 778,
+          "min": 736,
+          "max": 1432,
+          "invalidSamples": 0
+        },
+        "launchToDataPaintMs": {
+          "unit": "ms",
+          "count": 5,
+          "median": 810,
+          "min": 757,
+          "max": 1462,
+          "invalidSamples": 0
+        },
+        "visibleMs": {
+          "unit": "ms",
+          "count": 5,
+          "median": 705.1854000000001,
+          "min": 667.1347999999999,
+          "max": 1194.1850000000002,
+          "invalidSamples": 0
+        },
+        "firstDataPaintMs": {
+          "unit": "ms",
+          "count": 5,
+          "median": 737.0137000000001,
+          "min": 679.5427,
+          "max": 1224.2274,
+          "invalidSamples": 0
+        },
+        "refreshInputRoundTripMs": {
+          "unit": "ms",
+          "count": 5,
+          "median": 3.9223999999994703,
+          "min": 3.2906000000002678,
+          "max": 4.1457000000000335,
+          "invalidSamples": 0
+        },
+        "resizeIPC": {
+          "unit": "count",
+          "count": 5,
+          "median": 3,
+          "min": 3,
+          "max": 3,
+          "invalidSamples": 0
+        },
+        "initialRefresh": {
+          "unit": "ms",
+          "count": 5,
+          "median": 35.922500000000014,
+          "min": 33.89779999999999,
+          "max": 41.4554,
+          "invalidSamples": 0
+        },
+        "forcedRefresh": {
+          "unit": "ms",
+          "count": 5,
+          "median": 5.285799999999654,
+          "min": 4.95889999999963,
+          "max": 5.7632000000003245,
+          "invalidSamples": 0
+        },
+        "eventLoopMax": {
+          "unit": "ms",
+          "count": 5,
+          "median": 104.071167,
+          "min": 100.597759,
+          "max": 120.258559,
+          "invalidSamples": 0
+        },
+        "claudeInitial": {
+          "unit": "ms",
+          "count": 10,
+          "median": 34.00285000000001,
+          "min": 28.758700000000005,
+          "max": 41.12819999999999,
+          "invalidSamples": 0
+        },
+        "claudeForced": {
+          "unit": "ms",
+          "count": 10,
+          "median": 4.279850000000351,
+          "min": 3.1908000000003085,
+          "max": 5.579099999999926,
+          "invalidSamples": 0
+        },
+        "opencodeInitial": {
+          "unit": "ms",
+          "count": 10,
+          "median": 3.6743999999999915,
+          "min": 2.0630999999999915,
+          "max": 6.3402999999999565,
+          "invalidSamples": 0
+        },
+        "opencodeForced": {
+          "unit": "ms",
+          "count": 10,
+          "median": 2.156800000000203,
+          "min": 1.2930999999998676,
+          "max": 3.3751000000002023,
+          "invalidSamples": 0
+        },
+        "codexInitial": {
+          "unit": "ms",
+          "count": 10,
+          "median": 27.865550000000013,
+          "min": 25.38210000000001,
+          "max": 33.96089999999998,
+          "invalidSamples": 0
+        },
+        "codexForced": {
+          "unit": "ms",
+          "count": 10,
+          "median": 3.102849999999762,
+          "min": 2.0721000000003187,
+          "max": 4.256399999999303,
+          "invalidSamples": 0
+        },
+        "claudeSynchronous": {
+          "unit": "ms",
+          "count": 20,
+          "median": 0.05025000000000546,
+          "min": 0.034299999999348074,
+          "max": 0.8680999999999983,
+          "invalidSamples": 0
+        },
+        "opencodeSynchronous": {
+          "unit": "ms",
+          "count": 20,
+          "median": 1.4410000000000025,
+          "min": 1.143000000000029,
+          "max": 3.9359000000000037,
+          "invalidSamples": 0
+        },
+        "codexSynchronous": {
+          "unit": "ms",
+          "count": 20,
+          "median": 0.10069999999998913,
+          "min": 0.07000000000061846,
+          "max": 0.47870000000000346,
+          "invalidSamples": 0
+        },
+        "BrowserCPU": {
+          "unit": "%",
+          "count": 25,
+          "median": 0.07939014814844338,
+          "min": 0.06699988941282194,
+          "max": 1.5607508167312645,
+          "invalidSamples": 0
+        },
+        "BrowserWorkingSet": {
+          "unit": "MB",
+          "count": 25,
+          "median": 115.004,
+          "min": 109.98,
+          "max": 117.824,
+          "invalidSamples": 0
+        },
+        "BrowserPrivate": {
+          "unit": "MB",
+          "count": 25,
+          "median": 74.748,
+          "min": 72.896,
+          "max": 76.812,
+          "invalidSamples": 0
+        },
+        "TabCPU": {
+          "unit": "%",
+          "count": 25,
+          "median": 0.002580543765522803,
+          "min": 0,
+          "max": 0.15174768369338124,
+          "invalidSamples": 0
+        },
+        "TabWorkingSet": {
+          "unit": "MB",
+          "count": 25,
+          "median": 79.916,
+          "min": 79.824,
+          "max": 82.64,
+          "invalidSamples": 0
+        },
+        "TabPrivate": {
+          "unit": "MB",
+          "count": 25,
+          "median": 28.112,
+          "min": 27.1,
+          "max": 30.016,
+          "invalidSamples": 0
+        },
+        "GPUCPU": {
+          "unit": "%",
+          "count": 25,
+          "median": 0.017779442888880125,
+          "min": 0.009879509830195301,
+          "max": 0.40015238885158705,
+          "invalidSamples": 0
+        },
+        "GPUWorkingSet": {
+          "unit": "MB",
+          "count": 25,
+          "median": 98.48,
+          "min": 98.232,
+          "max": 98.82,
+          "invalidSamples": 0
+        },
+        "GPUPrivate": {
+          "unit": "MB",
+          "count": 25,
+          "median": 84.984,
+          "min": 83.772,
+          "max": 86.216,
+          "invalidSamples": 0
+        },
+        "UtilityCPU": {
+          "unit": "%",
+          "count": 24,
+          "median": 0,
+          "min": 0,
+          "max": 0.0010910164208798223,
+          "invalidSamples": 1
+        },
+        "UtilityWorkingSet": {
+          "unit": "MB",
+          "count": 25,
+          "median": 47.232,
+          "min": 47.132,
+          "max": 47.348,
+          "invalidSamples": 0
+        },
+        "UtilityPrivate": {
+          "unit": "MB",
+          "count": 25,
+          "median": 11.964,
+          "min": 11.836,
+          "max": 12.044,
+          "invalidSamples": 0
+        },
+        "widgetScriptDuration": {
+          "unit": "ms",
+          "count": 5,
+          "median": 0,
+          "min": 0,
+          "max": 0,
+          "invalidSamples": 0
+        },
+        "widgetLayoutDuration": {
+          "unit": "ms",
+          "count": 5,
+          "median": 0,
+          "min": 0,
+          "max": 0,
+          "invalidSamples": 0
+        },
+        "widgetTaskDuration": {
+          "unit": "ms",
+          "count": 5,
+          "median": 0.642,
+          "min": 0.521,
+          "max": 16.577,
+          "invalidSamples": 0
+        }
+      }
+    },
+    {
+      "scenario": "unpackaged profiling entry/large/compact/65s",
+      "runs": 1,
+      "observationMs": [
+        65022.704399999995
+      ],
+      "measurements": {
+        "launchToVisibleMs": {
+          "unit": "ms",
+          "count": 1,
+          "median": 1227,
+          "min": 1227,
+          "max": 1227,
+          "invalidSamples": 0
+        },
+        "launchToDataPaintMs": {
+          "unit": "ms",
+          "count": 1,
+          "median": 2644,
+          "min": 2644,
+          "max": 2644,
+          "invalidSamples": 0
+        },
+        "visibleMs": {
+          "unit": "ms",
+          "count": 1,
+          "median": 1151.4692,
+          "min": 1151.4692,
+          "max": 1151.4692,
+          "invalidSamples": 0
+        },
+        "firstDataPaintMs": {
+          "unit": "ms",
+          "count": 1,
+          "median": 2569.0841,
+          "min": 2569.0841,
+          "max": 2569.0841,
+          "invalidSamples": 0
+        },
+        "refreshInputRoundTripMs": {
+          "unit": "ms",
+          "count": 1,
+          "median": 785.0442999999941,
+          "min": 785.0442999999941,
+          "max": 785.0442999999941,
+          "invalidSamples": 0
+        },
+        "resizeIPC": {
+          "unit": "count",
+          "count": 1,
+          "median": 8,
+          "min": 8,
+          "max": 8,
+          "invalidSamples": 0
+        },
+        "initialRefresh": {
+          "unit": "ms",
+          "count": 1,
+          "median": 2361.799,
+          "min": 2361.799,
+          "max": 2361.799,
+          "invalidSamples": 0
+        },
+        "forcedRefresh": {
+          "unit": "ms",
+          "count": 1,
+          "median": 860.6377999999968,
+          "min": 860.6377999999968,
+          "max": 860.6377999999968,
+          "invalidSamples": 0
+        },
+        "automaticWarmRefresh": {
+          "unit": "ms",
+          "count": 1,
+          "median": 913.6958999999988,
+          "min": 913.6958999999988,
+          "max": 913.6958999999988,
+          "invalidSamples": 0
+        },
+        "eventLoopMax": {
+          "unit": "ms",
+          "count": 1,
+          "median": 938.999807,
+          "min": 938.999807,
+          "max": 938.999807,
+          "invalidSamples": 0
+        },
+        "claudeInitial": {
+          "unit": "ms",
+          "count": 2,
+          "median": 2139.7808999999997,
+          "min": 1927.1422000000002,
+          "max": 2352.4195999999997,
+          "invalidSamples": 0
+        },
+        "claudeForced": {
+          "unit": "ms",
+          "count": 2,
+          "median": 661.2143999999971,
+          "min": 461.8850999999995,
+          "max": 860.5436999999947,
+          "invalidSamples": 0
+        },
+        "opencodeInitial": {
+          "unit": "ms",
+          "count": 2,
+          "median": 608.0758999999999,
+          "min": 391.81549999999993,
+          "max": 824.3362999999999,
+          "invalidSamples": 0
+        },
+        "opencodeForced": {
+          "unit": "ms",
+          "count": 2,
+          "median": 586.2757499999934,
+          "min": 389.1823000000004,
+          "max": 783.3691999999864,
+          "invalidSamples": 0
+        },
+        "codexInitial": {
+          "unit": "ms",
+          "count": 2,
+          "median": 243.3761,
+          "min": 48.067800000000034,
+          "max": 438.6844,
+          "invalidSamples": 0
+        },
+        "codexForced": {
+          "unit": "ms",
+          "count": 2,
+          "median": 199.70100000000093,
+          "min": 5.435599999997066,
+          "max": 393.9664000000048,
+          "invalidSamples": 0
+        },
+        "claudeSynchronous": {
+          "unit": "ms",
+          "count": 6,
+          "median": 0.03944999999936272,
+          "min": 0.033699999999953434,
+          "max": 0.6949999999999932,
+          "invalidSamples": 0
+        },
+        "opencodeSynchronous": {
+          "unit": "ms",
+          "count": 6,
+          "median": 400.69984999999724,
+          "min": 388.9337999999989,
+          "max": 448.5723999999973,
+          "invalidSamples": 0
+        },
+        "codexSynchronous": {
+          "unit": "ms",
+          "count": 6,
+          "median": 0.1219500000008793,
+          "min": 0.10280000000784639,
+          "max": 0.3591000000000122,
+          "invalidSamples": 0
+        },
+        "BrowserCPU": {
+          "unit": "%",
+          "count": 64,
+          "median": 0.0716582006058196,
+          "min": 0.062405845711228425,
+          "max": 5.82493661415199,
+          "invalidSamples": 0
+        },
+        "BrowserWorkingSet": {
+          "unit": "MB",
+          "count": 64,
+          "median": 193.788,
+          "min": 122.488,
+          "max": 216.592,
+          "invalidSamples": 0
+        },
+        "BrowserPrivate": {
+          "unit": "MB",
+          "count": 64,
+          "median": 155.692,
+          "min": 82.744,
+          "max": 178.788,
+          "invalidSamples": 0
+        },
+        "TabCPU": {
+          "unit": "%",
+          "count": 64,
+          "median": 0,
+          "min": 0,
+          "max": 0.05591709156380336,
+          "invalidSamples": 0
+        },
+        "TabWorkingSet": {
+          "unit": "MB",
+          "count": 64,
+          "median": 78.088,
+          "min": 77.748,
+          "max": 78.98,
+          "invalidSamples": 0
+        },
+        "TabPrivate": {
+          "unit": "MB",
+          "count": 64,
+          "median": 26.496,
+          "min": 26.288,
+          "max": 27.48,
+          "invalidSamples": 0
+        },
+        "GPUCPU": {
+          "unit": "%",
+          "count": 64,
+          "median": 0.010499029358439046,
+          "min": 0.009839542811256437,
+          "max": 0.2069238419061169,
+          "invalidSamples": 0
+        },
+        "GPUWorkingSet": {
+          "unit": "MB",
+          "count": 64,
+          "median": 100.476,
+          "min": 100.1,
+          "max": 100.652,
+          "invalidSamples": 0
+        },
+        "GPUPrivate": {
+          "unit": "MB",
+          "count": 64,
+          "median": 96.134,
+          "min": 86.584,
+          "max": 96.56,
+          "invalidSamples": 0
+        },
+        "UtilityCPU": {
+          "unit": "%",
+          "count": 64,
+          "median": 0,
+          "min": 0,
+          "max": 0.05444464967735401,
+          "invalidSamples": 0
+        },
+        "UtilityWorkingSet": {
+          "unit": "MB",
+          "count": 64,
+          "median": 47.196,
+          "min": 47.028,
+          "max": 47.212,
+          "invalidSamples": 0
+        },
+        "UtilityPrivate": {
+          "unit": "MB",
+          "count": 64,
+          "median": 11.972,
+          "min": 11.768,
+          "max": 11.972,
+          "invalidSamples": 0
+        },
+        "widgetScriptDuration": {
+          "unit": "ms",
+          "count": 1,
+          "median": 0.789,
+          "min": 0.789,
+          "max": 0.789,
+          "invalidSamples": 0
+        },
+        "widgetLayoutDuration": {
+          "unit": "ms",
+          "count": 1,
+          "median": 1.184,
+          "min": 1.184,
+          "max": 1.184,
+          "invalidSamples": 0
+        },
+        "widgetTaskDuration": {
+          "unit": "ms",
+          "count": 1,
+          "median": 7.428,
+          "min": 7.428,
+          "max": 7.428,
+          "invalidSamples": 0
+        }
+      }
+    },
+    {
+      "scenario": "unpackaged profiling entry/large/hidden/65s",
+      "runs": 1,
+      "observationMs": [
+        65880.82939999999
+      ],
+      "measurements": {
+        "launchToVisibleMs": {
+          "unit": "ms",
+          "count": 1,
+          "median": 1210,
+          "min": 1210,
+          "max": 1210,
+          "invalidSamples": 0
+        },
+        "launchToDataPaintMs": {
+          "unit": "ms",
+          "count": 1,
+          "median": 1790,
+          "min": 1790,
+          "max": 1790,
+          "invalidSamples": 0
+        },
+        "visibleMs": {
+          "unit": "ms",
+          "count": 1,
+          "median": 1139.0374,
+          "min": 1139.0374,
+          "max": 1139.0374,
+          "invalidSamples": 0
+        },
+        "firstDataPaintMs": {
+          "unit": "ms",
+          "count": 1,
+          "median": 1719.322,
+          "min": 1719.322,
+          "max": 1719.322,
+          "invalidSamples": 0
+        },
+        "refreshInputRoundTripMs": {
+          "unit": "ms",
+          "count": 1,
+          "median": 786.3671999999933,
+          "min": 786.3671999999933,
+          "max": 786.3671999999933,
+          "invalidSamples": 0
+        },
+        "resizeIPC": {
+          "unit": "count",
+          "count": 1,
+          "median": 8,
+          "min": 8,
+          "max": 8,
+          "invalidSamples": 0
+        },
+        "initialRefresh": {
+          "unit": "ms",
+          "count": 1,
+          "median": 1505.8746,
+          "min": 1505.8746,
+          "max": 1505.8746,
+          "invalidSamples": 0
+        },
+        "forcedRefresh": {
+          "unit": "ms",
+          "count": 1,
+          "median": 862.6248999999953,
+          "min": 862.6248999999953,
+          "max": 862.6248999999953,
+          "invalidSamples": 0
+        },
+        "automaticWarmRefresh": {
+          "unit": "ms",
+          "count": 1,
+          "median": 923.2019999999975,
+          "min": 923.2019999999975,
+          "max": 923.2019999999975,
+          "invalidSamples": 0
+        },
+        "eventLoopMax": {
+          "unit": "ms",
+          "count": 1,
+          "median": 940.572671,
+          "min": 940.572671,
+          "max": 940.572671,
+          "invalidSamples": 0
+        },
+        "claudeInitial": {
+          "unit": "ms",
+          "count": 2,
+          "median": 1293.05055,
+          "min": 1080.9261999999999,
+          "max": 1505.1749,
+          "invalidSamples": 0
+        },
+        "claudeForced": {
+          "unit": "ms",
+          "count": 2,
+          "median": 664.0943500000067,
+          "min": 465.65869999999995,
+          "max": 862.5300000000134,
+          "invalidSamples": 0
+        },
+        "opencodeInitial": {
+          "unit": "ms",
+          "count": 2,
+          "median": 614.3935999999999,
+          "min": 402.7612999999999,
+          "max": 826.0258999999999,
+          "invalidSamples": 0
+        },
+        "opencodeForced": {
+          "unit": "ms",
+          "count": 2,
+          "median": 584.0869000000021,
+          "min": 388.06260000000475,
+          "max": 780.1111999999994,
+          "invalidSamples": 0
+        },
+        "codexInitial": {
+          "unit": "ms",
+          "count": 2,
+          "median": 249.95749999999992,
+          "min": 48.631599999999935,
+          "max": 451.2833999999999,
+          "invalidSamples": 0
+        },
+        "codexForced": {
+          "unit": "ms",
+          "count": 2,
+          "median": 202.17259999999806,
+          "min": 8.123699999996461,
+          "max": 396.22149999999965,
+          "invalidSamples": 0
+        },
+        "claudeSynchronous": {
+          "unit": "ms",
+          "count": 6,
+          "median": 0.06665000000430155,
+          "min": 0.028500000000349246,
+          "max": 0.7629000000000019,
+          "invalidSamples": 0
+        },
+        "opencodeSynchronous": {
+          "unit": "ms",
+          "count": 6,
+          "median": 406.94929999999727,
+          "min": 387.8844000000099,
+          "max": 446.9907999999996,
+          "invalidSamples": 0
+        },
+        "codexSynchronous": {
+          "unit": "ms",
+          "count": 6,
+          "median": 0.11934999999721185,
+          "min": 0.07669999999052379,
+          "max": 0.33199999999999363,
+          "invalidSamples": 0
+        },
+        "BrowserCPU": {
+          "unit": "%",
+          "count": 65,
+          "median": 0.07264032257582534,
+          "min": 0.06678962664878157,
+          "max": 6.362219454614881,
+          "invalidSamples": 0
+        },
+        "BrowserWorkingSet": {
+          "unit": "MB",
+          "count": 65,
+          "median": 194.952,
+          "min": 122.072,
+          "max": 218.064,
+          "invalidSamples": 0
+        },
+        "BrowserPrivate": {
+          "unit": "MB",
+          "count": 65,
+          "median": 156.396,
+          "min": 82.264,
+          "max": 180.236,
+          "invalidSamples": 0
+        },
+        "TabCPU": {
+          "unit": "%",
+          "count": 65,
+          "median": 0,
+          "min": 0,
+          "max": 0.12038503241884307,
+          "invalidSamples": 0
+        },
+        "TabWorkingSet": {
+          "unit": "MB",
+          "count": 65,
+          "median": 81.316,
+          "min": 78.488,
+          "max": 81.844,
+          "invalidSamples": 0
+        },
+        "TabPrivate": {
+          "unit": "MB",
+          "count": 65,
+          "median": 27.892,
+          "min": 26.936,
+          "max": 28.284,
+          "invalidSamples": 0
+        },
+        "GPUCPU": {
+          "unit": "%",
+          "count": 65,
+          "median": 0.010279265895346569,
+          "min": 0.009530137910954336,
+          "max": 0.054225376350918446,
+          "invalidSamples": 0
+        },
+        "GPUWorkingSet": {
+          "unit": "MB",
+          "count": 65,
+          "median": 99.496,
+          "min": 99.216,
+          "max": 99.508,
+          "invalidSamples": 0
+        },
+        "GPUPrivate": {
+          "unit": "MB",
+          "count": 65,
+          "median": 92.52,
+          "min": 91.844,
+          "max": 92.7,
+          "invalidSamples": 0
+        },
+        "UtilityCPU": {
+          "unit": "%",
+          "count": 65,
+          "median": 0,
+          "min": 0,
+          "max": 0.037354311606822475,
+          "invalidSamples": 0
+        },
+        "UtilityWorkingSet": {
+          "unit": "MB",
+          "count": 65,
+          "median": 47.292,
+          "min": 47.136,
+          "max": 47.384,
+          "invalidSamples": 0
+        },
+        "UtilityPrivate": {
+          "unit": "MB",
+          "count": 65,
+          "median": 12.024,
+          "min": 11.82,
+          "max": 12.148,
+          "invalidSamples": 0
+        },
+        "widgetScriptDuration": {
+          "unit": "ms",
+          "count": 1,
+          "median": 1.7129999999999999,
+          "min": 1.7129999999999999,
+          "max": 1.7129999999999999,
+          "invalidSamples": 0
+        },
+        "widgetLayoutDuration": {
+          "unit": "ms",
+          "count": 1,
+          "median": 2.2889999999999997,
+          "min": 2.2889999999999997,
+          "max": 2.2889999999999997,
+          "invalidSamples": 0
+        },
+        "widgetTaskDuration": {
+          "unit": "ms",
+          "count": 1,
+          "median": 15.568000000000001,
+          "min": 15.568000000000001,
+          "max": 15.568000000000001,
+          "invalidSamples": 0
+        }
+      }
+    },
+    {
+      "scenario": "unpackaged profiling entry/large/settings/65s",
+      "runs": 1,
+      "observationMs": [
+        65317.33260000001
+      ],
+      "measurements": {
+        "launchToVisibleMs": {
+          "unit": "ms",
+          "count": 1,
+          "median": 1208,
+          "min": 1208,
+          "max": 1208,
+          "invalidSamples": 0
+        },
+        "launchToDataPaintMs": {
+          "unit": "ms",
+          "count": 1,
+          "median": 1800,
+          "min": 1800,
+          "max": 1800,
+          "invalidSamples": 0
+        },
+        "visibleMs": {
+          "unit": "ms",
+          "count": 1,
+          "median": 1138.8065000000001,
+          "min": 1138.8065000000001,
+          "max": 1138.8065000000001,
+          "invalidSamples": 0
+        },
+        "firstDataPaintMs": {
+          "unit": "ms",
+          "count": 1,
+          "median": 1731.0376,
+          "min": 1731.0376,
+          "max": 1731.0376,
+          "invalidSamples": 0
+        },
+        "refreshInputRoundTripMs": {
+          "unit": "ms",
+          "count": 1,
+          "median": 788.7102999999915,
+          "min": 788.7102999999915,
+          "max": 788.7102999999915,
+          "invalidSamples": 0
+        },
+        "resizeIPC": {
+          "unit": "count",
+          "count": 1,
+          "median": 8,
+          "min": 8,
+          "max": 8,
+          "invalidSamples": 0
+        },
+        "initialRefresh": {
+          "unit": "ms",
+          "count": 1,
+          "median": 1502.0771,
+          "min": 1502.0771,
+          "max": 1502.0771,
+          "invalidSamples": 0
+        },
+        "forcedRefresh": {
+          "unit": "ms",
+          "count": 1,
+          "median": 861.6810000000114,
+          "min": 861.6810000000114,
+          "max": 861.6810000000114,
+          "invalidSamples": 0
+        },
+        "automaticWarmRefresh": {
+          "unit": "ms",
+          "count": 1,
+          "median": 900.0161999999982,
+          "min": 900.0161999999982,
+          "max": 900.0161999999982,
+          "invalidSamples": 0
+        },
+        "eventLoopMax": {
+          "unit": "ms",
+          "count": 1,
+          "median": 943.718399,
+          "min": 943.718399,
+          "max": 943.718399,
+          "invalidSamples": 0
+        },
+        "claudeInitial": {
+          "unit": "ms",
+          "count": 2,
+          "median": 1287.75775,
+          "min": 1073.8098,
+          "max": 1501.7057,
+          "invalidSamples": 0
+        },
+        "claudeForced": {
+          "unit": "ms",
+          "count": 2,
+          "median": 664.5843999999997,
+          "min": 467.6215999999986,
+          "max": 861.5472000000009,
+          "invalidSamples": 0
+        },
+        "opencodeInitial": {
+          "unit": "ms",
+          "count": 2,
+          "median": 606.561,
+          "min": 393.52290000000005,
+          "max": 819.5991,
+          "invalidSamples": 0
+        },
+        "opencodeForced": {
+          "unit": "ms",
+          "count": 2,
+          "median": 590.593550000005,
+          "min": 393.60109999999986,
+          "max": 787.5860000000102,
+          "invalidSamples": 0
+        },
+        "codexInitial": {
+          "unit": "ms",
+          "count": 2,
+          "median": 251.96779999999995,
+          "min": 56.88629999999989,
+          "max": 447.0493,
+          "invalidSamples": 0
+        },
+        "codexForced": {
+          "unit": "ms",
+          "count": 2,
+          "median": 215.74580000000424,
+          "min": 19.02139999999781,
+          "max": 412.47020000001066,
+          "invalidSamples": 0
+        },
+        "claudeSynchronous": {
+          "unit": "ms",
+          "count": 6,
+          "median": 0.06375000000116415,
+          "min": 0.03710000000000946,
+          "max": 0.8274999999999864,
+          "invalidSamples": 0
+        },
+        "opencodeSynchronous": {
+          "unit": "ms",
+          "count": 6,
+          "median": 393.8528000000042,
+          "min": 392.51080000000013,
+          "max": 444.3261999999959,
+          "invalidSamples": 0
+        },
+        "codexSynchronous": {
+          "unit": "ms",
+          "count": 6,
+          "median": 0.11140000000159489,
+          "min": 0.07999999998719431,
+          "max": 0.3432000000000244,
+          "invalidSamples": 0
+        },
+        "BrowserCPU": {
+          "unit": "%",
+          "count": 64,
+          "median": 0.07146406935360511,
+          "min": 0.06502443692200958,
+          "max": 4.6674477382127035,
+          "invalidSamples": 0
+        },
+        "BrowserWorkingSet": {
+          "unit": "MB",
+          "count": 64,
+          "median": 198.12,
+          "min": 124.264,
+          "max": 210.672,
+          "invalidSamples": 0
+        },
+        "BrowserPrivate": {
+          "unit": "MB",
+          "count": 64,
+          "median": 158.224,
+          "min": 83.412,
+          "max": 171.244,
+          "invalidSamples": 0
+        },
+        "TabCPU": {
+          "unit": "%",
+          "count": 128,
+          "median": 0,
+          "min": 0,
+          "max": 0.07693742269730308,
+          "invalidSamples": 0
+        },
+        "TabWorkingSet": {
+          "unit": "MB",
+          "count": 128,
+          "median": 87.142,
+          "min": 77.94,
+          "max": 97.548,
+          "invalidSamples": 0
+        },
+        "TabPrivate": {
+          "unit": "MB",
+          "count": 128,
+          "median": 25.648,
+          "min": 25.336,
+          "max": 27.504,
+          "invalidSamples": 0
+        },
+        "GPUCPU": {
+          "unit": "%",
+          "count": 64,
+          "median": 0.0104629080999218,
+          "min": 0.009388201901797927,
+          "max": 0.3667663491012821,
+          "invalidSamples": 0
+        },
+        "GPUWorkingSet": {
+          "unit": "MB",
+          "count": 64,
+          "median": 108.02199999999999,
+          "min": 107.556,
+          "max": 108.46,
+          "invalidSamples": 0
+        },
+        "GPUPrivate": {
+          "unit": "MB",
+          "count": 64,
+          "median": 109.004,
+          "min": 103.4,
+          "max": 114.064,
+          "invalidSamples": 0
+        },
+        "UtilityCPU": {
+          "unit": "%",
+          "count": 64,
+          "median": 0,
+          "min": 0,
+          "max": 0.046574015114938104,
+          "invalidSamples": 0
+        },
+        "UtilityWorkingSet": {
+          "unit": "MB",
+          "count": 64,
+          "median": 47.504,
+          "min": 47.328,
+          "max": 47.52,
+          "invalidSamples": 0
+        },
+        "UtilityPrivate": {
+          "unit": "MB",
+          "count": 64,
+          "median": 12.136,
+          "min": 11.884,
+          "max": 12.136,
+          "invalidSamples": 0
+        },
+        "widgetScriptDuration": {
+          "unit": "ms",
+          "count": 1,
+          "median": 1.468,
+          "min": 1.468,
+          "max": 1.468,
+          "invalidSamples": 0
+        },
+        "widgetLayoutDuration": {
+          "unit": "ms",
+          "count": 1,
+          "median": 1.961,
+          "min": 1.961,
+          "max": 1.961,
+          "invalidSamples": 0
+        },
+        "widgetTaskDuration": {
+          "unit": "ms",
+          "count": 1,
+          "median": 10.673,
+          "min": 10.673,
+          "max": 10.673,
+          "invalidSamples": 0
+        },
+        "settingsScriptDuration": {
+          "unit": "ms",
+          "count": 1,
+          "median": 0,
+          "min": 0,
+          "max": 0,
+          "invalidSamples": 0
+        },
+        "settingsLayoutDuration": {
+          "unit": "ms",
+          "count": 1,
+          "median": 0.664,
+          "min": 0.664,
+          "max": 0.664,
+          "invalidSamples": 0
+        },
+        "settingsTaskDuration": {
+          "unit": "ms",
+          "count": 1,
+          "median": 4.767,
+          "min": 4.767,
+          "max": 4.767,
+          "invalidSamples": 0
+        }
+      }
+    },
+    {
+      "scenario": "unpackaged profiling entry/small/compact/65s",
+      "runs": 1,
+      "observationMs": [
+        65522.427599999995
+      ],
+      "measurements": {
+        "launchToVisibleMs": {
+          "unit": "ms",
+          "count": 1,
+          "median": 7944,
+          "min": 7944,
+          "max": 7944,
+          "invalidSamples": 0
+        },
+        "launchToDataPaintMs": {
+          "unit": "ms",
+          "count": 1,
+          "median": 8072,
+          "min": 8072,
+          "max": 8072,
+          "invalidSamples": 0
+        },
+        "visibleMs": {
+          "unit": "ms",
+          "count": 1,
+          "median": 5485.4074,
+          "min": 5485.4074,
+          "max": 5485.4074,
+          "invalidSamples": 0
+        },
+        "firstDataPaintMs": {
+          "unit": "ms",
+          "count": 1,
+          "median": 5613.5189,
+          "min": 5613.5189,
+          "max": 5613.5189,
+          "invalidSamples": 0
+        },
+        "refreshInputRoundTripMs": {
+          "unit": "ms",
+          "count": 1,
+          "median": 4.088900000002468,
+          "min": 4.088900000002468,
+          "max": 4.088900000002468,
+          "invalidSamples": 0
+        },
+        "resizeIPC": {
+          "unit": "count",
+          "count": 1,
+          "median": 7,
+          "min": 7,
+          "max": 7,
+          "invalidSamples": 0
+        },
+        "initialRefresh": {
+          "unit": "ms",
+          "count": 1,
+          "median": 787.4611000000004,
+          "min": 787.4611000000004,
+          "max": 787.4611000000004,
+          "invalidSamples": 0
+        },
+        "forcedRefresh": {
+          "unit": "ms",
+          "count": 1,
+          "median": 5.608399999997346,
+          "min": 5.608399999997346,
+          "max": 5.608399999997346,
+          "invalidSamples": 0
+        },
+        "automaticWarmRefresh": {
+          "unit": "ms",
+          "count": 1,
+          "median": 6.076099999998405,
+          "min": 6.076099999998405,
+          "max": 6.076099999998405,
+          "invalidSamples": 0
+        },
+        "eventLoopMax": {
+          "unit": "ms",
+          "count": 1,
+          "median": 2808.086527,
+          "min": 2808.086527,
+          "max": 2808.086527,
+          "invalidSamples": 0
+        },
+        "claudeInitial": {
+          "unit": "ms",
+          "count": 2,
+          "median": 730.2847500000003,
+          "min": 675.4477000000006,
+          "max": 785.1217999999999,
+          "invalidSamples": 0
+        },
+        "claudeForced": {
+          "unit": "ms",
+          "count": 2,
+          "median": 4.61979999999312,
+          "min": 3.7835999999952037,
+          "max": 5.455999999991036,
+          "invalidSamples": 0
+        },
+        "opencodeInitial": {
+          "unit": "ms",
+          "count": 2,
+          "median": 88.36174999999957,
+          "min": 33.051799999999275,
+          "max": 143.67169999999987,
+          "invalidSamples": 0
+        },
+        "opencodeForced": {
+          "unit": "ms",
+          "count": 2,
+          "median": 2.230250000000524,
+          "min": 1.5118000000074971,
+          "max": 2.9486999999935506,
+          "invalidSamples": 0
+        },
+        "codexInitial": {
+          "unit": "ms",
+          "count": 2,
+          "median": 609.77945,
+          "min": 593.2905000000001,
+          "max": 626.2683999999999,
+          "invalidSamples": 0
+        },
+        "codexForced": {
+          "unit": "ms",
+          "count": 2,
+          "median": 3.390449999998964,
+          "min": 2.6143000000010943,
+          "max": 4.1665999999968335,
+          "invalidSamples": 0
+        },
+        "claudeSynchronous": {
+          "unit": "ms",
+          "count": 6,
+          "median": 0.0566499999986263,
+          "min": 0.03889999999955762,
+          "max": 0.6048000000000684,
+          "invalidSamples": 0
+        },
+        "opencodeSynchronous": {
+          "unit": "ms",
+          "count": 6,
+          "median": 1.379350000002887,
+          "min": 1.2330000000001746,
+          "max": 110.76749999999993,
+          "invalidSamples": 0
+        },
+        "codexSynchronous": {
+          "unit": "ms",
+          "count": 6,
+          "median": 0.08985000000029686,
+          "min": 0.06019999999261927,
+          "max": 0.3198999999995067,
+          "invalidSamples": 0
+        },
+        "BrowserCPU": {
+          "unit": "%",
+          "count": 65,
+          "median": 0.07257839845050972,
+          "min": 0.06265321173600653,
+          "max": 0.31670261856224025,
+          "invalidSamples": 0
+        },
+        "BrowserWorkingSet": {
+          "unit": "MB",
+          "count": 65,
+          "median": 111.96,
+          "min": 110.584,
+          "max": 115.208,
+          "invalidSamples": 0
+        },
+        "BrowserPrivate": {
+          "unit": "MB",
+          "count": 65,
+          "median": 68.568,
+          "min": 67.132,
+          "max": 73.9,
+          "invalidSamples": 0
+        },
+        "TabCPU": {
+          "unit": "%",
+          "count": 65,
+          "median": 0,
+          "min": 0,
+          "max": 0.04004350828911331,
+          "invalidSamples": 0
+        },
+        "TabWorkingSet": {
+          "unit": "MB",
+          "count": 65,
+          "median": 79.6,
+          "min": 79.28,
+          "max": 80.56,
+          "invalidSamples": 0
+        },
+        "TabPrivate": {
+          "unit": "MB",
+          "count": 65,
+          "median": 25.168,
+          "min": 24.964,
+          "max": 25.872,
+          "invalidSamples": 0
+        },
+        "GPUCPU": {
+          "unit": "%",
+          "count": 65,
+          "median": 0.011069078307047986,
+          "min": 0.009867845811786456,
+          "max": 0.07590878878606605,
+          "invalidSamples": 0
+        },
+        "GPUWorkingSet": {
+          "unit": "MB",
+          "count": 65,
+          "median": 101.312,
+          "min": 100.968,
+          "max": 101.88,
+          "invalidSamples": 0
+        },
+        "GPUPrivate": {
+          "unit": "MB",
+          "count": 65,
+          "median": 87.028,
+          "min": 86.524,
+          "max": 91.408,
+          "invalidSamples": 0
+        },
+        "UtilityCPU": {
+          "unit": "%",
+          "count": 65,
+          "median": 0,
+          "min": 0,
+          "max": 0.048180090688411115,
+          "invalidSamples": 0
+        },
+        "UtilityWorkingSet": {
+          "unit": "MB",
+          "count": 65,
+          "median": 47.524,
+          "min": 47.368,
+          "max": 47.552,
+          "invalidSamples": 0
+        },
+        "UtilityPrivate": {
+          "unit": "MB",
+          "count": 65,
+          "median": 11.852,
+          "min": 11.628,
+          "max": 11.92,
+          "invalidSamples": 0
+        },
+        "widgetScriptDuration": {
+          "unit": "ms",
+          "count": 1,
+          "median": 1.431,
+          "min": 1.431,
+          "max": 1.431,
+          "invalidSamples": 0
+        },
+        "widgetLayoutDuration": {
+          "unit": "ms",
+          "count": 1,
+          "median": 1.512,
+          "min": 1.512,
+          "max": 1.512,
+          "invalidSamples": 0
+        },
+        "widgetTaskDuration": {
+          "unit": "ms",
+          "count": 1,
+          "median": 9.539000000000001,
+          "min": 9.539000000000001,
+          "max": 9.539000000000001,
+          "invalidSamples": 0
+        }
+      }
+    },
+    {
+      "scenario": "unpackaged profiling entry/small/hidden/65s",
+      "runs": 1,
+      "observationMs": [
+        65597.85179999999
+      ],
+      "measurements": {
+        "launchToVisibleMs": {
+          "unit": "ms",
+          "count": 1,
+          "median": 807,
+          "min": 807,
+          "max": 807,
+          "invalidSamples": 0
+        },
+        "launchToDataPaintMs": {
+          "unit": "ms",
+          "count": 1,
+          "median": 808,
+          "min": 808,
+          "max": 808,
+          "invalidSamples": 0
+        },
+        "visibleMs": {
+          "unit": "ms",
+          "count": 1,
+          "median": 735.1342,
+          "min": 735.1342,
+          "max": 735.1342,
+          "invalidSamples": 0
+        },
+        "firstDataPaintMs": {
+          "unit": "ms",
+          "count": 1,
+          "median": 736.5925,
+          "min": 736.5925,
+          "max": 736.5925,
+          "invalidSamples": 0
+        },
+        "refreshInputRoundTripMs": {
+          "unit": "ms",
+          "count": 1,
+          "median": 9.678899999998976,
+          "min": 9.678899999998976,
+          "max": 9.678899999998976,
+          "invalidSamples": 0
+        },
+        "resizeIPC": {
+          "unit": "count",
+          "count": 1,
+          "median": 6,
+          "min": 6,
+          "max": 6,
+          "invalidSamples": 0
+        },
+        "initialRefresh": {
+          "unit": "ms",
+          "count": 1,
+          "median": 40.43169999999998,
+          "min": 40.43169999999998,
+          "max": 40.43169999999998,
+          "invalidSamples": 0
+        },
+        "forcedRefresh": {
+          "unit": "ms",
+          "count": 1,
+          "median": 7.695800000001327,
+          "min": 7.695800000001327,
+          "max": 7.695800000001327,
+          "invalidSamples": 0
+        },
+        "automaticWarmRefresh": {
+          "unit": "ms",
+          "count": 1,
+          "median": 5.704400000002352,
+          "min": 5.704400000002352,
+          "max": 5.704400000002352,
+          "invalidSamples": 0
+        },
+        "eventLoopMax": {
+          "unit": "ms",
+          "count": 1,
+          "median": 132.710399,
+          "min": 132.710399,
+          "max": 132.710399,
+          "invalidSamples": 0
+        },
+        "claudeInitial": {
+          "unit": "ms",
+          "count": 2,
+          "median": 37.77815,
+          "min": 35.50020000000001,
+          "max": 40.05609999999999,
+          "invalidSamples": 0
+        },
+        "claudeForced": {
+          "unit": "ms",
+          "count": 2,
+          "median": 6.388500000008207,
+          "min": 5.179100000008475,
+          "max": 7.5979000000079395,
+          "invalidSamples": 0
+        },
+        "opencodeInitial": {
+          "unit": "ms",
+          "count": 2,
+          "median": 4.3185,
+          "min": 2.95150000000001,
+          "max": 5.6854999999999905,
+          "invalidSamples": 0
+        },
+        "opencodeForced": {
+          "unit": "ms",
+          "count": 2,
+          "median": 3.5135499999960302,
+          "min": 2.4756999999954132,
+          "max": 4.551399999996647,
+          "invalidSamples": 0
+        },
+        "codexInitial": {
+          "unit": "ms",
+          "count": 2,
+          "median": 31.38300000000001,
+          "min": 30.394499999999994,
+          "max": 32.371500000000026,
+          "invalidSamples": 0
+        },
+        "codexForced": {
+          "unit": "ms",
+          "count": 2,
+          "median": 4.196000000003551,
+          "min": 2.9143000000040047,
+          "max": 5.477700000003097,
+          "invalidSamples": 0
+        },
+        "claudeSynchronous": {
+          "unit": "ms",
+          "count": 6,
+          "median": 0.06645000000571599,
+          "min": 0.034599999999045394,
+          "max": 0.8796000000000106,
+          "invalidSamples": 0
+        },
+        "opencodeSynchronous": {
+          "unit": "ms",
+          "count": 6,
+          "median": 1.9025999999987278,
+          "min": 1.279900000001362,
+          "max": 3.0407000000000153,
+          "invalidSamples": 0
+        },
+        "codexSynchronous": {
+          "unit": "ms",
+          "count": 6,
+          "median": 0.11614999999866882,
+          "min": 0.07370000000082655,
+          "max": 0.39699999999999136,
+          "invalidSamples": 0
+        },
+        "BrowserCPU": {
+          "unit": "%",
+          "count": 65,
+          "median": 0.07376689922885889,
+          "min": 0.06519644810145574,
+          "max": 0.18812621399924542,
+          "invalidSamples": 0
+        },
+        "BrowserWorkingSet": {
+          "unit": "MB",
+          "count": 65,
+          "median": 106.612,
+          "min": 105.792,
+          "max": 110.072,
+          "invalidSamples": 0
+        },
+        "BrowserPrivate": {
+          "unit": "MB",
+          "count": 65,
+          "median": 67.2,
+          "min": 66.32,
+          "max": 72.304,
+          "invalidSamples": 0
+        },
+        "TabCPU": {
+          "unit": "%",
+          "count": 65,
+          "median": 0,
+          "min": 0,
+          "max": 0.13249814716957303,
+          "invalidSamples": 0
+        },
+        "TabWorkingSet": {
+          "unit": "MB",
+          "count": 65,
+          "median": 81.82,
+          "min": 78.816,
+          "max": 82.22,
+          "invalidSamples": 0
+        },
+        "TabPrivate": {
+          "unit": "MB",
+          "count": 65,
+          "median": 27.96,
+          "min": 26.88,
+          "max": 28.488,
+          "invalidSamples": 0
+        },
+        "GPUCPU": {
+          "unit": "%",
+          "count": 65,
+          "median": 0.01054296345117116,
+          "min": 0.009324891023544694,
+          "max": 0.01848204978741484,
+          "invalidSamples": 0
+        },
+        "GPUWorkingSet": {
+          "unit": "MB",
+          "count": 65,
+          "median": 97.916,
+          "min": 97.704,
+          "max": 98.148,
+          "invalidSamples": 0
+        },
+        "GPUPrivate": {
+          "unit": "MB",
+          "count": 65,
+          "median": 84.7,
+          "min": 84.12,
+          "max": 85.12,
+          "invalidSamples": 0
+        },
+        "UtilityCPU": {
+          "unit": "%",
+          "count": 65,
+          "median": 0,
+          "min": 0,
+          "max": 0.04285208947781006,
+          "invalidSamples": 0
+        },
+        "UtilityWorkingSet": {
+          "unit": "MB",
+          "count": 65,
+          "median": 47.164,
+          "min": 47.012,
+          "max": 47.256,
+          "invalidSamples": 0
+        },
+        "UtilityPrivate": {
+          "unit": "MB",
+          "count": 65,
+          "median": 11.784,
+          "min": 11.56,
+          "max": 11.94,
+          "invalidSamples": 0
+        },
+        "widgetScriptDuration": {
+          "unit": "ms",
+          "count": 1,
+          "median": 1.6199999999999999,
+          "min": 1.6199999999999999,
+          "max": 1.6199999999999999,
+          "invalidSamples": 0
+        },
+        "widgetLayoutDuration": {
+          "unit": "ms",
+          "count": 1,
+          "median": 1.707,
+          "min": 1.707,
+          "max": 1.707,
+          "invalidSamples": 0
+        },
+        "widgetTaskDuration": {
+          "unit": "ms",
+          "count": 1,
+          "median": 14.668000000000001,
+          "min": 14.668000000000001,
+          "max": 14.668000000000001,
+          "invalidSamples": 0
+        }
+      }
+    },
+    {
+      "scenario": "unpackaged profiling entry/small/settings/65s",
+      "runs": 1,
+      "observationMs": [
+        65584.49769999999
+      ],
+      "measurements": {
+        "launchToVisibleMs": {
+          "unit": "ms",
+          "count": 1,
+          "median": 760,
+          "min": 760,
+          "max": 760,
+          "invalidSamples": 0
+        },
+        "launchToDataPaintMs": {
+          "unit": "ms",
+          "count": 1,
+          "median": 790,
+          "min": 790,
+          "max": 790,
+          "invalidSamples": 0
+        },
+        "visibleMs": {
+          "unit": "ms",
+          "count": 1,
+          "median": 693.2758,
+          "min": 693.2758,
+          "max": 693.2758,
+          "invalidSamples": 0
+        },
+        "firstDataPaintMs": {
+          "unit": "ms",
+          "count": 1,
+          "median": 723.6107,
+          "min": 723.6107,
+          "max": 723.6107,
+          "invalidSamples": 0
+        },
+        "refreshInputRoundTripMs": {
+          "unit": "ms",
+          "count": 1,
+          "median": 3.4714999999996508,
+          "min": 3.4714999999996508,
+          "max": 3.4714999999996508,
+          "invalidSamples": 0
+        },
+        "resizeIPC": {
+          "unit": "count",
+          "count": 1,
+          "median": 7,
+          "min": 7,
+          "max": 7,
+          "invalidSamples": 0
+        },
+        "initialRefresh": {
+          "unit": "ms",
+          "count": 1,
+          "median": 37.85119999999998,
+          "min": 37.85119999999998,
+          "max": 37.85119999999998,
+          "invalidSamples": 0
+        },
+        "forcedRefresh": {
+          "unit": "ms",
+          "count": 1,
+          "median": 5.196600000010221,
+          "min": 5.196600000010221,
+          "max": 5.196600000010221,
+          "invalidSamples": 0
+        },
+        "automaticWarmRefresh": {
+          "unit": "ms",
+          "count": 1,
+          "median": 5.7171999999991385,
+          "min": 5.7171999999991385,
+          "max": 5.7171999999991385,
+          "invalidSamples": 0
+        },
+        "eventLoopMax": {
+          "unit": "ms",
+          "count": 1,
+          "median": 113.573887,
+          "min": 113.573887,
+          "max": 113.573887,
+          "invalidSamples": 0
+        },
+        "claudeInitial": {
+          "unit": "ms",
+          "count": 2,
+          "median": 35.17819999999999,
+          "min": 33.1463,
+          "max": 37.21009999999998,
+          "invalidSamples": 0
+        },
+        "claudeForced": {
+          "unit": "ms",
+          "count": 2,
+          "median": 4.129300000000512,
+          "min": 3.3245000000024447,
+          "max": 4.93409999999858,
+          "invalidSamples": 0
+        },
+        "opencodeInitial": {
+          "unit": "ms",
+          "count": 2,
+          "median": 3.6603000000000065,
+          "min": 2.1041999999999916,
+          "max": 5.2164000000000215,
+          "invalidSamples": 0
+        },
+        "opencodeForced": {
+          "unit": "ms",
+          "count": 2,
+          "median": 2.03125,
+          "min": 1.3466000000044005,
+          "max": 2.7158999999955995,
+          "invalidSamples": 0
+        },
+        "codexInitial": {
+          "unit": "ms",
+          "count": 2,
+          "median": 30.626549999999995,
+          "min": 29.73449999999997,
+          "max": 31.51860000000002,
+          "invalidSamples": 0
+        },
+        "codexForced": {
+          "unit": "ms",
+          "count": 2,
+          "median": 3.1684000000095693,
+          "min": 2.489800000010291,
+          "max": 3.8470000000088476,
+          "invalidSamples": 0
+        },
+        "claudeSynchronous": {
+          "unit": "ms",
+          "count": 6,
+          "median": 0.04280000000289874,
+          "min": 0.03740000000107102,
+          "max": 0.756699999999995,
+          "invalidSamples": 0
+        },
+        "opencodeSynchronous": {
+          "unit": "ms",
+          "count": 6,
+          "median": 1.378100000001396,
+          "min": 1.2115999999950873,
+          "max": 3.1306000000000154,
+          "invalidSamples": 0
+        },
+        "codexSynchronous": {
+          "unit": "ms",
+          "count": 6,
+          "median": 0.07374999999956344,
+          "min": 0.05770000000484288,
+          "max": 0.40680000000000405,
+          "invalidSamples": 0
+        },
+        "BrowserCPU": {
+          "unit": "%",
+          "count": 65,
+          "median": 0.07164541051940991,
+          "min": 0.06585761283445514,
+          "max": 0.3226598376356295,
+          "invalidSamples": 0
+        },
+        "BrowserWorkingSet": {
+          "unit": "MB",
+          "count": 65,
+          "median": 109.724,
+          "min": 108.652,
+          "max": 112.28,
+          "invalidSamples": 0
+        },
+        "BrowserPrivate": {
+          "unit": "MB",
+          "count": 65,
+          "median": 69.96,
+          "min": 68.54,
+          "max": 73.828,
+          "invalidSamples": 0
+        },
+        "TabCPU": {
+          "unit": "%",
+          "count": 130,
+          "median": 0,
+          "min": 0,
+          "max": 0.07466763675282113,
+          "invalidSamples": 0
+        },
+        "TabWorkingSet": {
+          "unit": "MB",
+          "count": 130,
+          "median": 86.488,
+          "min": 78.996,
+          "max": 94.456,
+          "invalidSamples": 0
+        },
+        "TabPrivate": {
+          "unit": "MB",
+          "count": 130,
+          "median": 27.288,
+          "min": 26.212,
+          "max": 28.684,
+          "invalidSamples": 0
+        },
+        "GPUCPU": {
+          "unit": "%",
+          "count": 65,
+          "median": 0.010705625921713216,
+          "min": 0.00864178166563598,
+          "max": 0.3644725326289539,
+          "invalidSamples": 0
+        },
+        "GPUWorkingSet": {
+          "unit": "MB",
+          "count": 65,
+          "median": 104.028,
+          "min": 102.728,
+          "max": 104.984,
+          "invalidSamples": 0
+        },
+        "GPUPrivate": {
+          "unit": "MB",
+          "count": 65,
+          "median": 105.764,
+          "min": 101.676,
+          "max": 108.16,
+          "invalidSamples": 0
+        },
+        "UtilityCPU": {
+          "unit": "%",
+          "count": 65,
+          "median": 0,
+          "min": 0,
+          "max": 0.04016809717561106,
+          "invalidSamples": 0
+        },
+        "UtilityWorkingSet": {
+          "unit": "MB",
+          "count": 65,
+          "median": 47.364,
+          "min": 47.164,
+          "max": 47.4,
+          "invalidSamples": 0
+        },
+        "UtilityPrivate": {
+          "unit": "MB",
+          "count": 65,
+          "median": 12.136,
+          "min": 11.912,
+          "max": 12.172,
+          "invalidSamples": 0
+        },
+        "widgetScriptDuration": {
+          "unit": "ms",
+          "count": 1,
+          "median": 1.685,
+          "min": 1.685,
+          "max": 1.685,
+          "invalidSamples": 0
+        },
+        "widgetLayoutDuration": {
+          "unit": "ms",
+          "count": 1,
+          "median": 1.967,
+          "min": 1.967,
+          "max": 1.967,
+          "invalidSamples": 0
+        },
+        "widgetTaskDuration": {
+          "unit": "ms",
+          "count": 1,
+          "median": 9.835,
+          "min": 9.835,
+          "max": 9.835,
+          "invalidSamples": 0
+        },
+        "settingsScriptDuration": {
+          "unit": "ms",
+          "count": 1,
+          "median": 0,
+          "min": 0,
+          "max": 0,
+          "invalidSamples": 0
+        },
+        "settingsLayoutDuration": {
+          "unit": "ms",
+          "count": 1,
+          "median": 0.593,
+          "min": 0.593,
+          "max": 0.593,
+          "invalidSamples": 0
+        },
+        "settingsTaskDuration": {
+          "unit": "ms",
+          "count": 1,
+          "median": 4.936,
+          "min": 4.936,
+          "max": 4.936,
+          "invalidSamples": 0
+        }
+      }
+    }
+  ],
+  "sourceVariant": {
+    "label": "compact metadata row arrays; F-28 repair",
+    "providerSha256": "1aa05e745725560cd4cdb3090eca561a15edabf79a75f7a2d3a25da8b162ccdc"
+  }
+}

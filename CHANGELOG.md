@@ -7,7 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Opt-in local performance profiling with synthetic account histories and a readable baseline report, without changing normal app launches.
+
 ### Changed
+
+- OpenCode reads compact SQLite metadata rows and avoids a duplicate result array, reducing refresh allocations and memory use while preserving readings, rounding and per-table failure behavior.
 
 - Landing-page hero and pace meters share rendering and styles; terminal prompts and animation target/state definitions are centralized while preserving the demo story and fallback.
 

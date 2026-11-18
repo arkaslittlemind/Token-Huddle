@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Token Huddle task progress</title>
+    <style>
+      :root { color-scheme: light dark; font-family: var(--font-sans, system-ui, sans-serif); color: var(--foreground, CanvasText); }
+      body { margin: 0; }
+      .task { display: grid; gap: 12px; }
+      .heading, .detail { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+      .heading { font-size: 14px; }
+      .phase, .detail { color: var(--muted-foreground, GrayText); font-size: 12px; }
+      .phase { display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+      .phase::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--primary, Highlight); }
+      progress { appearance: none; width: 100%; height: 6px; border: 0; border-radius: 9px; overflow: hidden; background: var(--secondary, ButtonFace); color: var(--primary, Highlight); }
+      progress::-webkit-progress-bar { background: var(--secondary, ButtonFace); border-radius: 9px; }
+      progress::-webkit-progress-value { background: var(--primary, Highlight); border-radius: 9px; }
+      progress::-moz-progress-bar { background: var(--primary, Highlight); border-radius: 9px; }
+      .count { white-space: nowrap; font-variant-numeric: tabular-nums; }
+      @media (max-width: 420px) { .heading { align-items: flex-start; flex-direction: column; gap: 6px; } }
+    </style>
+  </head>
+  <body>
+    <section class="task" aria-labelledby="task-name">
+      <div class="heading">
+        <strong id="task-name">OpenCode performance optimization</strong>
+        <span class="phase">Awaiting review</span>
+      </div>
+      <progress value="5" max="6" aria-label="Task milestones" aria-describedby="task-detail">5 of 6 steps complete</progress>
+      <div class="detail" id="task-detail">
+        <span>Checks passed. Independent review remaining.</span>
+        <span class="count">5 / 6 steps</span>
+      </div>
+    </section>
+  </body>
+</html>

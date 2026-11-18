@@ -57,6 +57,8 @@ that are checks or decisions instead of new UI.
   - [ ] 23b. **macOS and Linux** - bridge scripts for Claude Code and builds for both platforms
   - [ ] 23c. **Usage history** - local history of readings, trends and limit forecasts
 
+- [x] 24. **Performance baseline and comparison report** - *(chore, GitHub issue #9; selected next)* repeatable local Windows profiling with synthetic histories and isolated accounts; packaged startup, refresh and input latency, event-loop delay, renderer work, idle CPU and memory; record variability, rank candidates from evidence, and prepare a plain-language before/after report. Includes the approved focused OpenCode query optimization and matched latency/memory comparisons; further candidates require separate review.
+
 ## Suggested schedule
 
 | Week | Steps | Focus |
