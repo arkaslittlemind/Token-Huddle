@@ -113,16 +113,42 @@ function summary(provider) {
   return box;
 }
 
+/**
+ * The tool's official mark (agent-marks.js), unaltered and decorative: the name
+ * beside it names the card. A provider without a mark keeps its accent dot.
+ */
+function agentMark(provider) {
+  const mark = window.huddleAgentMarks?.[provider.id];
+  if (!mark) {
+    const dot = el('span', 'dot');
+    dot.setAttribute('aria-hidden', 'true');
+    dot.style.background = provider.accent || '#888';
+    return dot;
+  }
+  const ns = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(ns, 'svg');
+  svg.setAttribute('viewBox', mark.viewBox);
+  for (const p of mark.paths) {
+    const path = document.createElementNS(ns, 'path');
+    path.setAttribute('d', p.d);
+    path.setAttribute('fill', p.fill);
+    if (p.fillRule) path.setAttribute('fill-rule', p.fillRule);
+    if (p.clipRule) path.setAttribute('clip-rule', p.clipRule);
+    svg.append(path);
+  }
+  const box = el('span', 'mark-agent');
+  box.setAttribute('aria-hidden', 'true');
+  box.append(svg);
+  return box;
+}
+
 function providerBlock(provider, index) {
   const block = el('article', 'provider');
   const head = el('div', 'head');
-  const dot = el('span', 'dot');
-  dot.setAttribute('aria-hidden', 'true');
-  dot.style.background = provider.accent || '#888';
   const name = el('span', 'name', provider.name);
   name.id = `provider-${index}`;
   block.setAttribute('aria-labelledby', name.id);
-  head.append(dot, name);
+  head.append(agentMark(provider), name);
 
   if (state.compact) {
     head.append(summary(provider));

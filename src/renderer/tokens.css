@@ -49,6 +49,8 @@
   --primary-hover: var(--ob-mist);
   --on-primary: var(--surface-solid);
   --dot-ring: transparent;
+  /* Agent marks sit on the card itself in the dark theme. */
+  --mark-tile: transparent;
   --card-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
 
   --font-ui: 'Geist', 'Segoe UI', system-ui, sans-serif;
@@ -97,6 +99,8 @@
   --on-primary: #ffffff;
   /* Tool accents are pale on light surfaces; a ring keeps each dot visible. */
   --dot-ring: rgba(3, 4, 94, 0.45);
+  /* The white Codex and OpenCode marks need a dark tile on light surfaces; every mark gets one. */
+  --mark-tile: #13141a;
   --card-shadow: 0 4px 12px rgba(3, 4, 94, 0.14);
 }
 

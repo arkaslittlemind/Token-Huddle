@@ -1,6 +1,6 @@
 # Token Huddle - Project Overview
 
-<!-- blueprint:source-hash bb7c8208d80c2ca8a148b74764a802cb5f80e8c5e052f613a364996a0b951204 -->
+<!-- blueprint:source-hash a94842edd696a347e0a3c3b81ebdf09289d11181cd1eb72c84c282a6924594ab -->
 
 > An always-on-top Windows desktop widget that shows the usage limits of several AI coding agents in one place, without ever touching a tool's login.
 
@@ -57,6 +57,7 @@ In build-plan order. Steps 1 to 22a are done; 24 (performance baseline and repor
 22. **Private beta + go-to-market playbook** (chore, done) - prepare one week of private Windows testing, manual distribution and feedback prompts; draft the free launch and 15-second sample-data demo; defer repository visibility, history rewrite and publication until a separate post-beta launch decision.
 22a. **Automatic Claude token usage** (done) - detect local session records without setup; show today, seven-day and thirty-day totals; deduplicate API messages; retain optional subscription limits through the bridge. Cross-interface coverage requires verification.
 22b. **Launch video** (chore) - ~30-second on-brand dark film made as code (`seek(t)` page, headless browser, ffmpeg) in a folder outside this repository, never committed; the real widget renderer with labelled sample data, never real usage or logins; four scenes (hook, demo with compact view, threshold alert and reset as proof, looping end card); `LOOK.md` from the Night shift brand and three whatships.com reference films; researched licensed music and sound kit; contact-sheet, phone-width, first-frame, glitch and privacy checks; wide and square versions; no claim of provider accuracy or an OpenCode quota.
+22c. **Provider logos in the widget** - each supported agent's official mark (Claude Code, Codex, OpenCode) replaces its tool dot in the full and compact views, unaltered and beside the tool's name; readable in dark and light themes; bundled with the app, nothing from the network; brand rules and the not-affiliated notice updated; 22b waits for this release.
 23. **Bonus** (not before 1 to 22) - split into:
     - **23a. More providers** - Gemini CLI, GitHub Copilot, Cursor, OpenRouter; API-key and sign-in registration; terms re-checked.
     - **23b. macOS and Linux** - bridge scripts and builds.
@@ -164,7 +165,7 @@ weekly users, paid scope and licensing require a separate spec. Free v1 stays fr
 
 ## UI/UX
 
-A quiet instrument: glanceable in a second, invisible the rest of the time. Dark card by default, neutral surfaces with Ocean Breeze accents (bars, pace marker, one dot per tool), colour reserved for state (amber 70%, red 90%), Geist with tabular numbers, for text and the wordmark, thin bars with a pace marker, restrained motion. No vendor logos or brand colours in the app; the landing page may show the official Claude Code, Codex and OpenCode marks to name the supported agents.
+A quiet instrument: glanceable in a second, invisible the rest of the time. Dark card by default, neutral surfaces with Ocean Breeze accents (bars, pace marker), one official mark per tool (light theme: on a small dark tile; until 22c ships the widget still shows one dot per tool), colour reserved for state (amber 70%, red 90%), Geist with tabular numbers, for text and the wordmark, thin bars with a pace marker, restrained motion. The widget and the landing page show each supported agent's official mark, unaltered and beside its name, only to say which tool a card reads from, beside a not-affiliated notice. No vendor brand colours except inside a vendor's own unaltered mark; no altered marks; nothing that implies affiliation.
 
 Brand basics are recorded in `docs/brand.md` and shared by the app and the landing page. The final logo is Tracks & fills (step 21a).
 

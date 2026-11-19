@@ -35,7 +35,12 @@ module.exports = [
   },
   {
     // Shared files: the page loads them with <script>, main with require().
-    files: ['src/renderer/mark.js', 'src/renderer/duration.js', 'src/renderer/guidance.js'],
+    files: [
+      'src/renderer/mark.js',
+      'src/renderer/agent-marks.js',
+      'src/renderer/duration.js',
+      'src/renderer/guidance.js',
+    ],
     languageOptions: { globals: { ...globals.browser, module: 'readonly' } },
   },
 ];

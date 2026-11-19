@@ -139,3 +139,27 @@ for (const [theme, tokens] of Object.entries(THEMES)) {
     assert.ok(onPanel >= 3, `--focus on --panel is ${onPanel.toFixed(2)}`);
   });
 }
+
+// Agent marks (build-plan 22c). Dark theme: marks sit on the card itself, so no
+// tile. Light theme: every mark sits on a dark tile, which must stand out from
+// the card (solid, and translucent over any desktop), and the white Codex and
+// OpenCode marks must stand out from the tile.
+test('dark: agent marks have no tile', () => {
+  assert.equal(THEMES.dark['--mark-tile'], 'transparent', '--mark-tile should be transparent in the dark theme');
+});
+
+test('light: the agent mark tile is at least 3:1 against the card, and white marks on it too', () => {
+  const tile = colour(THEMES.light, '--mark-tile');
+  assert.equal(tile.alpha, 1, '--mark-tile should be opaque in the light theme');
+  const backgrounds = { solid: colour(THEMES.light, '--surface-solid').rgb };
+  const surface = colour(TRANSLUCENT.light, '--surface');
+  for (const [desktop, base] of Object.entries({ white: [255, 255, 255], black: [0, 0, 0] })) {
+    backgrounds[`translucent over ${desktop}`] = over(surface, base);
+  }
+  for (const [name, bg] of Object.entries(backgrounds)) {
+    const value = ratio(tile.rgb, bg);
+    assert.ok(value >= 3, `--mark-tile on the ${name} card is ${value.toFixed(2)}`);
+  }
+  const white = ratio([255, 255, 255], tile.rgb);
+  assert.ok(white >= 3, `a white mark on --mark-tile is ${white.toFixed(2)}`);
+});

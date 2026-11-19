@@ -79,8 +79,17 @@ state. Tokens live in [`src/renderer/tokens.css`](../src/renderer/tokens.css).
 | Sky | `#90E0EF` | Bar fill, focus ring, primary button, mark rows (dark) |
 | Mist | `#CAF0F8` | Pace marker, Claude Code dot |
 
-Tool dots: Claude Code `#CAF0F8`, Codex `#00B4D8`, OpenCode `#3D9BD1`. No dot
-uses a vendor's brand colour.
+Tool marks (build-plan 22c): each widget card shows its agent's official mark
+beside the tool's name, unaltered, from `src/renderer/agent-marks.js` (copied
+from the landing page's `site/src/assets/agents/*.svg`; `test/agent-marks.test.js`
+keeps them identical). The mark is decorative; the name names the card. In the
+light theme every mark sits on a small dark tile (`--mark-tile`, `#13141A`) so
+the white Codex and OpenCode marks stay visible; the dark theme has no tile.
+
+Tool dots: Claude Code `#CAF0F8`, Codex `#00B4D8`, OpenCode `#3D9BD1`. The
+settings window and first-run welcome still use them, and a widget card falls
+back to its dot when its provider has no mark. No dot uses a vendor's brand
+colour.
 
 ### Dark theme (in use)
 
@@ -149,11 +158,14 @@ Tokens added in step 13 (both themes):
 | `--primary-hover` | `--ob-mist` | `#03045E` | primary button hover |
 | `--on-primary` | `--surface-solid` | `#FFFFFF` | primary button text |
 | `--dot-ring` | `transparent` | `rgba(3, 4, 94, 0.45)` (3.12 on surface) | ring around tool dots |
+| `--mark-tile` | `transparent` | `#13141A` (17.74 on surface; white mark on it 18.38) | tile behind each agent mark (22c) |
 | `--card-shadow` | `0 4px 10px rgba(0, 0, 0, 0.35)` | `0 4px 12px rgba(3, 4, 94, 0.14)` | widget card shadow |
 
 The tool accents are pale on light surfaces (Claude Code `#CAF0F8` 1.17, Codex
-`#00B4D8` 2.38, OpenCode `#3D9BD1` 2.98), so light dots get `--dot-ring`. The
-tool name beside each dot is what identifies it.
+`#00B4D8` 2.38, OpenCode `#3D9BD1` 2.98), so light dots (settings, and the
+widget's fallback) get `--dot-ring`. In the widget each agent mark sits on
+`--mark-tile` instead. The tool name beside each dot or mark is what
+identifies it.
 
 The header mark's colours are not tokens: the widget draws the mark from
 `src/renderer/mark.js` in its `dark` or `light` colourway, so the mark stays
@@ -210,9 +222,11 @@ nothing from the network; the pages allow fonts only from their own files
 
 - Do keep Ocean Breeze for brand, bars and pace. Amber and red mean state.
 - Do show every state in text as well as colour.
-- Don't use vendor brand colours anywhere, and no vendor logos in the app.
-  The landing page may show the official Claude Code, Codex and OpenCode marks
-  to name the supported agents, unaltered and beside the tool's name.
+- Don't use vendor brand colours anywhere, except inside a vendor's own
+  unaltered mark. The widget and the landing page show the official Claude
+  Code, Codex and OpenCode marks only to name the supported agents, unaltered
+  and beside the tool's name, with a not-affiliated notice. Never recolour,
+  crop or redraw a vendor mark.
 - Don't put the mark on a busy background without the tile.
 - Don't stretch, outline, add shadows or gradients to the mark.
 - Don't call usage "tokens" without saying it means AI model usage.
@@ -273,9 +287,10 @@ colours, type, mark and the amber and red thresholds stay defined once.
 - **Agent marks** (`site/src/assets/agents/`). These are the official Claude
   Code, Codex and OpenCode marks, copied from SVGL (svgl.app) with their
   colours unchanged. The Codex file had its sizing and inline style removed.
-  The marks belong to their owners. They appear only in the "Reads from the
-  agents you already run" list, to name the supported agents, and the footer
-  says the project is not affiliated. The app shows no vendor marks.
+  The marks belong to their owners. On the page they appear only in the "Reads
+  from the agents you already run" list, to name the supported agents, and the
+  footer says the project is not affiliated. The widget shows the same marks
+  beside each card's name (see "Tool marks" above).
 - **Icons.** The six feature icons are Lucide path data (ISC,
   `site/src/components/LICENSE-lucide.txt`).
 - **Widget copies** on the page use the brand tool dots, never vendor colours.

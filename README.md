@@ -177,7 +177,7 @@ The release workflow also attaches `Token-Huddle-Setup.exe`, a copy of the versi
 
 ## Disclaimer
 
-Token Huddle is an independent, unofficial project. It is not affiliated with, endorsed by, or sponsored by Anthropic, OpenAI, or the OpenCode project. Claude and Claude Code are trademarks of Anthropic; Codex and ChatGPT are trademarks of OpenAI. The names are used here only to say which tools the widget reads from.
+Token Huddle is an independent, unofficial project. It is not affiliated with, endorsed by, or sponsored by Anthropic, OpenAI, or the OpenCode project. Claude and Claude Code are trademarks of Anthropic; Codex and ChatGPT are trademarks of OpenAI. The names and the official marks of Claude Code, Codex and OpenCode are used, unaltered, only to say which tools the widget reads from; the marks belong to their owners.
 
 You are responsible for making sure your use fits the terms of the services you subscribe to. The software is provided as is, with no warranty; see the license.
 

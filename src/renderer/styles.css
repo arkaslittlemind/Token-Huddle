@@ -150,6 +150,35 @@ button.spinning svg {
   box-shadow: 0 0 0 1px var(--dot-ring);
 }
 
+/* A tool's official mark, unaltered (agent-marks.js). In the light theme it
+   sits on a small dark tile so the white marks stay visible; the tile is
+   transparent in the dark theme. */
+.mark-agent {
+  width: 13px;
+  height: 13px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 3px;
+  background: var(--mark-tile);
+}
+
+.mark-agent svg {
+  width: 13px;
+  height: 13px;
+  display: block;
+}
+
+[data-theme='light'] .mark-agent {
+  width: 15px;
+  height: 15px;
+}
+
+[data-theme='light'] .mark-agent svg {
+  width: 11px;
+  height: 11px;
+}
+
 .name {
   font-size: 13px;
   font-weight: 600;

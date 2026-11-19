@@ -1,10 +1,9 @@
 # Token Huddle - Project Plan
 
 > Unofficial, independent project. Not affiliated with or endorsed by Anthropic,
-> OpenAI, or the OpenCode project. No vendor logos in the app, where tool names
-> appear only to say which tool a card reads from. The landing page shows the
-> official Claude Code, Codex and OpenCode marks only to name the supported
-> agents, beside a not-affiliated notice.
+> OpenAI, or the OpenCode project. The widget and the landing page show each
+> supported agent's official mark, unaltered and beside its name, only to say
+> which tool a card reads from, beside a not-affiliated notice.
 
 ## 1. Problem - What problem are we solving?
 
@@ -258,8 +257,9 @@ invisible the rest of the time, at home next to an editor.
 ### Visual system
 
 - Dark card by default; light and system themes in v1
-- Neutral surfaces with Ocean Breeze accents (bars, pace marker, one dot per
-  tool); colour is reserved for state (amber warning, red critical)
+- Neutral surfaces with Ocean Breeze accents (bars, pace marker); one official
+  mark per tool (light theme: on a small dark tile); colour is reserved for
+  state (amber warning, red critical)
 - Geist for text and the wordmark, with tabular numbers for percentages; it
   ships with the app (the landing page adds Newsreader for serif accents)
 - Thin bars with a pace marker; no gauges, no charts on the main card
@@ -267,9 +267,10 @@ invisible the rest of the time, at home next to an editor.
 
 Avoid:
 
-- Vendor logos in the app, vendor brand colours anywhere, or any use of a
-  vendor mark that implies affiliation (the landing page names the supported
-  agents with their official marks, beside a not-affiliated notice)
+- Vendor brand colours anywhere, except inside a vendor's own unaltered mark;
+  any altered vendor mark; any use of a vendor mark that implies affiliation
+  (the widget and the landing page name the supported agents with their
+  official marks, beside a not-affiliated notice)
 - Dense dashboards; the widget answers "where do I stand?" and nothing more
 - Text that becomes unreadable over busy windows
 

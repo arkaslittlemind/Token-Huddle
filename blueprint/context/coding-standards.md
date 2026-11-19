@@ -55,6 +55,10 @@ These two rules override every other convention.
 - `src/renderer/mark.js` - the one place the logo is defined. The widget page
   loads it with `<script>`; `src/main/icon.js` `require()`s it to draw the tray
   and window icons as pixels. Keep it plain data with no imports
+- `src/renderer/agent-marks.js` - the official agent marks the widget shows
+  beside each tool's name, keyed by provider id, copied unaltered from
+  `site/src/assets/agents/`. The widget page loads it with `<script>`;
+  `test/agent-marks.test.js` `require()`s it. Keep it plain data with no imports
 - `src/main/icon.js` - draws the mark as raw pixels; must not import Electron
 - `src/main/alerts.js` - threshold alert rules (which windows crossed a level,
   what was already sent); must not import Electron. `main.js` shows the
