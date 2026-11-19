@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.4] - 2026-11-19
+
 ### Changed
 
 - The widget shows each tool's official mark beside its name instead of a coloured dot, on a small dark tile in the light theme.
@@ -238,7 +240,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   Claude Code and Codex login files to call the vendors' usage endpoints; that is
   outside what Anthropic's terms allow for third-party apps.
 
-[Unreleased]: https://github.com/arkaslittlemind/token-huddle/compare/v0.1.3...HEAD
+[Unreleased]: https://github.com/arkaslittlemind/token-huddle/compare/v0.1.4...HEAD
+[0.1.4]: https://github.com/arkaslittlemind/token-huddle/compare/v0.1.3...v0.1.4
 [0.1.3]: https://github.com/arkaslittlemind/token-huddle/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/arkaslittlemind/token-huddle/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/arkaslittlemind/token-huddle/compare/v0.1.0...v0.1.1
